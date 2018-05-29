@@ -66,7 +66,7 @@
         <section>
             <section class="hbox stretch">
                 <!-- 左边菜单栏 S -->
-               <aside class="bg-black dk aside hidden-print">
+                <aside class="bg-black dk aside hidden-print">
                     <section class="vbox">
                         <section class="w-f-md scrollable">
                             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 542px;">
@@ -184,156 +184,83 @@
                 </aside>
                 <!-- 左边菜单栏 E -->
                 <!-- 页面主体 S -->
-                <section id="content">
-                    <section class="hbox stretch scrollable">
+                <section>
+                    <section class="hbox stretch">
                         <section>
                             <section class="vbox">
-                                <section class="scrollable wrapper" id="bjax-target" style="bottom: 50px;"><div class="row" id="content">
-        <div class="col-lg-12">
-            <!-- .breadcrumb 面包屑导航 -->
-            <ul class="breadcrumb">
-                <li><a href="javascript:;"><i class="fa fa-home"></i> 学生提问</a></li>
-                <li class="active">提问列表</li>
-            </ul>
-            <!-- / .breadcrumb -->
-            <!-- 正文内容 -->
-            <section class="panel panel-default" style="position: relative;">
-                                    <div class="panel-body">
-                                        <form class="form-inline" role="form">
-                                            <div class="btn-group m-r">
-                        <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
-                          <span class="dropdown-label" data-placeholder="Please select">提问分类</span>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu dropdown-select">
-                            <li class="active"><input type="radio" name="d-s-r" checked=""><a href="#">全部</a></li>
-                            <li><input type="radio" name="d-s-r"><a href="#">学习</a></li>
-                            <li><input type="radio" name="d-s-r"><a href="#">心理健康</a></li>
-                            <li><input type="radio" name="d-s-r"><a href="#">创业就业</a></li>
-                            <li><input type="radio" name="d-s-r"><a href="#">生活服务</a></li>
-                            <li><input type="radio" name="d-s-r"><a href="#">其他</a></li>
-                        </ul>
-                      </div>
-                      <div class="btn-group m-r">
-                        <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
-                          <span class="dropdown-label" data-placeholder="Please select">时间</span>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu dropdown-select">
-                            <li class="active"><input type="radio" name="d-s-r" checked=""><a href="#">全部</a></li>
-                            <li><input type="radio" name="d-s-r"><a href="#">过去一周</a></li>
-                            <li><input type="radio" name="d-s-r"><a href="#">过去一个月</a></li>
-                        </ul>
-                      </div>
-                                            <div class="form-group">
-                                                <input type="text" name="id" class="form-control" placeholder="问题关键词">
-                                                <label class="control-label padder"></label>
+                                <section class="scrollable wrapper" id="bjax-target" style="bottom: 50px;">
+                                    <div class="row" id="content">
+                                        <div class="col-lg-12">
+                                            <!-- .breadcrumb 面包屑导航 -->
+                                            <ul class="breadcrumb">
+                                                <li><a href="javascript:;"><i class="fa fa-home"></i> 
+                                                学生提问</a></li>
+                                                <li><a href="javascript:;"><i class="fa fa-list-ul"></i> 提问列表</a></li>
+                                                <li class="active">新增学生提问类别</li>
+                                            </ul>
+                                            <!-- / .breadcrumb -->
+                                            <!-- 正文内容 -->
+                                            <div id="formContent">
+                                                <section class="panel panel-default">
+                                                    <header class="panel-heading font-bold">
+                                                        新增学生提问类别
+                                                    </header>
+                                                    <div class="panel-body">
+                                                        <form data-validate="parsley" class="form-horizontal">
+                                                            <input type="hidden" name="id" value="">
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label">分类名称</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" name="title" class="form-control parsley-validated" value="" data-required="true" data-error-message="名称不能为空." placeholder="请填写学生提问分类名称">
+                                                                    <span class="help-block m-b-none"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label">排序</label>
+                                                                <div class="col-sm-10">
+                                                                    <div class="row">
+                                                                        <div class="col-md-2">
+                                                                            <input type="number" class="form-control parsley-validated" value="0" name="sort">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-4 col-sm-offset-2">
+                                                                    <button type="button" onclick="_g.openWin('aDPoster/list');" class="btn btn-s-md btn-danger">取消
+                                                                    </button>
+                                                                    <button id="submitBtn" class="btn btn-s-md btn-primary">提交</button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label"></label>
+                                                                <div class="col-sm-8">
+                                                                    <!-- 错误提示区 -->
+                                                                    <div id="messageArea"></div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </section>
                                             </div>
-                                            <div class="form-group">
-                                            <button id="searchBtn" type="submit" class="btn btn-s-md btn-success">查询</button>
-                                            <div class="form-group">
-                                        </form>
+                                            <!-- / 正文内容 -->
+                                            <!-- 页面脚本 -->
+                                            <script src="./html/aDPoster/edit.js"></script>
+                                            <!-- / 页面脚本 -->
+                                        </div>
                                     </div>
                                 </section>
-            <section class="panel panel-default">
-                <div class="row wrapper">
-                    <div class="col-sm-12">
-                        <button onclick="_g.openWin('adminMenu/edit');" class="btn btn-success">新增</button>
-                    </div>
-                </div>
-                <div id="table" class="table-responsive"><table class="table table-striped b-t b-light">
-    <thead>
-    <tr>
-        <th>序号</th>
-        <th>学生姓名</th>
-        <th>学生学号</th>
-        <th>分类</th>
-        <th>问题描述</th>
-        <th>解答</th>
-        <th>提问时间</th>
-        <th>操作</th>
-    </tr>
-    </thead>
-    <tbody>
-     
-    <tr data-custom-id="1">
-        <td>1</td>
-        <td>xxx</td>
-        <td>32152415</td>
-        <td>学习</td>
-        <td>xxxxxxxxxxxxxxxxxxxxxxxx</td>
-        <td></td>
-        <td>2018-03-14</td>
-        <td>
-            <button onclick="_g.openWin('adminMenu/edit', 'id=1')" class="btn btn-success btn-xs">回复</button>
-        </td>
-    </tr>
-    
-    <tr data-custom-id="2">
-        <td>2</td>
-        <td>xxx</td>
-        <td>32152415</td>
-        <td>学习</td>
-        <td>xxxxxxxxxxxxxxxxxxxxxxxx</td>
-        <td></td>
-        <td>2018-03-14</td>
-        <td>
-            <button onclick="_g.openWin('adminMenu/edit', 'id=1')" class="btn btn-success btn-xs">回复</button>
-        </td>
-    </tr>
-
-    <tr data-custom-id="3">
-        <td>3</td>
-        <td>xxx</td>
-        <td>32152415</td>
-        <td>学习</td>
-        <td>xxxxxxxxxxxxxxxxxxxxxxxx</td>
-        <td></td>
-        <td>2018-03-14</td>
-        <td>
-            <button onclick="_g.openWin('adminMenu/edit', 'id=1')" class="btn btn-success btn-xs">回复</button>
-        </td>
-    </tr>
-     
-    </tbody>
-</table>
-</div>
-                <footer class="panel-footer">
-                    <div class="row">
-                        <div class="col-sm-4 hidden-xs">
-                            <small class="text-muted inline m-t-sm m-b-sm">
-                                一共 <span id="totalCount">45</span> 条记录 - 共 <span id="totalPages">3</span> 页
-                            </small>
-                        </div>
-                        <div class="col-sm-2 text-center">
-
-                        </div>
-                        <div class="col-sm-6 text-right text-center-xs">
-                            <div id="pagination" style="margin: 0;" class="pagination"><ul class="pagination pagination-sm m-t-none m-b-none"><li class="active"><a title="Current page is 1">1</a></li><li><a title="Go to page 2">2</a></li><li><a title="Go to page 3">3</a></li><li><a title="Go to next page">&gt;</a></li><li><a title="Go to last page">&gt;&gt;</a></li></ul></div>
-                        </div>
-                    </div>
-                </footer>
+                                <footer class="footer bg-dark">
+                                    <p class="webFooter"> 2018 &copy; 广东工业大学管理学院</p>
+                                </footer>
+                            </section>
+                        </section>
+                    </section>
+                    <a href="" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
+                </section>
             </section>
-            <!-- / 正文内容 -->
-            <!-- 页面脚本 -->
-            <script src="./html/coversation/list.js"></script>
-            <!-- / 页面脚本 -->
-        </div>
-    </div></section>
-
-        <!-- 正文内容 E -->
-        <!-- 页脚 S -->
-        <footer class="footer bg-dark">
-            <div class="text-lt" style="line-height: 50px;">2018 &copy; 广东工业大学管理学院</div>
-        </footer>
-        <!-- 页脚 E -->
-    </section>
-    </section>
-    <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
-    </section>
-    </section>
-    <!-- 页面主体 E -->
-    </section>
+            <!-- 页面主体 E -->
+        </section>
     </section>
     <script src="../../js/jquery.min.js"></script>
     <!-- Bootstrap -->
