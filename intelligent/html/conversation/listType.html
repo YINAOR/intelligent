@@ -223,66 +223,26 @@
             <!-- .breadcrumb 面包屑导航 -->
             <ul class="breadcrumb">
                 <li><a href="javascript:;"><i class="fa fa-home"></i> 茶座管理</a></li>
-                <li class="active">茶座列表</li>
+                <li><a href="javascript:;"><i class="fa fa-home"></i> 茶座列表</a></li>
+                <li class="active">新增茶座类别</li>
             </ul>
             <!-- / .breadcrumb -->
             <!-- 正文内容 -->
-            <section class="panel panel-default" style="position: relative;">
-                                    <div class="panel-body">
-                                        <form class="form-inline" role="form">
-                                            <div class="btn-group m-r">
-                        <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
-                          <span class="dropdown-label" data-placeholder="Please select">茶座分类</span>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu dropdown-select">
-                            <li class="active"><input type="radio" name="d-s-r" checked=""><a href="#">创新创业</a></li>
-                            <li><input type="radio" name="d-s-r"><a href="#">学科竞赛</a></li>
-                            <li><input type="radio" name="d-s-r"><a href="#">心理求助</a></li>
-                            <li><input type="radio" name="d-s-r"><a href="#">生活服务</a></li>
-                            <li><input type="radio" name="d-s-r"><a href="#">学习</a></li>
-                            <li><input type="radio" name="d-s-r"><a href="#">其他</a></li>
-                        </ul>
-                      </div>
-
-                                            <div class="btn-group m-r">
-                        <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
-                          <span class="dropdown-label" data-placeholder="Please select">时间</span>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu dropdown-select">
-                            <li class="active"><input type="radio" name="d-s-r" checked=""><a href="#">全部</a></li>
-                            <li><input type="radio" name="d-s-r"><a href="#">即将开始</a></li>
-                            <li><input type="radio" name="d-s-r"><a href="#">过去一周</a></li>
-                            <li><input type="radio" name="d-s-r"><a href="#">过去一个月</a></li>
-                        </ul>
-                      </div>
-                                            <div class="form-group">
-                                                <input type="text" name="id" class="form-control" placeholder="茶座主题">
-                                                <label class="control-label padder"></label>
-                                            </div>
-                                            <div class="form-group">
-                                            <button id="searchBtn" type="submit" class="btn btn-s-md btn-success">查询</button>
-                                            <div class="form-group">
-                                        </form>
-                                    </div>
-                                </section>
             <section class="panel panel-default">
                 <div class="row wrapper">
                     <div class="col-sm-12">
-                        <button onclick="_g.openWin('adminMenu/edit');" class="btn btn-success">新增</button>
+                        <button onclick="_g.openWin('adminMenu/edit');" class="btn btn-success">新增茶座类别</button>
                     </div>
                 </div>
                 <div id="table" class="table-responsive"><table class="table table-striped b-t b-light">
     <thead>
     <tr>
         <th>序号</th>
-        <th>主题</th>
-        <th>时间</th>
-        <th>地点</th>
-        <th>主讲人</th>
-        <th>分类</th>
-        <th>面向对象</th>
+        <th>Id</th>
+        <th>分类名称</th>
+        <th>分类排序</th>
+        <th>分类内容数量</th>
+        <th>创建时间</th>
         <th>操作</th>
     </tr>
     </thead>
@@ -290,43 +250,40 @@
      
     <tr data-custom-id="1">
         <td>1</td>
-        <td>茶座主题</td>
-        <td>2018年5月20日</td>
-        <td>A南306</td>
-        <td>xx辅导员</td>
+        <td>1</td>
         <td>创新创业</td>
-        <td>全体学生</td>
+        <td>1</td>
+        <td>23</td>
+        <td>2018-05-12 17:35:04</td>
         <td>
             <button onclick="_g.openWin('adminMenu/edit', 'id=1')" class="btn btn-success btn-xs">编辑</button>
             <button onclick="_g.pm.methods.deleteItem('1')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
         </td>
     </tr>
     
-    <tr data-custom-id="2">
+     <tr data-custom-id="2">
         <td>2</td>
-        <td>茶座主题</td>
-        <td>2018年5月25日</td>
-        <td>A南206</td>
-        <td>xx辅导员</td>
-        <td>心理求助</td>
-        <td>全体学生</td>
+        <td>2</td>
+        <td>学习</td>
+        <td>2</td>
+        <td>15</td>
+        <td>2018-06-12 09:14:14</td>
         <td>
-            <button onclick="_g.openWin('adminMenu/edit', 'id=3')" class="btn btn-success btn-xs">编辑</button>
-            <button onclick="_g.pm.methods.deleteItem('3')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+            <button onclick="_g.openWin('adminMenu/edit', 'id=1')" class="btn btn-success btn-xs">编辑</button>
+            <button onclick="_g.pm.methods.deleteItem('1')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
         </td>
     </tr>
 
-    <tr data-custom-id="3">
+     <tr data-custom-id="3">
         <td>3</td>
-        <td>茶座主题</td>
-        <td>2018年6月1日</td>
-        <td>A南217</td>
-        <td>xx辅导员</td>
-        <td>学习</td>
-        <td>全体学生</td>
+        <td>3</td>
+        <td>生活服务</td>
+        <td>0</td>
+        <td>5</td>
+        <td>2018-04-02 10:27:04</td>
         <td>
-            <button onclick="_g.openWin('adminMenu/edit', 'id=3')" class="btn btn-success btn-xs">编辑</button>
-            <button onclick="_g.pm.methods.deleteItem('3')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+            <button onclick="_g.openWin('adminMenu/edit', 'id=1')" class="btn btn-success btn-xs">编辑</button>
+            <button onclick="_g.pm.methods.deleteItem('1')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
         </td>
     </tr>
      
