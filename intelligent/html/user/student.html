@@ -214,15 +214,107 @@
                         <section>
                             <section class="vbox">
                                 <!-- 正文内容 S -->
-								<ul class="breadcrumb">
-									<li class="active"><i class="fa fa-home"></i> 用户管理</li>
-									<li class="active"><i class="fa fa-list-ul"></i> 学生管理</li>
-                                </ul>
-                                <div >
-                                    <input type="text" class="form-control input-sm no-border" placeholder="Search 姓名..." style="width:15%">
-                                    <input type="text" class="form-control input-sm no-border" placeholder="Search 学号..." style="width:15%">
-                                    <input type="text" class="form-control input-sm no-border" placeholder="Search 专业..." style="width:15%">    
-                                </div>
+								<section class="panel panel-default" style="position: relative;">
+									<!-- 面包屑导航 S-->
+									<ul class="breadcrumb">
+										<li class="active"><i class="fa fa-home"></i> 用户管理</li>
+										<li class="active"><i class="fafa-list-ul"></i> 学生管理</li>
+									</ul>
+									<!-- 面包屑导航 e-->
+									<!-- 搜索栏 S-->
+									<div class="panel-body">
+									  <form class="form-inline" role="form">										
+										<div class="form-group">
+										  <label class="sr-only" for="exampleInputPassword2">姓名</label>
+										  <input type="password" class="form-control" id="exampleInputPassword2" placeholder="姓名">
+										</div>
+										<div class="form-group">
+										  <label class="sr-only" for="exampleInputPassword2">学号</label>
+										  <input type="password" class="form-control" id="exampleInputPassword2" placeholder="学号">
+										</div>
+										<div class="form-group">
+										  <label class="sr-only" for="exampleInputPassword2">专业</label>
+										  <input type="password" class="form-control" id="exampleInputPassword2" placeholder="专业">
+										</div>									
+										<a href="#modal-form" class="btn btn-success" data-toggle="modal">查询</a>
+									  </form>                  
+									</div>
+									<!-- 搜索栏 e-->
+									<!--表格数据 s-->
+									<div id="table" class="table-responsive"><table class="table table-striped b-t b-light">
+										<thead>
+											<tr>
+												<th>序号</th>
+												<th>姓名</th>
+												<th>学号</th>
+												<th>性别</th>
+												<th>专业</th>
+												<th>手机号码</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody>
+											 
+											<tr data-custom-id="3">
+												<td>1</td>
+												<td>黄文晓</td>
+												<td>3215004210</td>
+												<td>女</td>
+												<td>信管</td>
+												<td>18128758974</td>
+												<td>
+													<button onclick="_g.openWin('adminRole/edit', 'id=3')" class="btn btn-success btn-xs">编辑</button>
+													<button onclick="_g.pm.methods.deleteItem('3')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+												</td>
+											</tr>
+											
+											<tr data-custom-id="2">
+												<td>2</td>
+												<td>叶泉胜</td>
+												<td>3115004205</td>
+												<td>男</td>
+												<td>信管</td>
+												<td>15766214587</td>
+												<td>
+													<button onclick="_g.openWin('adminRole/edit', 'id=2')" class="btn btn-success btn-xs">编辑</button>
+													<button onclick="_g.pm.methods.deleteItem('2')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+												</td>
+											</tr>
+											
+											<tr data-custom-id="1">
+												<td>3</td>
+												<td>尹尧</td>
+												<td>3115004206</td>
+												<td>男</td>
+												<td>信管</td>
+												<td>15626135769</td>
+												<td>
+													<button onclick="_g.openWin('adminRole/edit', 'id=1')" class="btn btn-success btn-xs">编辑</button>
+													<button onclick="_g.pm.methods.deleteItem('1')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+												</td>
+											</tr>											 
+										</tbody>
+									</table>
+									</div>
+									<!--表格数据 e-->
+									<!--记录数 s-->
+									<footer class="panel-footer">
+										<div class="row">
+											<div class="col-sm-4 hidden-xs">
+												<small class="text-muted inline m-t-sm m-b-sm">
+													一共 <span id="totalCount">3</span> 条记录 - 共 <span id="totalPages">1</span> 页
+												</small>
+											</div>
+											<div class="col-sm-2 text-center">
+
+											</div>
+											<div class="col-sm-6 text-right text-center-xs">
+												<div id="pagination" style="margin: 0;" class="pagination"><ul class="pagination pagination-sm m-t-none m-b-none"><li class="active"><a title="Current page is 1">1</a></li></ul></div>
+											</div>
+										</div>
+									</footer>
+									<!--记录数 e-->
+								</section>
                                 <!-- 正文内容 E -->
                                 <!-- 页脚 S -->
                                 <footer class="footer bg-dark">
