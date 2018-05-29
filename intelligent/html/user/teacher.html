@@ -66,7 +66,7 @@
         <section>
             <section class="hbox stretch">
                 <!-- 左边菜单栏 S -->
-                <aside class="bg-black dk aside hidden-print">
+               <aside class="bg-black dk aside hidden-print">
                     <section class="vbox">
                         <section class="w-f-md scrollable">
                             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 542px;">
@@ -184,131 +184,98 @@
                 </aside>
                 <!-- 左边菜单栏 E -->
                 <!-- 页面主体 S -->
-                <section>
-                <section class="hbox stretch">
-                    <section>
-                        <section class="vbox">
-                            <section class="scrollable wrapper" id="bjax-target" style="bottom: 50px;"><div class="row" id="content">
-        <div class="col-lg-12">
-            <!-- .breadcrumb 面包屑导航 -->
-            <ul class="breadcrumb">
-                <li><a href="javascript:;"><i class="fa fa-home"></i> 茶座管理</a></li>
-                <li><a href="javascript:;"><i class="fa fa-list-ul"></i> 茶座列表</a></li>
-                <li class="active">新增茶座</li>
-            </ul>
-            <!-- / .breadcrumb -->
-            <!-- 正文内容 -->
-            <div id="formContent"><section class="panel panel-default">
-    <header class="panel-heading font-bold">
-        新增茶座
-    </header>
-    <div class="panel-body">
-        <form data-validate="parsley" class="form-horizontal">
-            <input type="hidden" name="id" value="">
-            <div class="form-group">
-                <label class="col-sm-2 control-label">茶座主题</label>
-                <div class="col-sm-8">
-                    <input type="text" name="title" class="form-control parsley-validated" value="" data-required="true" data-error-message="主题不能为空." placeholder="请填写茶座主题">
-                    <span class="help-block m-b-none"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">茶座时间</label>
-                <div class="col-sm-8">
-                    <input type="date" name="date" class="form-control" value="" data-required="true" data-error-message="时间不能为空." placeholder="请填写茶座时间">
-                    <span class="help-block m-b-none"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">茶座地点</label>
-                <div class="col-sm-8">
-                    <input type="address" name="address" class="form-control" value="" data-required="true" data-error-message="地点不能为空." placeholder="请填写茶座地点">
-                    <span class="help-block m-b-none"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">主讲人</label>
-                <div class="col-sm-8">
-                    <input type="text" name="type" class="form-control" value="" data-required="true" data-error-message="主讲人不能为空." placeholder="请填写主讲人">
-                    <span class="help-block m-b-none"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">主讲人介绍</label>
-                <div class="col-sm-8">
-                    <textarea class="form-control" rows="6" data-minwords="6" data-required="true" placeholder="请填写主讲人介绍"></textarea>
-                    <span class="help-block m-b-none"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">茶座概要</label>
-                <div class="col-sm-8">
-                    <textarea class="form-control" rows="6" data-minwords="6" data-required="true" placeholder="请填写茶座概要"></textarea>
-                    <span class="help-block m-b-none"></span>
-                </div>
-            </div>
-            <!-- TODO:茶座分类 -->
-            <div class="form-group">
-                <label class="col-sm-2 control-label">茶座分类</label>
-                <div class="col-sm-10">
-                    <div class="btn-group m-r">
-                        <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
-                        <span class="dropdown-label" data-placeholder="Please select">茶座分类</span>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu dropdown-select">
-                            <li><input type="radio" name="d-s-r"><a href="#">创新创业</a></li>
-                            <li><input type="radio" name="d-s-r"><a href="#">学科竞赛</a></li>
-                            <li><input type="radio" name="d-s-r"><a href="#">心理求助</a></li>
-                            <li><input type="radio" name="d-s-r"><a href="#">生活服务</a></li>
-                            <li><input type="radio" name="d-s-r"><a href="#">学习</a></li>
-                            <li><input type="radio" name="d-s-r"><a href="#">其他</a></li>
-                        </ul>
-                    </div>                   
-                </div>
-            </div>
+                    <section id="content">
+                        <section class="hbox stretch scrollable">
+                            <section>
+                                <section class="vbox">
+                                    <section class="scrollable wrapper" id="bjax-target" style="bottom: 50px;"><div class="row" id="content">
+            <div class="col-lg-12">
+                <!-- .breadcrumb 面包屑导航 -->
+                <ul class="breadcrumb">
+                    <li><i class="fa fa-home"></i> 用户管理</li>
+                    <li class="active"><i class="fa fa-list-ul"></i> 权限管理</li>
+                </ul>
+                <!-- / .breadcrumb -->
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">面向对象</label>
-                <div class="col-sm-8">
-                    <input type="text" name="originPrice" class="form-control parsley-validated" value="" data-required="false" placeholder="学院/专业/年级等">
-                    <span class="help-block m-b-none"></span>
-                </div>
-            </div>
+                <!-- 正文内容 -->
+                <section class="panel panel-default" style="position: relative;">
+                    <div class="panel-body">
+                        <form class="form-inline" role="form">
 
-            <div class="form-group">
-                <div class="col-sm-4 col-sm-offset-2">
-                    <button type="button" onclick="_g.openWin('aDPoster/list');" class="btn btn-s-md btn-danger">取消
-                    </button>
-                    <button id="submitBtn" class="btn btn-s-md btn-primary">提交</button>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label"></label>
-                <div class="col-sm-8">
-                    <!-- 错误提示区 -->
-                    <div id="messageArea"></div>
-                </div>
-            </div>
-        </form>
-    </div>
-</section></div>
-            <!-- / 正文内容 -->
-            <!-- 页面脚本 -->
-            <script src="./html/aDPoster/edit.js"></script>
-            <!-- / 页面脚本 -->
-        </div>
-    </div></section>
-                            <footer class="footer bg-dark">
-                                <p class="webFooter"> 2018 &copy; 广东工业大学管理学院</p>
-                            </footer>
-                        </section>
-                    </section>
+                            <button id="searchBtn" type="submit" class="btn btn-s-md btn-success">新增管理员</button>
+
+                        </form>
+                    </div>
                 </section>
-                <a href="" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
-            </section>
-    </section>
-    <!-- 页面主体 E -->
+                <section class="panel panel-default">
+                        <!--表格数据 s-->
+                                <div id="table" class="table-responsive"><table class="table table-striped b-t b-light">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>管理者</th>
+                                            <th>说明</th>
+                                            <th>创建时间</th>
+                                            <th>最后登录时间</th>
+                                            <th>状态</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                         
+                                        <tr data-custom-id="1">
+                                            <td>1</td>
+                                            <td>admin</td>
+                                            <td>后台管理人员</td>
+                                            <td>2018.5.16</td>
+                                            <td>2018.5.16 11:13</td>
+                                            <td>正常</td>
+                                            <td>
+                                                <button onclick="_g.openWin('adminRole/edit', 'id=3')" class="btn btn-success btn-xs">编辑</button>
+                                                <button onclick="_g.pm.methods.deleteItem('3')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+                                                <button onclick="_g.openWin('adminRole/edit', 'id=3')" class="btn btn-success btn-xs" >修改密码</button>
+                                                <button onclick="_g.pm.methods.deleteItem('3')" class="btn btn-danger btn-xs" data-id="1234">禁用</button>
+                                            </td>
+                                        </tr>
+                                        											 
+                                    </tbody>
+                                </table>
+                                </div>
+                                <!--表格数据 e-->
+                        <footer class="panel-footer">
+                            <div class="row">
+                                <div class="col-sm-4 hidden-xs">
+                                    <small class="text-muted inline m-t-sm m-b-sm">
+                                        一共 <span id="totalCount">1</span> 条记录 - 共 <span id="totalPages">1</span> 页
+                                    </small>
+                                </div>
+                                <div class="col-sm-2 text-center">          
+                                </div>
+                                <div class="col-sm-6 text-right text-center-xs">
+                                    <div id="pagination" style="margin: 0;" class="pagination"><ul class="pagination pagination-sm m-t-none m-b-none"><li class="active"><a title="Current page is 1">1</a></li></ul></div>
+                                </div>
+                            </div>
+                        </footer>
+                </section>
+                <!-- / 正文内容 -->
+                <!-- 页面脚本 -->
+                <script src="./html/coversation/list.js"></script>
+                <!-- / 页面脚本 -->
+            </div>
+        </div></section>
+
+            <!-- 正文内容 E -->
+            <!-- 页脚 S -->
+            <footer class="footer bg-dark">
+                <div class="text-lt" style="line-height: 50px;">2018 &copy; 广东工业大学管理学院</div>
+            </footer>
+            <!-- 页脚 E -->
+        </section>
+        </section>
+        <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
+        </section>
+        </section>
+        <!-- 页面主体 E --> 
     </section>
     </section>
     <script src="../../js/jquery.min.js"></script>
