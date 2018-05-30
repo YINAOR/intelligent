@@ -179,7 +179,12 @@ Modernizr.addTest('ios7 ipad',function(){return!!navigator.userAgent.match(/iPad
   });
 
   $(document).on('click.app.bjax.data-api', '[data-bjax], .nav-primary a', function (e) {
-    if(!Bjax.prototype.enable(e)) return;    
+    if(!Bjax.prototype.enable(e)) return;
+    // var $listParent = $(this).closest('ul.nav.dk.text-sm');
+    // $('#nav_color li').removeClass('active');  
+    // if($listParent.length > 0){
+    //   $listParent.parent().addClass('active');
+    // }
     $(this).bjax({url: $(this).attr('href') || $(this).attr('data-url') });
     e.preventDefault();
   })

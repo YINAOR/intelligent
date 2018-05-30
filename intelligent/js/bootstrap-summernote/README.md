@@ -116,7 +116,7 @@ summernote.js - Renderer.js (Generate markup) - Locale.js (Locale object)
   async.js  (aysnc utility)
   key.js    (keycode object)
   dom.js    (dom functions)
-  list.js   (list functions)
+  accountList.js   (list functions)
   range.js  (W3CRange extention)
 ---------------------------------------------------------------------
 ```
