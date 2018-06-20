@@ -1,0 +1,62 @@
+<section class="panel panel-default">
+    <header class="panel-heading font-bold">
+        新建xx
+    </header>
+    <div class="panel-body">
+        <form data-validate="parsley" class="form-horizontal">
+            <input type="hidden" name="id" value="">
+            <!-- 普通输入框 -->
+            <div class="form-group">
+                <label class="col-sm-2 control-label">普通输入框</label>
+                <div class="col-sm-8">
+                    <input type="text" name="areaId" class="form-control" value="" data-required="true" data-error-message="不能为空.">
+                    <span class="help-block m-b-none">提示文案.</span>
+                </div>
+            </div>
+            <!-- 行内选项 checkbox & radio -->
+            <div class="form-group">
+                <label class="col-sm-2 control-label">行内选项</label>
+                <div class="col-sm-8">
+                    <div class="radio-inline i-checks" checked>
+                        <label>
+                            <input type="radio" name="type" value="1" checked>
+                            <i></i> radio-1
+                        </label>
+                    </div>
+                    <div class="radio-inline i-checks">
+                        <label>
+                            <input type="radio" name="type" value="2">
+                            <i></i> radio-2
+                        </label>
+                    </div>
+                    <div class="checkbox-inline i-checks">
+                        <label>
+                            <input type="checkbox" name="type" value="1" checked>
+                            <i></i> checkbox-1
+                        </label>
+                    </div>
+                    <div class="checkbox-inline i-checks">
+                        <label>
+                            <input type="checkbox" name="type" value="2">
+                            <i></i> checkbox-2
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!-- 文件上传 -->
+            <div class="form-group">
+                <label class="col-sm-2 control-label">文件上传</label>
+                <div class="col-sm-8">
+                    <input type="file" class="filestyle" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline v-middle input-s">
+                </div>
+            </div>
+            <!-- 时间选择器 -->
+            <div class="form-group">
+                <label class="col-sm-2 control-label">投放开始时间</label>
+                <div class="col-sm-8">
+                    <input type="text" name="startTime" class="datepicker-input form-control" size="16" value="" data-date-format="yyyy-mm-dd">
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
