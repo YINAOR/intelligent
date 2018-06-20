@@ -1,0 +1,148 @@
+<section class="panel panel-default">
+    <div class="row wrapper">
+        <div class="col-sm-12">
+            <label>（用户名）</label>
+        </div>
+    </div>
+    <div class="panel-body">
+        <form data-validate="parsley" class="form-horizontal">
+            <input type="hidden" name="id" value="">
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="duallist">角色菜单设置(左边:未选择,右边:已选择)</label>
+                <div class="col-sm-8">
+                    <div class="bootstrap-duallistbox-container row moveonselect">
+                        <div class="box1 col-md-6">
+                            <label for="bootstrap-duallistbox-nonselected-list_duallistbox_demo1[]" style="display: none;"></label>
+                            <input class="filter form-control" type="text" placeholder="Filter">
+                            <div class="btn-group buttons">
+                                <button type="button" class="btn moveall btn-white btn-bold btn-info" title="Move all"> <i class="fa fa-arrow-right"></i> <i class="fa fa-arrow-right"></i> </button>
+                                <button type="button" class="btn move btn-white btn-bold btn-info" title="Move selected"> <i class="fa fa-arrow-right"></i> </button>
+                            </div>
+                            <select multiple="multiple" id="bootstrap-duallistbox-nonselected-list_duallistbox_demo1[]" class="form-control" name="duallistbox_demo1[]_helper1" style="height: 204px;">
+                                <option value="4">-角色管理</option>
+                                <option value="5">-用户管理</option>
+                                <option value="6">-平台管理</option>
+                                <option value="7">-Banner管理</option>
+                                <option value="10">-数据字典</option>
+                                <option value="11">-用户管理</option>
+                                <option value="12">-用户列表</option>
+                                <option value="13">-用户组管理</option>
+                                <option value="14">-海报管理</option>
+                                <option value="15">-海报列表</option>
+                                <option value="17">-海报分类管理</option>
+                                <option value="19">-海报标签管理</option>
+                                <option value="20">-官方水印管理</option>
+                                <option value="21">-官方水印列表</option>
+                                <option value="22">-拼图板式管理</option>
+                                <option value="23">-拼图板式列表</option>
+                                <option value="24">-标记库管理</option>
+                                <option value="25">-标记库列表</option>
+                                <option value="26">-素材管理</option>
+                                <option value="27">-水印素材管理</option>
+                                <option value="28">-水印分类管理</option>
+                                <option value="29">-边框素材管理</option>
+                                <option value="30">-文案管理</option>
+                                <option value="31">-热点文案管理</option>
+                                <option value="32">-文案分类管理</option>
+                                <option value="33">-美文美图管理</option>
+                                <option value="35">-卡券管理</option>
+                                <option value="37">-会员档管理</option>
+                                <option value="39">-充值档管理</option>
+                                <option value="40">-财务管理</option>
+                                <option value="41">-充值管理</option>
+                                <option value="42">-提现管理</option>
+                                <option value="43">-分销管理</option>
+                                <option value="44">-分销记录</option>
+                                <option value="45">-团队素材管理</option>
+                                <option value="46">-团队素材列表</option>
+                                <option value="47">-团队素材分组管理</option>
+                                <option value="49">-意见反馈列表</option>
+                                <option value="50">-关于我们</option>
+                                <option value="51">-用户协议</option>
+                                <option value="52">-标记分类列表</option>
+                                <option value="53">-启动页管理</option>
+                                <option value="54">-背景素材管理</option>
+                                <option value="62">-debugger日志</option>
+                            </select>
+                        </div>
+                        <div class="box2 col-md-6">
+                            <label for="bootstrap-duallistbox-selected-list_duallistbox_demo1[]" style="display: none;"></label>
+                            <input class="filter form-control" type="text" placeholder="Filter">
+                            <div class="btn-group buttons" style="float: right">
+                                <button type="button" class="btn remove btn-white btn-bold btn-info" title="Remove selected"> <i class="fa fa-arrow-left"></i> </button>
+                                <button type="button" class="btn removeall btn-white btn-bold btn-info" title="Remove all"> <i class="fa fa-arrow-left"></i> <i class="fa fa-arrow-left"></i> </button>
+                            </div>
+                            <select multiple="multiple" id="bootstrap-duallistbox-selected-list_duallistbox_demo1[]" class="form-control" name="duallistbox_demo1[]_helper2" style="height: 204px;">
+                                <option value="1" selected="selected">-系统管理</option>
+                                <option value="3" selected="selected">-菜单管理</option>
+                            </select>
+                        </div>
+                    </div>
+                    <select multiple="multiple" size="10" name="duallistbox_demo1[]" id="duallist" style="display: none;">
+                        <option value="1" selected="selected">-系统管理</option>
+                        <option value="3" selected="selected">-菜单管理</option>
+                        <option value="4">-角色管理</option>
+                        <option value="5">-用户管理</option>
+                        <option value="6">-平台管理</option>
+                        <option value="7">-Banner管理</option>
+                        <option value="10">-数据字典</option>
+                        <option value="11">-用户管理</option>
+                        <option value="12">-用户列表</option>
+                        <option value="13">-用户组管理</option>
+                        <option value="14">-海报管理</option>
+                        <option value="15">-海报列表</option>
+                        <option value="17">-海报分类管理</option>
+                        <option value="19">-海报标签管理</option>
+                        <option value="20">-官方水印管理</option>
+                        <option value="21">-官方水印列表</option>
+                        <option value="22">-拼图板式管理</option>
+                        <option value="23">-拼图板式列表</option>
+                        <option value="24">-标记库管理</option>
+                        <option value="25">-标记库列表</option>
+                        <option value="26">-素材管理</option>
+                        <option value="27">-水印素材管理</option>
+                        <option value="28">-水印分类管理</option>
+                        <option value="29">-边框素材管理</option>
+                        <option value="30">-文案管理</option>
+                        <option value="31">-热点文案管理</option>
+                        <option value="32">-文案分类管理</option>
+                        <option value="33">-美文美图管理</option>
+                        <option value="35">-卡券管理</option>
+                        <option value="37">-会员档管理</option>
+                        <option value="39">-充值档管理</option>
+                        <option value="40">-财务管理</option>
+                        <option value="41">-充值管理</option>
+                        <option value="42">-提现管理</option>
+                        <option value="43">-分销管理</option>
+                        <option value="44">-分销记录</option>
+                        <option value="45">-团队素材管理</option>
+                        <option value="46">-团队素材列表</option>
+                        <option value="47">-团队素材分组管理</option>
+                        <option value="49">-意见反馈列表</option>
+                        <option value="50">-关于我们</option>
+                        <option value="51">-用户协议</option>
+                        <option value="52">-标记分类列表</option>
+                        <option value="53">-启动页管理</option>
+                        <option value="54">-背景素材管理</option>
+                        <option value="62">-debugger日志</option>
+                    </select>
+                    <div class="hr hr-16 hr-dotted"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-2">
+                    <button type="button" onclick="_g.openWin('adminRole/list');" class="btn btn-s-md btn-danger">取消
+                    </button>
+                    <button id="submitBtn" type="submit" class="btn btn-s-md btn-primary">提交</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label"></label>
+                <div class="col-sm-8">
+                    <!-- 错误提示区 -->
+                    <div id="messageArea"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

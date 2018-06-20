@@ -1,0 +1,112 @@
+<section class="panel panel-default" style="position: relative;">
+    <div class="panel-body">
+        <form class="form-inline" role="form">
+            <div class="btn-group m-r">
+                <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
+                    <span class="dropdown-label" data-placeholder="Please select">时间</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-select">
+                    <li class="active">
+                        <input type="radio" name="d-s-r" checked=""><a href="#">全部</a></li>
+                    <li>
+                        <input type="radio" name="d-s-r"><a href="#">过去一周</a></li>
+                    <li>
+                        <input type="radio" name="d-s-r"><a href="#">过去一个月</a></li>
+                </ul>
+            </div>
+            <div class="form-group">
+                <input type="text" name="id" class="form-control" placeholder="通知关键词">
+                <label class="control-label padder"></label>
+            </div>
+            <div class="form-group">
+                <button id="searchBtn" type="submit" class="btn btn-s-md btn-success">查询</button>
+                <div class="form-group">
+        </form>
+        </div>
+</section>
+<section class="panel panel-default">
+    <div class="row wrapper">
+        <div class="col-sm-12">
+            <button onclick="javascript:_g.openWin('message/edit');" class="btn btn-success">新增通知</button>
+        </div>
+    </div>
+    <div id="table" class="table-responsive">
+        <table class="table table-striped b-t b-light">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>ID</th>
+                    <th>通知内容</th>
+                    <th>发布人</th>
+                    <th>时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-custom-id="1">
+                    <td>1</td>
+                    <td>1</td>
+                    <td>5月20日星期天有一场关于xxxx的讲堂，有兴趣的同学请到系统进行报名！</td>
+                    <td>xx教授</td>
+                    <td>2018-05-18 17:25:12</td>
+                    <td>
+                        <button onclick="_g.openWin('message/edit','id=1');" class="btn btn-success btn-xs">编辑</button>
+                        <button onclick="_g.pm.methods.deleteItem('1')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+                    </td>
+                </tr>
+                <tr data-custom-id="2">
+                    <td>2</td>
+                    <td>2</td>
+                    <td>5月20日星期天有一场关于xxxx的讲堂，有兴趣的同学请到系统进行报名！</td>
+                    <td>xx教授</td>
+                    <td>2018-05-18 17:25:12</td>
+                    <td>
+                        <button onclick="_g.openWin('message/edit','id=2');" class="btn btn-success btn-xs">编辑</button>
+                        <button onclick="_g.pm.methods.deleteItem('1')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+                    </td>
+                </tr>
+                <tr data-custom-id="3">
+                    <td>3</td>
+                    <td>3</td>
+                    <td>5月20日星期天有一场关于xxxx的讲堂，有兴趣的同学请到系统进行报名！</td>
+                    <td>xx教授</td>
+                    <td>2018-05-18 17:25:12</td>
+                    <td>
+                        <button onclick="_g.openWin('message/edit','id=3');" class="btn btn-success btn-xs">编辑</button>
+                        <button onclick="_g.pm.methods.deleteItem('1')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <footer class="panel-footer">
+        <div class="row">
+            <div class="col-sm-4 hidden-xs">
+                <small class="text-muted inline m-t-sm m-b-sm">
+                    一共 <span id="totalCount">45</span> 条记录 - 共 <span id="totalPages">3</span> 页
+                </small>
+            </div>
+            <div class="col-sm-2 text-center">
+            </div>
+            <div class="col-sm-6 text-right text-center-xs">
+                <div id="pagination" style="margin: 0;" class="pagination">
+                    <ul class="pagination pagination-sm m-t-none m-b-none">
+                        <li class="active"><a title="Current page is 1">1</a></li>
+                        <li><a title="Go to page 2">2</a></li>
+                        <li><a title="Go to page 3">3</a></li>
+                        <li><a title="Go to next page">&gt;</a></li>
+                        <li><a title="Go to last page">&gt;&gt;</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</section>
+<!-- / 正文内容 -->
+<!-- 页面脚本 -->
+<script src="./html/coversation/list.js"></script>
+<!-- / 页面脚本 -->
+</div>
+</div>
+</section>
