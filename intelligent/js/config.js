@@ -1,7 +1,7 @@
 (function () {
     var config = {
-        webTitle: 'cms管理后台',
-        copyright: 'lrkj.com',
+        webTitle: 'I2C管理后台',
+        copyright: '广东工业大学',
         debug: true,
         env: 'dev',
         // env: 'test',
