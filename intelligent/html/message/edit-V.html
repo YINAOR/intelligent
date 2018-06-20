@@ -1,0 +1,32 @@
+<section class="panel panel-default">
+    <header class="panel-heading font-bold">
+        新增通知
+    </header>
+    <div class="panel-body">
+        <form data-validate="parsley" class="form-horizontal">
+            <input type="hidden" name="id" value="">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">通知内容</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" rows="6" data-minwords="6" data-required="true" placeholder="请填写通知内容"></textarea>
+                    <span class="help-block m-b-none"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-2">
+                    <button type="button" onclick="_g.openWin('aDPoster/list');" class="btn btn-s-md btn-danger">取消
+                    </button>
+                    <button id="submitBtn" class="btn btn-s-md btn-primary">提交</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label"></label>
+                <div class="col-sm-8">
+                    <!-- 错误提示区 -->
+                    <div id="messageArea"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

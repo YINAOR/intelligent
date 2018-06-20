@@ -1,0 +1,89 @@
+<section class="panel panel-default">
+    <div class="row wrapper">
+        <div class="col-sm-12">
+            <button onclick="javascript:_g.openWin('lecture/addType');" class="btn btn-success">新增讲堂分类</button>
+        </div>
+    </div>
+    <div id="table" class="table-responsive">
+        <table class="table table-striped b-t b-light">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>Id</th>
+                    <th>分类名称</th>
+                    <th>分类排序</th>
+                    <th>分类内容数量</th>
+                    <th>创建时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-custom-id="1">
+                    <td>1</td>
+                    <td>1</td>
+                    <td>创新创业</td>
+                    <td>1</td>
+                    <td>23</td>
+                    <td>2018-05-12 17:35:04</td>
+                    <td>
+                        <button onclick="_g.openWin('lecture/addType','id=1');" class="btn btn-success btn-xs">编辑</button>
+                        <button onclick="_g.pm.methods.deleteItem('1')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+                    </td>
+                </tr>
+                <tr data-custom-id="2">
+                    <td>2</td>
+                    <td>2</td>
+                    <td>学习</td>
+                    <td>2</td>
+                    <td>15</td>
+                    <td>2018-06-12 09:14:14</td>
+                    <td>
+                        <button onclick="_g.openWin('lecture/addType','id=2');" class="btn btn-success btn-xs">编辑</button>
+                        <button onclick="_g.pm.methods.deleteItem('1')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+                    </td>
+                </tr>
+                <tr data-custom-id="3">
+                    <td>3</td>
+                    <td>3</td>
+                    <td>生活服务</td>
+                    <td>0</td>
+                    <td>5</td>
+                    <td>2018-04-02 10:27:04</td>
+                    <td>
+                        <button onclick="_g.openWin('lecture/addType','id=3');" class="btn btn-success btn-xs">编辑</button>
+                        <button onclick="_g.pm.methods.deleteItem('1')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <footer class="panel-footer">
+        <div class="row">
+            <div class="col-sm-4 hidden-xs">
+                <small class="text-muted inline m-t-sm m-b-sm">
+                    一共 <span id="totalCount">9</span> 条记录 - 共 <span id="totalPages">3</span> 页
+                </small>
+            </div>
+            <div class="col-sm-2 text-center">
+            </div>
+            <div class="col-sm-6 text-right text-center-xs">
+                <div id="pagination" style="margin: 0;" class="pagination">
+                    <ul class="pagination pagination-sm m-t-none m-b-none">
+                        <li class="active"><a title="Current page is 1">1</a></li>
+                        <li><a title="Go to page 2">2</a></li>
+                        <li><a title="Go to page 3">3</a></li>
+                        <li><a title="Go to next page">&gt;</a></li>
+                        <li><a title="Go to last page">&gt;&gt;</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</section>
+<!-- / 正文内容 -->
+<!-- 页面脚本 -->
+<script src="./html/coversation/list.js"></script>
+<!-- / 页面脚本 -->
+</div>
+</div>
+</section>

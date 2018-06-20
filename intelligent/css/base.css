@@ -1,0 +1,138 @@
+.ui-popup{
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 9998;
+}
+
+.ui-popup__bg{
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	opacity: 0.5;
+}
+
+.ui-popup__bd{
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.ui-popup__close{
+	display: block;
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	width: 50px;
+	height: 50px;
+	font-size: 0;
+	cursor: pointer;
+}
+.ui-popup__close > i{
+	font-size: 50px;
+	color: #333;
+}
+.ui-popup__close:hover > i{
+	color: #fff;
+}
+
+.ui-mapSelect{
+	display: block;
+	position: absolute;
+	left: 20px;
+	top: 90px;
+	bottom: 20px;
+	right: 20px;
+}
+
+.ui-mapSelectInfo{
+	display: block;
+	position: absolute;
+	left: 20px;
+	top: 20px;
+	width: 45%;
+	height: 50px;
+	line-height: 50px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background-color: rgba(0, 0, 0, 0.5);
+	font-size: 16px;
+	color: #fff;
+	overflow: hidden;
+}
+
+.ui-mapSearchInfo{
+	display: block;
+	position: absolute;
+	left: 50%;
+	top: 20px;
+	width: 40%;
+	height: 50px;
+	line-height: 50px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background-color: rgba(0, 0, 0, 0.5);
+	font-size: 16px;
+	color: #fff;
+	overflow: hidden;
+}
+.ui-mapSearchInfo > input{
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	font-size: 16px;
+	color: #333;
+	border: 0;
+}
+
+.ui-loading{
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+}
+
+.ui-loading__bg{
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+	opacity: 0.5;
+}
+
+.ui-loading__bd{
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.ui-loading__bd > img{
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+.pagination > li{
+	cursor: pointer;
+}

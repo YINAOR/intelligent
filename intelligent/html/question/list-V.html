@@ -1,0 +1,125 @@
+<section class="panel panel-default" style="position: relative;">
+    <div class="panel-body">
+        <form class="form-inline" role="form">
+            <div class="btn-group m-r">
+                <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
+                    <span class="dropdown-label" data-placeholder="Please select">提问分类</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-select">
+                    <li class="active">
+                        <input type="radio" name="d-s-r" checked=""><a href="#">全部</a></li>
+                    <li>
+                        <input type="radio" name="d-s-r"><a href="#">学习</a></li>
+                    <li>
+                        <input type="radio" name="d-s-r"><a href="#">心理健康</a></li>
+                    <li>
+                        <input type="radio" name="d-s-r"><a href="#">创业就业</a></li>
+                    <li>
+                        <input type="radio" name="d-s-r"><a href="#">生活服务</a></li>
+                    <li>
+                        <input type="radio" name="d-s-r"><a href="#">其他</a></li>
+                </ul>
+            </div>
+            <div class="btn-group m-r">
+                <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
+                    <span class="dropdown-label" data-placeholder="Please select">时间</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-select">
+                    <li class="active">
+                        <input type="radio" name="d-s-r" checked=""><a href="#">全部</a></li>
+                    <li>
+                        <input type="radio" name="d-s-r"><a href="#">过去一周</a></li>
+                    <li>
+                        <input type="radio" name="d-s-r"><a href="#">过去一个月</a></li>
+                </ul>
+            </div>
+            <div class="form-group">
+                <input type="text" name="id" class="form-control" placeholder="问题关键词">
+                <label class="control-label padder"></label>
+            </div>
+            <div class="form-group">
+                <button id="searchBtn" type="submit" class="btn btn-s-md btn-success">查询</button>
+                <div class="form-group">
+        </form>
+        </div>
+</section>
+<section class="panel panel-default">
+    <div id="table" class="table-responsive">
+        <table class="table table-striped b-t b-light">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>学生姓名</th>
+                    <th>学生学号</th>
+                    <th>分类</th>
+                    <th>问题描述</th>
+                    <th>解答</th>
+                    <th>提问时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-custom-id="1">
+                    <td>1</td>
+                    <td>尹尧</td>
+                    <td>311500426</td>
+                    <td>创新创业</td>
+                    <td>如何申报大创？</td>
+                    <td></td>
+                    <td>2018-03-14</td>
+                    <td>
+                        <button onclick="javascript:_g.openWin('question/answer','id=1')" class="btn btn-success btn-xs">回复</button>
+                    </td>
+                </tr>
+                <tr data-custom-id="2">
+                    <td>2</td>
+                    <td>xxx</td>
+                    <td>32152415</td>
+                    <td>学习</td>
+                    <td>xxxxxxxxxxxxxxxxxxxxxxxx</td>
+                    <td></td>
+                    <td>2018-03-14</td>
+                    <td>
+                        <button onclick="javascript:_g.openWin('question/answer','id=2')" class="btn btn-success btn-xs">回复</button>
+                    </td>
+                </tr>
+                <tr data-custom-id="3">
+                    <td>3</td>
+                    <td>xxx</td>
+                    <td>32152415</td>
+                    <td>学习</td>
+                    <td>xxxxxxxxxxxxxxxxxxxxxxxx</td>
+                    <td>xxxxx</td>
+                    <td>2018-03-14</td>
+                    <td>
+                        <button onclick="javascript:_g.openWin('question/answer','id=3')" class="btn btn-success btn-xs" style="background-color:dimgrey">已回复</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <footer class="panel-footer">
+        <div class="row">
+            <div class="col-sm-4 hidden-xs">
+                <small class="text-muted inline m-t-sm m-b-sm">
+                                一共 <span id="totalCount">45</span> 条记录 - 共 <span id="totalPages">3</span> 页
+                            </small>
+            </div>
+            <div class="col-sm-2 text-center">
+            </div>
+            <div class="col-sm-6 text-right text-center-xs">
+                <div id="pagination" style="margin: 0;" class="pagination">
+                    <ul class="pagination pagination-sm m-t-none m-b-none">
+                        <li class="active"><a title="Current page is 1">1</a></li>
+                        <li><a title="Go to page 2">2</a></li>
+                        <li><a title="Go to page 3">3</a></li>
+                        <li><a title="Go to next page">&gt;</a></li>
+                        <li><a title="Go to last page">&gt;&gt;</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</section>
