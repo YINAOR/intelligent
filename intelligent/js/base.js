@@ -183,7 +183,7 @@
                 data: JSON.stringify($.extend(true, {}, opts.data))
             };
 
-            postData.sessionKey = opts.sessionKey || _g.getCookie('sessionKey');
+            postData.sessionKey = opts.sessionKey || _g.getCookie('sessionKey') || '154c6d779aa341d6ad66501f1007aa5b';
             postData.data = JSON.stringify(opts.data);
             postData.appVersion = '0.0.1';
             postData.apiVersions = 'v1';
@@ -191,7 +191,7 @@
             postData.platform = 0;
             postData.timestamp = Math.round(new Date().getTime() / 1000);
             postData.token = _g.dm.tokenKey;
-            postData.token = md5.go(_g.jsonToPostDataStr(_g.ksort(postData)));
+            // postData.token = md5.go(_g.jsonToPostDataStr(_g.ksort(postData)));
             // console.log(_g.jsonToPostDataStr(_g.ksort(postData)) + _g.dm.tokenKey);
             // console.log(postData.token);
             // console.log(postData);
