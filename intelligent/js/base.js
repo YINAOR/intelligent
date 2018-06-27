@@ -226,14 +226,14 @@
         render: function (temp, data, target) {
             var htmlStr = template.render(this.getTemplate(temp), data);
             if (target) $(target).html(htmlStr);
-            this.initChosenSelect();
-            this.initFileInput();
-            var initDateInputOptions = {
-                format: 'YYYY-MM-DD HH:mm:ss'
-            };
-            initDateInputOptions = $.extend(true, initDateInputOptions, this.pm.options.initDateInput);
-            this.pm.data.DateInputList = this.initDateInput(initDateInputOptions);
-            this.initFormMatch();
+            // this.initChosenSelect();
+            // this.initFileInput();
+            // var initDateInputOptions = {
+            //     format: 'YYYY-MM-DD HH:mm:ss'
+            // };
+            // initDateInputOptions = $.extend(true, initDateInputOptions, this.pm.options.initDateInput);
+            // this.pm.data.DateInputList = this.initDateInput(initDateInputOptions);
+            // this.initFormMatch();
             return htmlStr;
         },
         getTemplate: function (url) {

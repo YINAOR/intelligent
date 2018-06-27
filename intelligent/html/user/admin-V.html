@@ -1,56 +1,41 @@
-<section class="panel panel-default">
-    <div class="row wrapper">
-        <div class="col-sm-12">
-            <button onclick="javascript:_g.openWin('user/addAdmin')" class="btn btn-success">新增管理员</button>
-        </div>
-    </div>
-    <!--表格数据 s-->
-    <div id="table" class="table-responsive">
-        <table class="table table-striped b-t b-light">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>管理者</th>
-                    <th>说明</th>
-                    <th>创建时间</th>
-                    <th>状态</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr data-custom-id="1">
-                    <td>1</td>
-                    <td>admin</td>
-                    <td>后台管理人员</td>
-                    <td>2018.5.16</td>
-                    <td>正常</td>
-                    <td>
-                        <button onclick="_g.openWin('user/addAdmin', 'id=1')" class="btn btn-success btn-xs">编辑</button>
-                        <button onclick="_g.pm.methods.deleteItem('3')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
-                        <button onclick="_g.openWin('user/changePassword', 'id=1')" class="btn btn-success btn-xs">修改密码</button>
-                        <button onclick="_g.pm.methods.deleteItem('3')" class="btn btn-danger btn-xs" data-id="1234">禁用</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <!--表格数据 e-->
-    <footer class="panel-footer">
-        <div class="row">
-            <div class="col-sm-4 hidden-xs">
-                <small class="text-muted inline m-t-sm m-b-sm">
-                                        一共 <span id="totalCount">1</span> 条记录 - 共 <span id="totalPages">1</span> 页
-                                    </small>
-            </div>
-            <div class="col-sm-2 text-center">
-            </div>
-            <div class="col-sm-6 text-right text-center-xs">
-                <div id="pagination" style="margin: 0;" class="pagination">
-                    <ul class="pagination pagination-sm m-t-none m-b-none">
-                        <li class="active"><a title="Current page is 1">1</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-</section>
+<!--表格数据 s-->
+<div id="table" class="table-responsive">
+    <table class="table table-striped b-t b-light">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>账号</th>
+                <th>姓名</th>
+                <th>所属机构</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{if !list.length}}
+            <tr>
+                <td colspan="6" style="text-align: center;">没有记录</td>
+            </tr>
+            {{else}} {{each list item index}}
+            <tr data-custom-id="{{item.aid}}">
+                <td>{{item.aid}}</td>
+                <td>{{item.ano}}</td>
+                <td>{{item.aname}}</td>
+                <td>{{item.aorganization}}</td>
+                <td>{{item.astatus == 0 ? '禁用' : '正常'}}</td>
+                <td>
+                    <button onclick="_g.openWin('user/addAdmin', 'id={{item.aid}}')" class="btn btn-success btn-xs">编辑</button>
+                    <button onclick="deleteId('{{item.aid}}')" class="btn btn-danger btn-xs" data-id="1">删除</button>
+                    <button onclick="_g.openWin('user/addAdmin', 'id={{item.aid}}')" class="btn btn-success btn-xs">修改密码</button>
+                    {{if item.astatus == 1}}
+                    <button onclick="forbidden('{{item.aid}}')" class="btn btn-danger btn-xs" data-id="2">禁用</button>
+                    {{else}}
+                    <button onclick="liftForbidden('{{item.aid}}')" class="btn btn-success btn-xs" data-id="3">解禁</button>
+                    {{/if}}
+                </td>
+            </tr>
+            {{/each}} {{/if}}           
+        </tbody>
+    </table>
+</div>
+<!--表格数据 e-->
