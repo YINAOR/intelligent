@@ -51,18 +51,15 @@
         </div>
     </footer>
     <!-- / footer -->
-
     <div class="ui-popup">
         <div class="ui-popup__bg"></div>
         <div class="ui-popup__bd"></div>
         <div class="ui-popup__close"><i class="icon-close"></i></div>
     </div>
-
     <div class="ui-loading">
         <div class="ui-loading__bg"></div>
         <div class="ui-loading__bd"><img src="image/loading_more.gif" alt=""></div>
     </div>
-
     <!-- clipboard -->
     <script src="js/clipboard.min.js"></script>
     <script src="js/jquery.min.js"></script>
@@ -85,29 +82,26 @@
                     errorText: '账号或者密码不能为空.'
                 });
             } else {
-                _g.ajax({
-                    data: {
-                        username: username,
-                        password: password
-                    },
-                    lock: true,
-                    url: '/admin/account/login.do',
-                    success: function(result) {
-                        if (result.code == 200) {
+                $.ajax({
+                    url: 'http://118.89.26.114/login/admin.do',
+                    // async: false,
+                    dataType: 'json',
+                    type: 'POST',
+                    processData: false, //true
+                    contentType: 'application/json', // 'application/x-www-form-urlencoded'
+                    data: JSON.stringify({
+                        account: username,
+                        apwd: password
+                    }),
+                    success: function(data) {
+                        if (data.num == 1) {
                             window.location.href = 'index.html';
-                        } else if (result.code == 405) {
-                            _g.setErrorAlert({
-                                errorText: result.message
-                            });
                         } else {
                             _g.setErrorAlert({
                                 errorText: '账号或者密码不正确.'
                             });
                         }
                     },
-                    error: function(err) {
-                        console.log(err);
-                    }
                 });
             }
             return false;

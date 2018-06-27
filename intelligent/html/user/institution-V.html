@@ -2,7 +2,7 @@
     <div class="panel-body">
         <form class="form-inline" role="form">
             <div class="form-group">
-                <input type="text" name="id" class="form-control" placeholder="主讲人姓名">
+                <input type="text" name="id" class="form-control" placeholder="学院名称">
                 <label class="control-label padder"></label>
             </div>
             <button id="searchBtn" type="submit" class="btn btn-s-md btn-success">查询</button>
@@ -12,7 +12,7 @@
 <section class="panel panel-default">
     <div class="row wrapper">
         <div class="col-sm-12">
-            <button onclick="JavaScript:_g.openWin('user/editSpeaker')" class="btn btn-success">新增主讲人</button>
+            <button onclick="JavaScript:_g.openWin('user/editInstitution')" class="btn btn-success">新增学院</button>
         </div>
     </div>
     <div id="table" class="table-responsive">
@@ -20,20 +20,24 @@
             <thead>
                 <tr>
                     <th>序号</th>
-                    <th>主讲人</th>
-                    <th>照片</th>
-                    <th>简介</th>
+                    <th>学院名称</th>
                     <th>操作</th>
                 </tr>
             </thead>
             <tbody>
                 <tr data-custom-id="1">
                     <td>1</td>
-                    <td>汤姚平</td>
-                    <td><img src="../../images/p3.jpg" width="50" height="80" alt="主讲人照片"></td>
-                    <td>书记……</td>
+                    <td>管理学院</td>
                     <td>
-                        <button onclick="_g.openWin('user/editSpeaker','id=1')" class="btn btn-success btn-xs">编辑</button>
+                        <button onclick="_g.openWin('user/editInstitution','id=1')" class="btn btn-success btn-xs">编辑</button>
+                        <button onclick="_g.pm.methods.deleteItem('1')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+                    </td>
+                </tr>
+                <tr data-custom-id="1">
+                    <td>2</td>
+                    <td>计算机学院</td>
+                    <td>
+                        <button onclick="_g.openWin('user/editInstitution','id=1')" class="btn btn-success btn-xs">编辑</button>
                         <button onclick="_g.pm.methods.deleteItem('1')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
                     </td>
                 </tr>

@@ -10,7 +10,32 @@
             </ul>
             <!-- / .breadcrumb -->
             <!-- 正文内容 -->
-            <div id="formContent"></div>
+            <section class="panel panel-default">
+                <div class="row wrapper">
+                    <div class="col-sm-12">
+                        <button onclick="javascript:_g.openWin('user/addAdmin')" class="btn btn-success">新增管理员</button>
+                    </div>
+                </div>
+                <div id="formContent"></div>
+                <footer class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-4 hidden-xs">
+                            <small class="text-muted inline m-t-sm m-b-sm">
+                    一共<span id="totalCount">1</span> 条记录 - 共 <span id="totalPages">1</span> 页
+                </small>
+                        </div>
+                        <div class="col-sm-2 text-center">
+                        </div>
+                        <div class="col-sm-6 text-right text-center-xs">
+                            <div id="pagination" style="margin: 0;" class="pagination">
+                                <ul class="pagination pagination-sm m-t-none m-b-none">
+                                    <li class="active"><a title="Current page is 1">1</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </section>
             <!-- / 正文内容 -->
             <!-- 页面脚本 -->
             <script src="./html/user/admin.js"></script>

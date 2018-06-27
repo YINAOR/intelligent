@@ -6,9 +6,9 @@
         <form data-validate="parsley" class="form-horizontal">
             <input type="hidden" name="id" value="">
             <div class="form-group">
-                <label class="col-sm-2 control-label">管理员名称</label>
+                <label class="col-sm-2 control-label">管理员账号</label>
                 <div class="col-sm-8">
-                    <input type="text" name="title" class="form-control parsley-validated" value="" data-required="true" data-error-message="名称不能为空." placeholder="请填写管理员名称">
+                    <input type="text" name="title" class="form-control parsley-validated" value="" data-required="true" data-error-message="账号不能为空." placeholder="请填写管理员账号">
                     <span class="help-block m-b-none"></span>
                 </div>
             </div>
@@ -20,30 +20,59 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">管理员说明</label>
+                <label class="col-sm-2 control-label">确认</label>
                 <div class="col-sm-8">
-                    <input type="text" name="title" class="form-control parsley-validated" value="" data-required="true" placeholder="请填写管理员说明">
+                    <input type="text" name="title" class="form-control parsley-validated" value="" data-required="true" data-error-message="密码不一致." placeholder="请再次确认密码">
                     <span class="help-block m-b-none"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">管理员权限</label>
-                <div class="col-sm-10">
-                    <div class="btn-group m-r">
-                        <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
-                            <span class="dropdown-label" data-placeholder="Please select">管理员权限</span>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu dropdown-select">
-                            <li>
-                                <input type="radio" name="d-s-r"><a href="#">一级权限</a></li>
-                            <li>
-                                <input type="radio" name="d-s-r"><a href="#">二级权限</a></li>
-                            <li>
-                                <input type="radio" name="d-s-r"><a href="#">三级权限</a></li>
-                        </ul>
-                    </div>
+                <label class="col-sm-2 control-label">所属机构</label>
+                <div class="col-sm-8">
+                    <input type="text" name="title" class="form-control parsley-validated" value="" data-required="true" placeholder="请填写所属机构">
+                    <span class="help-block m-b-none"></span>
                 </div>
+            </div>
+            <div class="panel-body">
+                <form data-validate="parsley" class="form-horizontal">
+                    <input type="hidden" name="id" value="">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="duallist">角色菜单设置(左边:未选择,右边:已选择)</label>
+                        <div class="col-sm-8">
+                            <div class="bootstrap-duallistbox-container row moveonselect">
+                                <div class="box1 col-md-6">
+                                    <label for="bootstrap-duallistbox-nonselected-list_duallistbox_demo1[]" style="display: none;"></label>
+                                    <input class="filter form-control" type="text" placeholder="Filter">
+                                    <div class="btn-group buttons">
+                                        <button type="button" class="btn moveall btn-white btn-bold btn-info" title="Move all"> <i class="fa fa-arrow-right"></i> <i class="fa fa-arrow-right"></i> </button>
+                                        <button type="button" class="btn move btn-white btn-bold btn-info" title="Move selected"> <i class="fa fa-arrow-right"></i> </button>
+                                    </div>
+                                    <select multiple="multiple" id="bootstrap-duallistbox-nonselected-list_duallistbox_demo1[]" class="form-control" name="duallistbox_demo1[]_helper1" style="height: 204px;">
+                                        <option value="4">-用户管理</option>
+                                        <option value="5">-主讲人管理</option>
+                                    </select>
+                                </div>
+                                <div class="box2 col-md-6">
+                                    <label for="bootstrap-duallistbox-selected-list_duallistbox_demo1[]" style="display: none;"></label>
+                                    <input class="filter form-control" type="text" placeholder="Filter">
+                                    <div class="btn-group buttons" style="float: right">
+                                        <button type="button" class="btn remove btn-white btn-bold btn-info" title="Remove selected"> <i class="fa fa-arrow-left"></i> </button>
+                                        <button type="button" class="btn removeall btn-white btn-bold btn-info" title="Remove all"> <i class="fa fa-arrow-left"></i> <i class="fa fa-arrow-left"></i> </button>
+                                    </div>
+                                    <select multiple="multiple" id="bootstrap-duallistbox-selected-list_duallistbox_demo1[]" class="form-control" name="duallistbox_demo1[]_helper2" style="height: 204px;">
+                                        <option value="1" selected="selected">-系统管理</option>
+                                        <option value="3" selected="selected">-菜单管理</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <select multiple="multiple" size="10" name="duallistbox_demo1[]" id="duallist" style="display: none;">
+                                <option value="1" selected="selected">-系统管理</option>
+                                <option value="3" selected="selected">-菜单管理</option>
+                            </select>
+                            <div class="hr hr-16 hr-dotted"></div>
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="form-group">
                 <div class="col-sm-4 col-sm-offset-2">
