@@ -13,32 +13,39 @@
                 </div>
             </div>
             <div class="form-group">
-            <label class="col-sm-2 control-label">讲堂海报</label>
-            <div id="photoInput" class="col-sm-8">
-                <input type="hidden" name="imgUrl" value="">
-                <input type="file" name="file" accept="image/*" class="filestyle" id="filestyle-0" tabindex="-1" style="position: absolute; clip: rect(0px, 0px, 0px, 0px);">
-                <div class="bootstrap-filestyle input-group">
-                    <input type="text" class="form-control " placeholder="请选择上传文件" disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="filestyle-0" class="btn btn btn-default "><span class="buttonText">选择文件</span></label>
-                    </span>
-                </div>
-                <span class="help-block m-b-none">图片尺寸为 300x540 图.</span>
-                <!-- 上传预览图 -->
-                <div>
-                    <span id="prePhoto"></span>
+                <label class="col-sm-2 control-label">讲堂海报</label>
+                <div id="photoInput" class="col-sm-8">
+                    <input type="hidden" name="imgUrl" value="">
+                    <input type="file" name="file" accept="image/*" class="filestyle" id="filestyle-0" tabindex="-1" style="position: absolute; clip: rect(0px, 0px, 0px, 0px);">
+                    <div class="bootstrap-filestyle input-group">
+                        <input type="text" class="form-control " placeholder="请选择上传文件" disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="filestyle-0" class="btn btn btn-default "><span class="buttonText">选择文件</span></label>
+                        </span>
+                    </div>
+                    <span class="help-block m-b-none">图片尺寸为 300x540 图.</span>
+                    <!-- 上传预览图 -->
+                    <div>
+                        <span id="prePhoto"></span>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">讲堂举办日期</label>
+                <div class="col-sm-8">
+                    <input type="date" name="date" class="form-control" value="" data-required="true" data-error-message="举办日期不能为空." placeholder="请填写讲堂举办日期">
+                    <span class="help-block m-b-none"></span>
+                </div>
+            </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">讲堂开始时间</label>
                 <div class="col-sm-8">
-                    <input type="date" name="date" class="form-control" value="" data-required="true" data-error-message="开始时间不能为空." placeholder="请填写讲堂开始时间">
+                    <input type="text" id="startTimePicker" value="" data-required="true" data-error-message="开始时间不能为空." readonly>
                     <span class="help-block m-b-none"></span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">讲堂结束时间</label>
                 <div class="col-sm-8">
-                    <input type="date" name="date" class="form-control" value="" data-required="true" data-error-message="结束时间不能为空." placeholder="请填写讲堂结束时间">
+                    <input type="text" id="endTimePicker" value="" data-required="true" data-error-message="结束时间不能为空." readonly>
                     <span class="help-block m-b-none"></span>
                 </div>
             </div>
@@ -46,6 +53,30 @@
                 <label class="col-sm-2 control-label">讲堂地点</label>
                 <div class="col-sm-8">
                     <input type="address" name="address" class="form-control" value="" data-required="true" data-error-message="地点不能为空." placeholder="请填写讲堂地点">
+                    <span class="help-block m-b-none"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">讲座证明</label>
+                <div class="col-sm-10">
+                    <div class="btn-group m-r">
+                        <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
+                            <span class="dropdown-label" data-placeholder="Please select">讲堂证明</span>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-select">
+                            <li>
+                                <input type="radio" name="d-s-r"><a href="#">是</a></li>
+                            <li>
+                                <input type="radio" name="d-s-r"><a href="#">否</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">讲座时长</label>
+                <div class="col-sm-8">
+                    <input type="text" name="type" class="form-control" value="" data-required="false" placeholder="请填写讲座时长">
                     <span class="help-block m-b-none"></span>
                 </div>
             </div>
@@ -111,18 +142,32 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-4 col-sm-offset-2">
-                    <button type="button" class="btn btn-s-md btn-danger">取消</button>
-                    <button id="submitBtn" class="btn btn-s-md btn-primary">提交</button>
+                <label class="col-sm-2 control-label">限制人数</label>
+                <div class="col-sm-8">
+                    <input type="address" name="address" class="form-control" value="" data-required="true" data-error-message="限制人数不能为空." placeholder="请填写限制人数">
+                    <span class="help-block m-b-none"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label"></label>
+                <label class="col-sm-2 control-label">主办方</label>
                 <div class="col-sm-8">
-                    <!-- 错误提示区 -->
-                    <div id="messageArea"></div>
+                    <input type="address" name="address" class="form-control" value="" data-required="true" data-error-message="主办方不能为空." placeholder="请填写主办方">
+                    <span class="help-block m-b-none"></span>
                 </div>
             </div>
         </form>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-4 col-sm-offset-2">
+            <button type="button" onclick="_g.openWin('lecture/list')" class="btn btn-s-md btn-danger">取消</button>
+            <button id="submitBtn" class="btn btn-s-md btn-primary">提交</button>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"></label>
+        <div class="col-sm-8">
+            <!-- 错误提示区 -->
+            <div id="messageArea"></div>
+        </div>
     </div>
 </section>
