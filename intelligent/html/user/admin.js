@@ -18,7 +18,6 @@
             success: function(result) {
                 var data1 = { list: result };
                 _g.render('user/admin-V', data1, '#table');
-
             },
         });
     }
