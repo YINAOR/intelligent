@@ -5,8 +5,7 @@
     var id = _g.pm.param.id;
 
     if(id) {
-        console.log($('#head').html());
-
+        console.log($('#header1').text());
     }
 
     $('#formContent').html(_g.getTemplate('user/addAdmin-V'));
