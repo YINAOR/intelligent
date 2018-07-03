@@ -33,4 +33,28 @@
     //     type: 'post',
     //     dataType: 'json'
     // });
+
+    submitSp = function(){
+        var spname = $('#spname').val();
+        var spbrief = $('#spbrief').val();
+        $.ajax({
+            url: 'http://118.89.26.114/type/savespeaker.do',
+            dataType: 'json',
+            type: 'POST',
+            processData: false,
+            contentType: 'application/json',
+
+            data: JSON.stringify({
+                spname: spname,
+                spbrief: spbrief
+            }),
+
+            success: function(data) {
+                alert(data);
+            },
+            error: function(data) {
+                alert(666);
+            }
+        })
+    }
 })();
