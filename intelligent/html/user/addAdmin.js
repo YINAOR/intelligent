@@ -2,14 +2,13 @@
 
     _g.setNowPage('user/addAdmin');
     
+    $('#formContent').html(_g.getTemplate('user/addAdmin-V'));
+
     var id = _g.pm.param.id;
 
     if(id) {
-        console.log($('#header1').text());
+        $('#header1').html("编辑管理员");
     }
-
-    $('#formContent').html(_g.getTemplate('user/addAdmin-V'));
-
 
     $('#allAuthority').change(function() {
         $('#allAuthority option:selected').appendTo('#selectedAuthority').attr('selected', false);
