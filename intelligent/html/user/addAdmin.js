@@ -1,6 +1,14 @@
 (function() {
 
     _g.setNowPage('user/addAdmin');
+    
+    var id = _g.pm.param.id;
+
+    if(id) {
+        console.log($('#head').html());
+
+    }
+
     $('#formContent').html(_g.getTemplate('user/addAdmin-V'));
 
 
@@ -22,6 +30,18 @@
             $('#password').focus();
         }
 
+    })
+
+    $('#submitBtn').click(function() {
+        var id = $('#id').val();
+        var password = $('#password').val();
+        var institution = $('#institution').val();
+        var authority = [];
+        $('#selectedAuthority option').each(function() {
+            var value = $(this).val();
+            authority.push(value);
+        })
+        
     })
 
 

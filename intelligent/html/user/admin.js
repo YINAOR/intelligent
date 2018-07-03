@@ -13,6 +13,7 @@
             url: 'http://118.89.26.114/manageadmin/queryalladmin.do',
             dataType: 'json',
             type: 'get',
+            async: false,
             processData: false,
             contentType: 'application/json',
             success: function(result) {

@@ -9,5 +9,12 @@
             $("#speaker").after($copy);
         });  
     })
+
+    $('#startTimePicker').hunterTimePicker();
+    $('#endTimePicker').hunterTimePicker();
+
+    $('#submitBtn').click(function() {
+    	console.log($('#startTimePicker').val());
+    })
     
 })();
