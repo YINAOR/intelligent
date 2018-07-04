@@ -87,12 +87,12 @@
                     // async: false,
                     dataType: 'json',
                     type: 'POST',
-                    processData: false, //true
-                    contentType: 'application/json', // 'application/x-www-form-urlencoded'
-                    data: JSON.stringify({
+                    processData: true, //false
+                    contentType: 'application/x-www-form-urlencoded', // 'application/json'
+                    data: {
                         account: username,
                         apwd: password
-                    }),
+                    },
                     success: function(data) {
                         if (data.num == 1) {
                             window.location.href = 'index.html';
@@ -102,6 +102,9 @@
                             });
                         }
                     },
+                    error: function(error) {
+                        alert('操作失败！请重试')
+                    }
                 });
             }
             return false;
