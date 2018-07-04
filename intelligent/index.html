@@ -219,9 +219,9 @@
         $('.webTitle').text('欢迎来到' + _c.webTitle);
         $('.webFooter').html(' &copy;&nbsp;&nbsp;2018&nbsp;&nbsp;' + _c.copyright + '&nbsp;&nbsp;' + _c.webTitle + '版权所有');
 
-        // if (!_g.getCookie('username')) {
-        //     window.location.href = '/admin/signin.html';
-        // }
+        if(!sessionStorage.admin) {
+            window.location.href = '/signin.html';
+        }
 
         if (window.history && window.history.pushState) {
             $(window).on('popstate', function (e) {
@@ -244,10 +244,11 @@
                 }
             });
         }
-        $('#globalUsername').text(_g.getCookie('username'));
+
+        $('#globalUsername').text($.parseJSON(sessionStorage.admin).aname);
 
         $('#updPassword').click(function () {
-            _g.openBaseModal('adminUser/list-password-V', {}, '修改密码');
+            _g.openBaseModal('user/list-password-V', {}, '修改密码');
         });
         _g.updPassword = function () {
             var oldPassword = $('#oldPassword').val();
@@ -261,15 +262,19 @@
                 alert('新密码不一致请重新输入!');
                 return;
             }
-   
+            
         };
+
+        $('#logoutBtn').click(function() {
+            sessionStorage.admin = '';
+            window.location.href = '/signin.html';
+        })
 
 
         $('.popover-title .close').click(function () {
             $('.popover').fadeOut();
         });
 
-        // _power.getPower();
        $('#commonNav').html(_g.getTemplate('common/nav-V'));
     });
 </script>

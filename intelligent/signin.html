@@ -73,6 +73,7 @@
     <script src="js/md5.js"></script>
     <!-- Custom -->
     <script>
+        console.log(sessionStorage.admin)
     $(function() {
         $('form').submit(function() {
             var username = $('input[name="username"]').val();
@@ -95,6 +96,7 @@
                     },
                     success: function(data) {
                         if (data.num == 1) {
+                            sessionStorage.admin = JSON.stringify(data.admin);
                             window.location.href = 'index.html';
                         } else {
                             _g.setErrorAlert({
