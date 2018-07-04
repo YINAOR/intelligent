@@ -17,22 +17,32 @@
     $('#startTimePicker').hunterTimePicker();
     $('#endTimePicker').hunterTimePicker();
 
+    laydate.render({
+        elem: '#date' //指定元素
+    });
+
     $('#submitBtn').click(function() {
+        layer.msg('hello');
+        return
     	var title = $('#title').val();
         var date = $('#date').val();
         var startTimePicker = $('#startTimePicker').val();
         var endTimePicker = $('#endTimePicker').val();
         var address = $('#address').val();
-        var hasProof = $('#hasProof').val();
+        var hasProof = $('#hasProof').text();
         var hour = $('#hour').val();
-        var speaker1 = $('.speaker1').val();
-        var decoration1 = $('.decoration1').val();
-        var editor = $('#editot').val();
-        var type = $('#type').val();
+        var speaker = $('.speaker1').val();
+        var decoration = $('.decoration1').val();
+        var value = $('.w-e-text').html();
+        var type = $('#type').text();
         var object = $('#object').val();
         var number = $('#number').val();
         var sponsor = $('#sponsor').val();
-        console.log(id,date,startTimePicker,endTimePicker);//,address,hasProof,hour,speaker1,decoration1,editor,type,object,number,
+        var speakerList = [];
+        _.each(speaker,function(item,index) {
+            speakerList.push(item);
+        })
+        console.log(speakerList)
     })
     
 })();
