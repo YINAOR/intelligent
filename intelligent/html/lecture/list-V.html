@@ -58,10 +58,10 @@
                     <th>序号</th>
                     <th>名称</th>
                     <th>图片</th>
+                    <th>举办日期</th>
                     <th>开始时间</th>
                     <th>结束时间</th>
                     <th>地点</th>
-                    <th>概要</th>
                     <th>讲座证明</th>
                     <th>讲座时长</th>
                     <th>主讲人</th>
@@ -72,25 +72,36 @@
                 </tr>
             </thead>
             <tbody>
-                <tr data-custom-id="1">
-                    <td>1</td>
-                    <td>讲堂名称</td>
-                    <td><img src="../../images/p3.jpg" width="50" height="80" alt="讲堂海报图片"></td>
-                    <td>2018-5-25 19:00</td>
-                    <td>2018-5-25 21:00</td>
-                    <td>A南306</td>
-                    <td>讲座概要概要</td>
-                    <td>是</td>
-                    <td>2</td>
-                    <td>xxx</td>
-                    <td>名人类</td>
-                    <td>全体学生</td>
-                    <td>200</td>
+                {{if !list.length}}
+                <tr>
+                    <td colspan="6" style="text-align: center;">没有记录</td>
+                </tr>
+                {{else}} {{each list item index}}
+                <tr data-custom-id="{{item.lno}}">
+                    <td>{{index}}</td>
+                    <td>{{item.lname}}</td>
+                    <td></td>
+                    <td>{{item.ldate}}</td>
+                    <td>{{item.lstarttime}}</td>
+                    <td>{{item.lendtime}}</td>
+                    <td>{{item.laddr}}</td>
+                    <td>{{item.lprove == 0 ? '否':'是'}}</td>
+                    <td>{{item.lhour}}</td>
                     <td>
-                        <button onclick="_g.openWin('lecture/edit','id=1');" class="btn btn-success btn-xs">编辑</button>
-                        <button onclick="_g.pm.methods.deleteItem('1')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+                    {{each item.speakerlink it ind}}
+                    {{it.spname}}
+                    {{/each}}
+                    </td>
+                    <td>{{item.lproperty.lproname}}</td>
+                    <td>{{item.lgroup}}</td>
+                    <td>{{item.llimit}}</td>
+                    <td>
+                        <button onclick="_g.openWin('lecture/edit','lno={{item.lno}}');" class="btn btn-success btn-xs">详情</button>
+                        <button onclick="_g.openWin('lecture/edit','lno={{item.lno}}');" class="btn btn-success btn-xs">编辑</button>
+                        <button onclick="deleteItem('{{item.lno}}')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
                     </td>
                 </tr>
+                {{/each}} {{/if}}
             </tbody>
         </table>
     </div>
