@@ -27,16 +27,22 @@
                 </tr>
             </thead>
             <tbody>
-                <tr data-custom-id="1">
-                    <td>1</td>
-                    <td>汤姚平</td>
-                    <td><img src="../../images/p3.jpg" width="50" height="80" alt="主讲人照片"></td>
-                    <td>书记……</td>
+                {{if !list.length}}
+                    <tr>
+                        <td colspan="6" style="text-align: center;">没有记录</td>
+                    </tr>
+                {{else}} {{each list item index}}
+                <tr data-custom-id="{{item.spno}}">
+                    <td>{{item.spno}}</td>
+                    <td>{{item.spname}}</td>
+                    <td>{{item.spname}}</td>
+                    <td>{{item.spbrief}}</td>
                     <td>
-                        <button onclick="_g.openWin('user/editSpeaker','id=1')" class="btn btn-success btn-xs">编辑</button>
-                        <button onclick="_g.pm.methods.deleteItem('1')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+                        <button onclick="_g.openWin('user/editSpeaker', 'id={{item.spno}}')" class="btn btn-success btn-xs">编辑</button>
+                        <button onclick="deleteId('{{item.spno}}')" class="btn btn-danger btn-xs" data-id="1">删除</button>
                     </td>
                 </tr>
+                {{/each}} {{/if}}
             </tbody>
         </table>
     </div>
