@@ -7,7 +7,7 @@
     var id = _g.pm.param.id;
 
     if(id) {
-        $('#header1').html("编辑管理员");
+        $('#header').text("编辑管理员");
     }
 
     $('#allAuthority').change(function() {
