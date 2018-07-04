@@ -3,11 +3,6 @@
     _g.setNowPage('user/speaker');
     $('#formContent').html(_g.getTemplate('user/speaker-V'));
 
-    var data = {
-        currentPage: 1,
-        pageSize: 5
-    }
-
     function getList() {
         $.ajax({
             url: 'http://118.89.26.114/speakerAndLecType/queryAllSpeaker.do',
@@ -18,7 +13,7 @@
             contentType: 'application/json',
             data:JSON.stringify({
                 currentPage: 1,
-                pageSize: 5
+                pageSize: 20
             }),
             success: function(result) {
                 var data1 = { list: result.speakerPaging.list };

@@ -1,20 +1,4 @@
-<section class="panel panel-default" style="position: relative;">
-    <div class="panel-body">
-        <form class="form-inline" role="form">
-            <div class="form-group">
-                <input type="text" name="id" class="form-control" placeholder="主讲人姓名">
-                <label class="control-label padder"></label>
-            </div>
-            <button id="searchBtn" type="submit" class="btn btn-s-md btn-success">查询</button>
-        </form>
-    </div>
-</section>
 <section class="panel panel-default">
-    <div class="row wrapper">
-        <div class="col-sm-12">
-            <button onclick="JavaScript:_g.openWin('user/editSpeaker')" class="btn btn-success">新增主讲人</button>
-        </div>
-    </div>
     <div id="table" class="table-responsive">
         <table class="table table-striped b-t b-light">
             <thead>
@@ -46,22 +30,4 @@
             </tbody>
         </table>
     </div>
-    <footer class="panel-footer">
-        <div class="row">
-            <div class="col-sm-4 hidden-xs">
-                <small class="text-muted inline m-t-sm m-b-sm">
-                                    一共 <span id="totalCount">1</span> 条记录 - 共 <span id="totalPages">1</span> 页
-                                </small>
-            </div>
-            <div class="col-sm-2 text-center">
-            </div>
-            <div class="col-sm-6 text-right text-center-xs">
-                <div id="pagination" style="margin: 0;" class="pagination">
-                    <ul class="pagination pagination-sm m-t-none m-b-none">
-                        <li class="active"><a title="Current page is 1">1</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
 </section>

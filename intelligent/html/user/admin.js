@@ -5,7 +5,7 @@
 
     var data = {
         currentPage: 1,
-        pageSize: 20
+        pageSize: 5
     }
 
     function getList() {
@@ -19,6 +19,15 @@
             data: JSON.stringify(data),
             success: function(result) {
                 var data1 = { list: result.adminPaging.list};
+                _g.initPaginator({
+                    currentPage: result.adminPaging.currentPage,
+                    totalPages: result.adminPaging.totalPage,
+                    totalCount: result.adminPaging.totalCount,
+                    onPageClicked: function (page) {
+                        data.currentPage = page;
+                        getList();
+                    }
+                });
                 _g.render('user/admin-V', data1, '#table');
             },
         });
