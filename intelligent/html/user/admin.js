@@ -10,9 +10,9 @@
 
     function getList() {
         $.ajax({
-            url: 'http://118.89.26.114/manageadmin/queryalladmin.do',
+            url: 'http://118.89.26.114/manageAdmin/queryAllAdmin.do',
             dataType: 'json',
-            type: 'get',
+            type: 'POST',
             async: false,
             processData: false,
             contentType: 'application/json',
@@ -27,7 +27,7 @@
     deleteId = function(aid) {
         if (confirm('您确定要删除此管理员吗？')) {
             $.ajax({
-                url: 'http://118.89.26.114/manageadmin/removeadministrator.do',
+                url: 'http://118.89.26.114/manageAdmin/deleteAdmin.do',
                 dataType: 'json',
                 type: 'POST',
                 data: {
@@ -43,7 +43,7 @@
     forbidden = function(aid) {
         if (confirm('您确定要禁用此管理员吗？')) {
             $.ajax({
-                url: 'http://118.89.26.114/manageadmin/freezeastatus.do',
+                url: 'http://118.89.26.114/manageAdmin/freezeAccount.do',
                 dataType: 'json',
                 type: 'POST',
                 data: {
@@ -59,7 +59,7 @@
 
     liftForbidden = function(aid) {
         $.ajax({
-            url: 'http://118.89.26.114/manageadmin/freezeastatus.do',
+            url: 'http://118.89.26.114/manageAdmin/freezeAccount.do',
             dataType: 'json',
             type: 'POST',
             data: {
