@@ -21,7 +21,7 @@
                 pageSize: 5
             }),
             success: function(result) {
-                var data1 = { list: result };
+                var data1 = { list: result.speakerPaging.list };
                 _g.render('user/speaker-V', data1, '#table');
             },
         });
