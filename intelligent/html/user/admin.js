@@ -4,7 +4,7 @@
     $('#formContent').html(_g.getTemplate('user/admin-V'));
 
     var data = {
-        page: 1,
+        currentPage: 1,
         pageSize: 20
     }
 
@@ -16,8 +16,9 @@
             async: false,
             processData: false,
             contentType: 'application/json',
+            data: JSON.stringify(data),
             success: function(result) {
-                var data1 = { list: result };
+                var data1 = { list: result.adminPaging.list};
                 _g.render('user/admin-V', data1, '#table');
             },
         });
@@ -41,7 +42,7 @@
     }
 
     forbidden = function(aid) {
-        if (confirm('您确定要禁用此管理员吗？')) {
+        layer.confirm('您确定要禁用此管理员吗？', { title: '询问' }, function(index) {
             $.ajax({
                 url: 'http://118.89.26.114/manageAdmin/freezeAccount.do',
                 dataType: 'json',
@@ -54,7 +55,10 @@
                     getList();
                 }
             })
-        }
+
+            layer.close(index);
+        });
+
     }
 
     liftForbidden = function(aid) {
