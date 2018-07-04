@@ -14,12 +14,12 @@
         });  
     })
 
+    laydate.render({
+        elem: '#date1' //指定元素
+    });
+
     $('#startTimePicker').hunterTimePicker();
     $('#endTimePicker').hunterTimePicker();
-
-    laydate.render({
-        elem: '#date' //指定元素
-    });
 
     $('#submitBtn').click(function() {
         layer.msg('hello');
