@@ -26,7 +26,7 @@
                 _g.initPaginator({
                     currentPage: result.adminPaging.currentPage,
                     totalPages: result.adminPaging.totalPage,
-                    totalCount: result.adminPaging.totalCount,
+                    totalCount: 15,
                     onPageClicked: function (page) {
                         console.log(page)
                         data.currentPage = page;

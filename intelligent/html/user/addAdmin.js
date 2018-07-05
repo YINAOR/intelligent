@@ -136,9 +136,9 @@
             success: function(data) {
                 layer.open({
                     title: '消息',
-                    content: data
+                    content: data.msg
                 })
-                if(data.indexOf('成功') != -1) {
+                if(data.msg.indexOf('成功') != -1) {
                     _g.openWin('user/admin');
                 }
             }
