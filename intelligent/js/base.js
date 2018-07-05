@@ -364,6 +364,7 @@
                         totalPages: opts.totalPages,
                         numberOfPages: opts.numberOfPages || 7,
                         onPageClicked: function (e, originalEvent, type, page) {
+                            console.log(e)
                             e.stopImmediatePropagation();
                             var currentTarget = $(e.currentTarget);
                             var pages = currentTarget.bootstrapPaginator("getPages");
