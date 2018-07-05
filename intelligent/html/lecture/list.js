@@ -16,9 +16,14 @@
             async: false,
             processData: false,
             contentType: 'application/json',
+            xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true,
             data: JSON.stringify(data),
             success: function(result) {
-                if(data.num == 1) {
+                alert(1111)
+                if(result.num == 1) {
     			    var result = { list: data.lecturePaging.list };
                     _g.render('lecture/list-V', result, '#table');
     			} else {

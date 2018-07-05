@@ -89,6 +89,10 @@
                     type: 'POST',
                     processData: true, //false
                     contentType: 'application/x-www-form-urlencoded', // 'application/json'
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    crossDomain: true,
                     data: {
                         account: username,
                         apwd: password
@@ -104,7 +108,7 @@
                         }
                     },
                     error: function(error) {
-                        alert('操作失败！请重试')
+                        alert(error.status)
                     }
                 });
             }
