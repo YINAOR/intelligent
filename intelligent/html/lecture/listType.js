@@ -3,13 +3,7 @@
     _g.setNowPage('lecture/listType');
     $('#formContent').html(_g.getTemplate('lecture/listType-V'));
 
-    var data = {
-        currentPage: 1,
-        pageSize: 5
-    };
-
     function getList() {
-    	alert(1111)
         $.ajax({
             url: 'http://118.89.26.114/speakerAndLecType/queryAllLPropertyByPage.do',
             dataType: 'json',
@@ -17,18 +11,29 @@
             async: false,
             processData: false,
             contentType: 'application/json',
-            data: JSON.stringify(data),
+            data: JSON.stringify({
+                currentPage: 1,
+                pageSize: 5
+            }),
             success: function(result) {
-                if(data.num == 1) {
-    			    var result = { list: data.lpropertyPaging.list };
-                    _g.render('lecture/listType-V', result, '#table');
+                if(result.num == 1) {
+    			    var result1 = { list: result.lpropertyPaging.list };
+                    _g.render('lecture/listType-V', result1, '#table');
     			} else {
     				layer.open({
     					title: '消息',
-    					content: data.msg
+    					content: result.msg
     				});
     			}
             },
+            error: function(error) {
+                var result1 = { list: [] }; 
+                _g.render('lecture/listType-V', result1, '#table');
+                layer.open({
+                    title: '消息',
+                    content: '请求超时请重试'
+                });
+            }
         });
     }
     getList();
