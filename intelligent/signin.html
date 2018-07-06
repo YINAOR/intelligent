@@ -89,10 +89,10 @@
                     type: 'POST',
                     processData: true, //false
                     contentType: 'application/x-www-form-urlencoded', // 'application/json'
-                    xhrFields: {
-                        withCredentials: true
-                    },
-                    crossDomain: true,
+                    // xhrFields: {
+                    //     withCredentials: true
+                    // },
+                    // crossDomain: true,
                     data: {
                         account: username,
                         apwd: password
@@ -108,7 +108,9 @@
                         }
                     },
                     error: function(error) {
-                        alert(error.status)
+                        _g.setErrorAlert({
+                            errorText: '请求超时，请重试！'
+                        });
                     }
                 });
             }
