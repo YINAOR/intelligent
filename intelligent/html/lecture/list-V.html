@@ -72,7 +72,32 @@
                 </tr>
             </thead>
             <tbody>
-                {{if !list.length}}
+                <tr data-custom-id="{{item.lno}}">
+                    <td>1</td>
+                    <td>面向未来</td>
+                    <td></td>
+                    <td>2018-05-11</td>
+                    <td>19:00</td>
+                    <td>21:00</td>
+                    <td>实验楼</td>
+                    <td>是</td>
+                    <td>2</td>
+                    <td>
+                    教授
+                    </td>
+                    <td>成长教育</td>
+                    <td>大一全体新生</td>
+                    <td>500</td>
+                    <td>
+                        <button onclick="_g.openWin('lecture/sign','lno={{item.lno}}');" class="btn btn-success btn-xs">讲座开始签到</button>
+                        <button onclick="_g.openWin('lecture/sign','lno={{item.lno}}');" class="btn btn-success btn-xs">讲座结束签到</button>
+                        <button onclick="_g.openWin('lecture/edit','lno={{item.lno}}');" class="btn btn-success btn-xs">签到结果</button>
+                        <button onclick="_g.openWin('lecture/edit','lno={{item.lno}}');" class="btn btn-success btn-xs">详情</button>
+                        <button onclick="_g.openWin('lecture/edit','lno={{item.lno}}');" class="btn btn-success btn-xs">编辑</button>
+                        <button onclick="deleteItem('{{item.lno}}')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+                    </td>
+                </tr>
+                <!-- {{if !list.length}}
                 <tr>
                     <td colspan="6" style="text-align: center;">没有记录</td>
                 </tr>
@@ -101,7 +126,7 @@
                         <button onclick="deleteItem('{{item.lno}}')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
                     </td>
                 </tr>
-                {{/each}} {{/if}}
+                {{/each}} {{/if}} -->
             </tbody>
         </table>
     </div>

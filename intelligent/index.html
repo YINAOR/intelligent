@@ -219,9 +219,9 @@
         $('.webTitle').text('欢迎来到' + _c.webTitle);
         $('.webFooter').html(' &copy;&nbsp;&nbsp;2018&nbsp;&nbsp;' + _c.copyright + '&nbsp;&nbsp;' + _c.webTitle + '版权所有');
 
-        if(!sessionStorage.admin) {
-            window.location.href = '/signin.html';
-        }
+        // if(!sessionStorage.admin) {
+        //     window.location.href = '/signin.html';
+        // }
 
         if (window.history && window.history.pushState) {
             $(window).on('popstate', function (e) {
@@ -245,7 +245,7 @@
             });
         }
 
-        $('#globalUsername').text($.parseJSON(sessionStorage.admin).aname);
+        // $('#globalUsername').text($.parseJSON(sessionStorage.admin).aname);
 
         $('#updPassword').click(function () {
             _g.openBaseModal('user/list-password-V', {}, '修改密码');

@@ -16,11 +16,12 @@
             async: false,
             processData: false,
             contentType: 'application/json',
-            xhrFields: {
-                withCredentials: true
-            },
-            crossDomain: true,
-            data: JSON.stringify(data),
+            // xhrFields: {
+            //     withCredentials: true
+            // },
+            // crossDomain: true,
+            data: JSON.stringify({data:data,
+                token: 123}),
             success: function(result) {
                 alert(1111)
                 if(result.num == 1) {
@@ -35,6 +36,6 @@
             },
         });
     }
-    getList();
+    // getList();
 
 })();
