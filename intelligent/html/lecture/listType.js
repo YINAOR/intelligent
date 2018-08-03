@@ -11,9 +11,8 @@
             async: false,
             processData: false,
             contentType: 'application/json',
-            data: JSON.stringify({
-                currentPage: 1,
-                pageSize: 5
+            data: JSON.stringify({data: {paging: {currentPage: 1,
+                pageSize: 5}}
             }),
             success: function(result) {
                 if(result.num == 1) {

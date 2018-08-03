@@ -14,11 +14,6 @@
     </div>
 </section>
 <section class="panel panel-default">
-    <div class="row wrapper">
-        <div class="col-sm-12">
-            <button id="sign" class="btn btn-success">补签</button>
-        </div>
-    </div>
     <div id="table" class="table-responsive">
         <table class="table table-striped b-t b-light">
             <thead>
@@ -27,8 +22,8 @@
                     <th>学号</th>
                     <th>姓名</th>
                     <th>专业</th>
-                    <th>签到时间</th>
-                    <th>签到方式</th>
+                    <th>评论</th>
+                    <th>评论时间</th>
                     <th>操作</th>
                 </tr>
             </thead>
@@ -38,10 +33,12 @@
                     <td>3215004752</td>
                     <td>xxx</td>
                     <td>信息管理与信息系统</td>
-                    <td>18:59</td>
-                    <td>扫码</td>
+                    <td>评论评论评论评论评论评论评论评论评论评论评论评论</td>
+                    <td>2018-07-04 21:59</td>
                     <td>
-                        <button onclick="_g.openWin('lecture/sign','lno={{item.lno}}');" class="btn btn-danger btn-xs">取消签到</button>
+                        <button onclick="_g.openWin('lecture/sign','lno={{item.lno}}');" class="btn btn-success btn-xs">审核</button>
+                        <button onclick="_g.openWin('lecture/sign','lno={{item.lno}}');" class="btn btn-danger btn-xs">删除</button>
+                        <button onclick="_g.openWin('lecture/sign','lno={{item.lno}}');" class="btn btn-danger btn-xs">警告</button>
                     </td>
                 </tr>
                 <!-- {{if !list.length}}

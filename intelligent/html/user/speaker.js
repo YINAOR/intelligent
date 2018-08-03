@@ -10,17 +10,17 @@
 
     function getList() {
         $.ajax({
-            url: 'http://118.89.26.114/speakerAndLecType/queryAllSpeaker.do',
+            url: 'http://118.89.26.114/speakerAndLecType/queryAllSpeakerByPaging.do',
             dataType: 'json',
             type: 'POST',
             async: false,
             processData: false,
             contentType: 'application/json',
-            xhrFields: {
-                withCredentials: true
-            },
-            crossDomain: true,
-            data:JSON.stringify(data),
+            // xhrFields: {
+            //     withCredentials: true
+            // },
+            // crossDomain: true,
+            data:JSON.stringify({data: {paging:{data}}}),
             success: function(result) {
                 var data1 = { list: result.speakerPaging.list };
                 _g.initPaginator({

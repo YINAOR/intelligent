@@ -2,23 +2,23 @@
 <html lang="zh-cmn" class="app">
 
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <title></title>
-    <meta name="description" content=""/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-    <link rel="stylesheet" href="css/configPoster.css" type="text/css"/>
-    <link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
-    <link rel="stylesheet" href="css/bootstrap-duallistbox.min.css"/>
-    <link rel="stylesheet" href="css/animate.css" type="text/css"/>
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css"/>
-    <link rel="stylesheet" href="css/simple-line-icons.css" type="text/css"/>
-    <link rel="stylesheet" href="css/font.css" type="text/css"/>
-    <link rel="stylesheet" href="css/app.css" type="text/css"/>
-    <link rel="stylesheet" href="css/base.css" type="text/css"/>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" href="css/configPoster.css" type="text/css" />
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="css/bootstrap-duallistbox.min.css" />
+    <link rel="stylesheet" href="css/animate.css" type="text/css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/simple-line-icons.css" type="text/css" />
+    <link rel="stylesheet" href="css/font.css" type="text/css" />
+    <link rel="stylesheet" href="css/app.css" type="text/css" />
+    <link rel="stylesheet" href="css/base.css" type="text/css" />
     <!-- <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css" /> -->
-    <link rel="stylesheet" href="js/datepicker/bootstrap-datetimepicker.min.css" type="text/css"/>
-    <link rel="stylesheet" href="js/chosen/chosen.css" type="text/css"/>
-    <link rel="stylesheet" href="js/bootstrap-summernote/summernote.css" type="text/css"/>
+    <link rel="stylesheet" href="js/datepicker/bootstrap-datetimepicker.min.css" type="text/css" />
+    <link rel="stylesheet" href="js/chosen/chosen.css" type="text/css" />
+    <link rel="stylesheet" href="js/bootstrap-summernote/summernote.css" type="text/css" />
     <!--[if lt IE 9]>
     <script src="js/ie/html5shiv.js"></script>
     <script src="js/ie/respond.min.js"></script>
@@ -27,7 +27,7 @@
 </head>
 
 <body class="">
-<style>
+    <style>
     .ui-upload {
         width: 100%;
         height: 80px;
@@ -43,17 +43,17 @@
         margin-right: 10px;
     }
 
-    .ui-uploadImg:hover > i {
+    .ui-uploadImg:hover>i {
         display: block;
     }
 
-    .ui-uploadImg > img {
+    .ui-uploadImg>img {
         width: 100%;
         height: 100%;
         vertical-align: top;
     }
 
-    .ui-uploadImg > i {
+    .ui-uploadImg>i {
         display: none;
         position: absolute;
         right: 12px;
@@ -63,7 +63,7 @@
         cursor: pointer;
     }
 
-    .ui-uploadImg > i:hover {
+    .ui-uploadImg>i:hover {
         right: 10px;
         top: 10px;
         font-size: 24px;
@@ -77,7 +77,7 @@
         overflow: hidden;
     }
 
-    .ui-uploadBtn > i {
+    .ui-uploadBtn>i {
         position: absolute;
         left: 0;
         top: 0;
@@ -87,7 +87,7 @@
         z-index: 8;
     }
 
-    .ui-uploadBtn > input {
+    .ui-uploadBtn>input {
         position: absolute;
         left: 0;
         top: 0;
@@ -97,124 +97,121 @@
         cursor: pointer;
         z-index: 9;
     }
-    .ui-uploadBtn > input:hover + i{
+
+    .ui-uploadBtn>input:hover+i {
         color: #788188;
     }
-</style>
-<section class="vbox">
-    <!-- 公共头部 -->
-    <header id="commonHeader" class="bg-white-only header header-md navbar navbar-fixed-top-xs"></header>
-    <!-- / 公共头部 -->
-    <section>
-        <section class="hbox stretch">
-            <!-- .aside -->
-            <!--<aside class="bg-black dk aside hidden-print" id="commonNav"></aside>-->
-            <aside class="bg-black dk aside hidden-print">
-                <section class="vbox">
-                    <section class="w-f-md scrollable">
-                        <div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0"
-                             data-size="10px"
-                             data-railOpacity="0.2">
-                            <!-- nav -->
-                            <nav class="nav-primary hidden-xs" id="commonNav">
-                            </nav>
-                            <!-- / nav -->
-                        </div>
-                    </section>
-                </section>
-            </aside>
-            <!-- /.aside -->
-            <section>
-                <section class="hbox stretch">
-                    <section>
-                        <section class="vbox">
-                            <section class="scrollable wrapper" id="bjax-target" style="bottom: 50px;">
-                                <!-- //显示 -->
-                                <p class="webTitle" style="font-size:100px; text-align:center;line-height:200px;"></p>
-                            </section>
-                            <footer class="footer bg-dark">
-                                <p class="webFooter"></p>
-                            </footer>
+    </style>
+    <section class="vbox">
+        <!-- 公共头部 -->
+        <header id="commonHeader" class="bg-white-only header header-md navbar navbar-fixed-top-xs"></header>
+        <!-- / 公共头部 -->
+        <section>
+            <section class="hbox stretch">
+                <!-- .aside -->
+                <!--<aside class="bg-black dk aside hidden-print" id="commonNav"></aside>-->
+                <aside class="bg-black dk aside hidden-print">
+                    <section class="vbox">
+                        <section class="w-f-md scrollable">
+                            <div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="10px" data-railOpacity="0.2">
+                                <!-- nav -->
+                                <nav class="nav-primary hidden-xs" id="commonNav">
+                                </nav>
+                                <!-- / nav -->
+                            </div>
                         </section>
                     </section>
+                </aside>
+                <!-- /.aside -->
+                <section>
+                    <section class="hbox stretch">
+                        <section>
+                            <section class="vbox">
+                                <section class="scrollable wrapper" id="bjax-target" style="bottom: 50px;">
+                                    <!-- //显示 -->
+                                    <p class="webTitle" style="font-size:100px; text-align:center;line-height:200px;"></p>
+                                </section>
+                                <footer class="footer bg-dark">
+                                    <p class="webFooter"></p>
+                                </footer>
+                            </section>
+                        </section>
+                    </section>
+                    <a href="" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
                 </section>
-                <a href="" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open"
-                   data-target="#nav,html"></a>
             </section>
         </section>
     </section>
-</section>
-<div class="ui-popup">
-    <div class="ui-popup__bg"></div>
-    <div class="ui-popup__bd"></div>
-    <div class="ui-popup__close"><i class="icon-close"></i></div>
-</div>
-<div class="ui-loading">
-    <div class="ui-loading__bg"></div>
-    <div class="ui-loading__bd"><img src="images/loading_more.gif" alt=""></div>
-</div>
-<!-- 模态框Modal S -->
-<div class="note-dialog">
-    <div class="modal fade" id="baseModal" tabindex="-1" role="dialog" aria-labelledby="baseModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" style="width: 800px;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="baseModalLabel">弹窗标题</h4>
+    <div class="ui-popup">
+        <div class="ui-popup__bg"></div>
+        <div class="ui-popup__bd"></div>
+        <div class="ui-popup__close"><i class="icon-close"></i></div>
+    </div>
+    <div class="ui-loading">
+        <div class="ui-loading__bg"></div>
+        <div class="ui-loading__bd"><img src="images/loading_more.gif" alt=""></div>
+    </div>
+    <!-- 模态框Modal S -->
+    <div class="note-dialog">
+        <div class="modal fade" id="baseModal" tabindex="-1" role="dialog" aria-labelledby="baseModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="width: 800px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="baseModalLabel">弹窗标题</h4>
+                    </div>
+                    <div class="modal-body" id="baseModalContent"></div>
                 </div>
-                <div class="modal-body" id="baseModalContent"></div>
             </div>
         </div>
     </div>
-</div>
-<!-- clipboard -->
-<script src="js/clipboard.min.js"></script>
-<!-- 模态框Modal E -->
-<script src="js/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="js/bootstrap.js"></script>
-<!-- DualListBox -->
-<script src="js/jquery.bootstrap-duallistbox.min.js"></script>
-<script src="js/jquery.raty.min.js"></script>
-<!-- App -->
-<script src="js/app.js"></script>
-<script src="js/slimscroll/jquery.slimscroll.min.js"></script>
-<!-- moment -->
-<script src="js/datepicker/moment.min.js"></script>
-<!-- datepicker -->
-<script src="js/datepicker/bootstrap-datetimepicker.min.js"></script>
-<!-- slider -->
-<script src="js/slider/bootstrap-slider.js"></script>
-<!-- file input -->
-<script src="js/file-input/bootstrap-filestyle.min.js"></script>
-<!-- chosen -->
-<script src="js/chosen/chosen.jquery.min.js"></script>
-<!-- parsley -->
-<script src="js/parsley/parsley.min.js"></script>
-<script src="js/parsley/parsley.extend.js"></script>
-<!-- summernote -->
-<script src="js/bootstrap-summernote/summernote.min.js"></script>
-<!--ECharts-->
-<script src="js/charts/echarts.min.js"></script>
-<!-- paginator -->
-<script src="js/bootstrap-paginator.min.js"></script>
-<!-- jquery form -->
-<script src="js/jquery.form.min.js"></script>
-<!-- / App -->
-<script src="js/app.plugin.js"></script>
-<!-- Base -->
-<script src="js/underscore.min.js"></script>
-<script src="js/art-template.js"></script>
-<script src="js/vue/vue.base.js"></script>
-<script src="js/base.js"></script>
-<script src="js/config.js"></script>
-<script src="js/md5.js"></script>
-<script src="js/layer/layer.js"></script>
-<script src="js/laydate/laydate.js"></script>
-<!-- Custom -->
-<script>
-    $(function () {
+    <!-- clipboard -->
+    <script src="js/clipboard.min.js"></script>
+    <!-- 模态框Modal E -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.js"></script>
+    <!-- DualListBox -->
+    <script src="js/jquery.bootstrap-duallistbox.min.js"></script>
+    <script src="js/jquery.raty.min.js"></script>
+    <!-- App -->
+    <script src="js/app.js"></script>
+    <script src="js/slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- moment -->
+    <script src="js/datepicker/moment.min.js"></script>
+    <!-- datepicker -->
+    <script src="js/datepicker/bootstrap-datetimepicker.min.js"></script>
+    <!-- slider -->
+    <script src="js/slider/bootstrap-slider.js"></script>
+    <!-- file input -->
+    <script src="js/file-input/bootstrap-filestyle.min.js"></script>
+    <!-- chosen -->
+    <script src="js/chosen/chosen.jquery.min.js"></script>
+    <!-- parsley -->
+    <script src="js/parsley/parsley.min.js"></script>
+    <script src="js/parsley/parsley.extend.js"></script>
+    <!-- summernote -->
+    <script src="js/bootstrap-summernote/summernote.min.js"></script>
+    <!--ECharts-->
+    <script src="js/charts/echarts.min.js"></script>
+    <!-- paginator -->
+    <script src="js/bootstrap-paginator.min.js"></script>
+    <!-- jquery form -->
+    <script src="js/jquery.form.min.js"></script>
+    <!-- / App -->
+    <script src="js/app.plugin.js"></script>
+    <!-- Base -->
+    <script src="js/underscore.min.js"></script>
+    <script src="js/art-template.js"></script>
+    <script src="js/vue/vue.base.js"></script>
+    <script src="js/base.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/md5.js"></script>
+    <script src="js/layer/layer.js"></script>
+    <script src="js/laydate/laydate.js"></script>
+    <!-- Custom -->
+    <script>
+    $(function() {
         $('title').text(_c.webTitle);
         $('.webTitle').text('欢迎来到' + _c.webTitle);
         $('.webFooter').html(' &copy;&nbsp;&nbsp;2018&nbsp;&nbsp;' + _c.copyright + '&nbsp;&nbsp;' + _c.webTitle + '版权所有');
@@ -224,10 +221,10 @@
         // }
 
         if (window.history && window.history.pushState) {
-            $(window).on('popstate', function (e) {
-//                console.log(_g.pm.prev);
+            $(window).on('popstate', function(e) {
+                //                console.log(_g.pm.prev);
                 var hashLocation = location.hash;
-//                alert(hashLocation);
+                //                alert(hashLocation);
                 if (hashLocation) {
                     var hashSplit = hashLocation.split("#");
                     var hashName = hashSplit[1];
@@ -247,10 +244,14 @@
 
         // $('#globalUsername').text($.parseJSON(sessionStorage.admin).aname);
 
-        $('#updPassword').click(function () {
+        $('#updPassword').click(function() {
             _g.openBaseModal('user/list-password-V', {}, '修改密码');
         });
-        _g.updPassword = function () {
+        $('#personalInformation').click(function() {
+            _g.openWin('user/personalInformation');
+        });
+
+        _g.updPassword = function() {
             var oldPassword = $('#oldPassword').val();
             var newPassword1 = $('#newPassword1').val();
             var newPassword2 = $('#newPassword2').val();
@@ -262,23 +263,45 @@
                 layer.msg('新密码不一致请重新输入!');
                 return;
             }
-            
+            $.ajax({
+                url: '/admin/updatePwd.do',
+                dataType: 'json',
+                type: 'POST',
+                processData: false,
+                contentType: 'application/json',
+                data: JSON.stringify({ data: { oldPwd: oldPassword, newPwd: newPassword1 } }),
+                success: function(respData) {
+                    if (respData.code == 200) {
+                        window.location.href = "/signin.html";
+                    }
+                }
+            })
+
         };
 
         $('#logoutBtn').click(function() {
-            sessionStorage.admin = '';
-            window.location.href = '/signin.html';
+            $.ajax({
+                url: '/admin/logout.do',
+                dataType: 'json',
+                type: 'GET',
+                /* contentType:"application/json", */
+                success: function(respData) {
+                    if (respData.code == 200) {
+                        sessionStorage.admin = '';
+                        window.location.href = '/signin.html';
+                    }
+                }
+            });
         })
 
 
-        $('.popover-title .close').click(function () {
+        $('.popover-title .close').click(function() {
             $('.popover').fadeOut();
         });
 
-       $('#commonNav').html(_g.getTemplate('common/nav-V'));
+        $('#commonNav').html(_g.getTemplate('common/nav-V'));
     });
-</script>
+    </script>
 </body>
 
 </html>
-

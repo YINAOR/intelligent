@@ -10,17 +10,17 @@
 
     function getList() {
         $.ajax({
-            url: 'http://118.89.26.114/manageAdmin/queryAllAdmin.do',
+            url: 'http://118.89.26.114/manageAdmin/queryAllAdminByPaging.do',
             dataType: 'json',
             type: 'POST',
             async: false,
             processData: false,
             contentType: 'application/json',
-            xhrFields: {
-                withCredentials: true
-            },
-            crossDomain: true,
-            data: JSON.stringify(data),
+            // xhrFields: {
+            //     withCredentials: true
+            // },
+            // crossDomain: true,
+            data: JSON.stringify({data:{"paging": data}}),
             success: function(result) {
                 var data1 = { list: result.adminPaging.list};
                 _g.initPaginator({
