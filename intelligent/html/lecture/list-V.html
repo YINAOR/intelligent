@@ -57,8 +57,6 @@
                 <tr>
                     <th>序号</th>
                     <th>名称</th>
-                    <th>图片</th>
-                    <th>举办日期</th>
                     <th>开始时间</th>
                     <th>结束时间</th>
                     <th>地点</th>
@@ -67,18 +65,15 @@
                     <th>主讲人</th>
                     <th>分类</th>
                     <th>面向对象</th>
-                    <th>限制人数</th>
-                    <th>操作</th>
+                    <th style="width:300px">操作need to revise</th>
                 </tr>
             </thead>
             <tbody>
                 <tr data-custom-id="{{item.lno}}">
                     <td>1</td>
                     <td>面向未来</td>
-                    <td></td>
-                    <td>2018-05-11</td>
-                    <td>19:00</td>
-                    <td>21:00</td>
+                    <td>2018-05-11 19:00</td>
+                    <td>2018-05-11 21:00</td>
                     <td>实验楼</td>
                     <td>是</td>
                     <td>2</td>
@@ -87,7 +82,6 @@
                     </td>
                     <td>成长教育</td>
                     <td>大一全体新生</td>
-                    <td>500</td>
                     <td>
                         <button onclick="_g.openWin('lecture/sign','lno={{item.lno}}');" class="btn btn-success btn-xs">讲座开始签到</button>
                         <button onclick="_g.openWin('lecture/sign','lno={{item.lno}}');" class="btn btn-success btn-xs">讲座结束签到</button>
