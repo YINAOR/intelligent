@@ -83,7 +83,7 @@
                 });
             } else {
                 $.ajax({
-                    url: 'http://118.89.26.114/login/admin.do',
+                    url: 'http://118.89.26.114/admin/login.do',
                     // async: false,
                     dataType: 'json',
                     type: 'POST',
@@ -93,10 +93,10 @@
                     //     withCredentials: true
                     // },
                     // crossDomain: true,
-                    data: {
+                    data: JSON.stringify({data:{
                         account: username,
                         apwd: password
-                    },
+                    }}),
                     success: function(data) {
                         if (data.num == 1) {
                             sessionStorage.admin = JSON.stringify(data.admin);

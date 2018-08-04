@@ -20,17 +20,16 @@
             //     withCredentials: true
             // },
             // crossDomain: true,
-            data: JSON.stringify({data:data,
-                token: 123}),
+            data: JSON.stringify({data: {paging: data}}),
             success: function(result) {
                 alert(1111)
                 if(result.num == 1) {
-    			    var result = { list: data.lecturePaging.list };
+    			    var result = { list: result.lecturePaging.list };
                     _g.render('lecture/list-V', result, '#table');
     			} else {
     				layer.open({
     					title: '消息',
-    					content: data.msg
+    					content: result.msg
     				});
     			}
             },
