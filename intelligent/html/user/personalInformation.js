@@ -7,6 +7,21 @@
     function getInformation() {
         $.ajax({
             url: 'http://118.89.26.114/admin/queryAdministratorById.do',
+<<<<<<< HEAD
+            dataType: 'json',
+            type: 'GET',
+            processData: false,
+            contentType: 'application/json',
+            success: function(result) {
+                if (result.code == 200) {
+                    var id = result.data.aid;
+                    var username = result.data.ano;
+                    var institution = result.data.aorganization;
+                    var permission = result.data.permission;
+                    $('#id').val(id);
+                    $('#username').val(username);
+                    $('#institution').val(institution);
+=======
             type: 'GET',
             contentType: 'application/json',
             processData: false,
@@ -29,6 +44,7 @@
                     $('#email').val(email);
                     $('#phone').val(phone);
                     $('#state').val(state);
+>>>>>>> 38175fc31e217a0488bd6042cb1543e1b5e4c2e8
                     $('#permisson').val(permission);
                 }
             }
@@ -37,6 +53,8 @@
 
     getInformation();
 
+<<<<<<< HEAD
+=======
     $('#username').change(function() {
         var ano = $('#username').val();
         _g.ajax({
@@ -85,6 +103,7 @@
         })
     })
 
+>>>>>>> 38175fc31e217a0488bd6042cb1543e1b5e4c2e8
 
 
 
