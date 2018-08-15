@@ -58,7 +58,7 @@
     </div>
     <div class="ui-loading">
         <div class="ui-loading__bg"></div>
-        <div class="ui-loading__bd"><img src="image/loading_more.gif" alt=""></div>
+        <div class="ui-loading__bd"><img src="images/loading_more.gif" alt=""></div>
     </div>
     <!-- clipboard -->
     <script src="js/clipboard.min.js"></script>
@@ -82,6 +82,7 @@
                     errorText: '账号或者密码不能为空.'
                 });
             } else {
+<<<<<<< HEAD
                 $.ajax({
                     url: 'http://118.89.26.114/admin/login.do',
                     // async: false,
@@ -97,9 +98,34 @@
                         account: username,
                         apwd: password
                     }}),
+=======
+                _g.ajax({
+                    url: 'http://118.89.26.114/admin/login.do',
+                    data: {
+                        account: username,
+                        apwd: password
+                    },
+
+                // $.ajax({
+                //     url: 'http://118.89.26.114/admin/login.do',
+                //     // async: false,
+                //     dataType: 'json',
+                //     type: 'POST',
+                //     processData: false, //true
+                //     contentType: 'application/json', // 'application/x-www-form-urlencoded'
+                //     // xhrFields: {
+                //     //     withCredentials: true
+                //     // },
+                //     // crossDomain: true,
+                //     data: JSON.stringify({data:{
+                //         account: username,
+                //         apwd: password
+                //     }}),
+>>>>>>> 38175fc31e217a0488bd6042cb1543e1b5e4c2e8
                     success: function(data) {
-                        if (data.num == 1) {
-                            sessionStorage.admin = JSON.stringify(data.admin);
+                        if (data.code == 200) {
+                            sessionStorage.admin = data.admin;
+                            sessionStorage.token = data.token;
                             window.location.href = 'index.html';
                         } else {
                             _g.setErrorAlert({

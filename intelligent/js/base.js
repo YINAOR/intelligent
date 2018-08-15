@@ -180,17 +180,20 @@
             if (!opts) return;
             if (opts.lock) this.showLoading();
             var postData = {
-                data: JSON.stringify($.extend(true, {}, opts.data))
+                data: $.extend(true, {}, opts.data),
+                token: opts.token || sessionStorage.token
             };
 
-            postData.sessionKey = opts.sessionKey || _g.getCookie('sessionKey') || '154c6d779aa341d6ad66501f1007aa5b';
-            postData.data = JSON.stringify(opts.data);
-            postData.appVersion = '0.0.1';
-            postData.apiVersions = 'v1';
-            postData.deviceCode = 'developer';
-            postData.platform = 0;
-            postData.timestamp = Math.round(new Date().getTime() / 1000);
-            postData.token = _g.dm.tokenKey;
+
+            // postData.sessionKey = opts.sessionKey || _g.getCookie('sessionKey');
+            // postData.data = opts.data;
+            // postData.token = opts.token || sessionStorage.token; //|| _g.getCookie('token');
+            // postData.appVersion = '0.0.1';
+            // postData.apiVersions = 'v1';
+            // postData.deviceCode = 'developer';
+            // postData.platform = 0;
+            // postData.timestamp = Math.round(new Date().getTime() / 1000);
+            // postData.token = _g.dm.tokenKey;
             // postData.token = md5.go(_g.jsonToPostDataStr(_g.ksort(postData)));
             // console.log(_g.jsonToPostDataStr(_g.ksort(postData)) + _g.dm.tokenKey);
             // console.log(postData.token);
@@ -198,10 +201,10 @@
             $.ajax({
                 type: opts.type || 'post',
                 url: opts.url,
-                data: postData,
+                data: JSON.stringify(postData),
                 dataType: 'json',
-                contentType: opts.contentType || 'application/x-www-form-urlencoded',
-                processData: opts.processData !== false,
+                contentType: opts.contentType || 'application/json', //'application/x-www-form-urlencoded'
+                processData: opts.processData || false, //!== false,
                 success: function (result) {
                     _g.hideLoading();
                     // if (result.code != 200) {
@@ -211,15 +214,22 @@
                     //         return;
                     //     }
                     // }
-                    if (result.code === 4005 || result.code === 1000) {
-                        // alert(result.message);
-                        window.location.href = '/admin/signin.html';
-                        return;
-                    }
+                    // if (result.code === 4005 || result.code === 1000) {
+                    //     // alert(result.message);
+                    //     window.location.href = 'signin.html';
+                    //     return;
+                    // }
                     opts.success && opts.success(result);
                 },
                 error: function (err) {
-                    opts.error && opts.error(err);
+                    if(opts.error) {
+                        opts.error && opts.error(err);
+                    } else {
+                        layer.open({
+                            title: '消息',
+                            content: '请求超时，请重试！'
+                        });
+                    }     
                 }
             });
         },

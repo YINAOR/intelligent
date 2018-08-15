@@ -85,9 +85,10 @@
                     <td>
                         <button onclick="_g.openWin('lecture/sign','lno={{item.lno}}');" class="btn btn-success btn-xs">讲座开始签到</button>
                         <button onclick="_g.openWin('lecture/sign','lno={{item.lno}}');" class="btn btn-success btn-xs">讲座结束签到</button>
-                        <button onclick="_g.openWin('lecture/edit','lno={{item.lno}}');" class="btn btn-success btn-xs">签到结果</button>
+                        <button onclick="_g.openWin('lecture/signResult','lno={{item.lno}}');" class="btn btn-success btn-xs">签到结果</button>
                         <button onclick="_g.openWin('lecture/edit','lno={{item.lno}}');" class="btn btn-success btn-xs">详情</button>
                         <button onclick="_g.openWin('lecture/edit','lno={{item.lno}}');" class="btn btn-success btn-xs">编辑</button>
+                        <button onclick="_g.openWin('lecture/comment','lno={{item.lno}}');" class="btn btn-success btn-xs">查看评论</button>
                         <button onclick="deleteItem('{{item.lno}}')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
                     </td>
                 </tr>
