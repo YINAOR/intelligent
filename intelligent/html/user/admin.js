@@ -5,43 +5,50 @@
 
     var data = {
         currentPage: 1,
-        pageSize: 5
+        pageSize: 5,
+        t: {
+            aname: ''
+        }
     }
 
     function getList() {
-        $.ajax({
+        _g.ajax({
             url: 'http://118.89.26.114/manageAdmin/queryAllAdminByPaging.do',
-            dataType: 'json',
-            type: 'POST',
             async: false,
-            processData: false,
-            contentType: 'application/json',
-            // xhrFields: {
-            //     withCredentials: true
-            // },
-            // crossDomain: true,
-            data: JSON.stringify({data:{"paging": data}}),
+            data: { paging: data },
             success: function(result) {
-                var data1 = { list: result.adminPaging.list};
-                _g.initPaginator({
-                    currentPage: result.adminPaging.currentPage,
-                    totalPages: result.adminPaging.totalPage,
-                    totalCount: 15,
-                    onPageClicked: function (page) {
-                        console.log(page)
-                        data.currentPage = page;
-                        getList();
-                    }
-                });
-                _g.render('user/admin-V', data1, '#table');
+                if (result.code === 200) {
+                    var data1 = { list: result.data.paging.list };
+                    _g.initPaginator({
+                        currentPage: result.data.paging.currentPage,
+                        totalPages: result.data.paging.totalPage,
+                        totalCount: result.data.paging.totalCount,
+                        onPageClicked: function(page) {
+                            console.log(page)
+                            data.currentPage = page;
+                            getList();
+                        }
+                    });
+                    _g.render('user/admin-V', data1, '#table');
+                } else {
+                    var data1 = { list: [] };
+                    _g.render('user/admin-V', data1, '#table');
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                        yes: function(index){
+                            if(result.msg.indexOf('请登录') != -1) {
+                                layer.close(index);
+                                window.location.href = '/signin.html';
+                            }
+                        }
+                    });
+                }
+
             },
             error: function(error) {
-                var data1 = { list: []};
+                var data1 = { list: [] };
                 _g.render('user/admin-V', data1, '#table');
-                layer.open({
-                    title: '消息',
-                    content: '请求超时，请重试！'
-                })
             }
         });
     }
@@ -49,7 +56,7 @@
 
     deleteId = function(aid) {
         layer.confirm('您确定要删除此管理员吗？', { title: '询问' }, function(index) {
-           $.ajax({
+            $.ajax({
                 url: 'http://118.89.26.114/manageAdmin/deleteAdmin.do',
                 dataType: 'json',
                 type: 'POST',

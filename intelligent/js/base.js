@@ -196,16 +196,18 @@
             // postData.token = _g.dm.tokenKey;
             // postData.token = md5.go(_g.jsonToPostDataStr(_g.ksort(postData)));
             // console.log(_g.jsonToPostDataStr(_g.ksort(postData)) + _g.dm.tokenKey);
-            // console.log(postData.token);
+            console.log(postData.token);
             // console.log(postData);
             $.ajax({
                 type: opts.type || 'post',
                 url: opts.url,
+                async: opts.async || true,
                 data: JSON.stringify(postData),
                 dataType: 'json',
                 contentType: opts.contentType || 'application/json', //'application/x-www-form-urlencoded'
                 processData: opts.processData || false, //!== false,
                 success: function (result) {
+                    console.log(opts.async);
                     _g.hideLoading();
                     // if (result.code != 200) {
                     //     if (_c.env == 'dev' || _c.env == 'test') {
@@ -224,12 +226,11 @@
                 error: function (err) {
                     if(opts.error) {
                         opts.error && opts.error(err);
-                    } else {
-                        layer.open({
-                            title: '消息',
-                            content: '请求超时，请重试！'
-                        });
-                    }     
+                    }
+                    layer.open({
+                        title: '消息',
+                        content: '请求超时，请重试！'
+                    });
                 }
             });
         },

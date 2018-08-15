@@ -5,38 +5,23 @@
     $('#formContent').html(_g.getTemplate('user/personalInformation-V'));
 
     function getInformation() {
-        $.ajax({
+        _g.ajax({
             url: 'http://118.89.26.114/admin/queryAdministratorById.do',
-<<<<<<< HEAD
-            dataType: 'json',
-            type: 'GET',
-            processData: false,
-            contentType: 'application/json',
+            async: false,
             success: function(result) {
                 if (result.code == 200) {
-                    var id = result.data.aid;
-                    var username = result.data.ano;
-                    var institution = result.data.aorganization;
-                    var permission = result.data.permission;
-                    $('#id').val(id);
-                    $('#username').val(username);
-                    $('#institution').val(institution);
-=======
-            type: 'GET',
-            contentType: 'application/json',
-            processData: false,
-            dataType: 'json',
-            data: {token: sessionStorage.token},
-            success: function(result) {
-                if (result.code == 200) {
-                    var id = result.data.aid;
-                    var name = result.data.aname;
-                    var username = result.data.ano;
-                    var institution = result.data.aorganization;
-                    var email = result.data.aemail;
-                    var phone = result.data.amobile;
-                    var state= result.data.astatus;
-                    var permission = result.data.permission;
+                    var id = result.data.admin.aid;
+                    var name = result.data.admin.aname;
+                    var username = result.data.admin.ano;
+                    var institution = result.data.admin.aorganization;
+                    var email = result.data.admin.aemail;
+                    var phone = result.data.admin.amobile;
+                    var state= result.data.admin.astatus;
+                    var permission = '';
+                    for(var i = 0; i < result.data.admin.permission.length; i++) {
+                        permission += result.data.admin.permission[i].pdesc + '; ';
+                    }
+                    
                     $('#id').val(id);
                     $('#name').val(name);
                     $('#username').val(username);
@@ -44,8 +29,18 @@
                     $('#email').val(email);
                     $('#phone').val(phone);
                     $('#state').val(state);
->>>>>>> 38175fc31e217a0488bd6042cb1543e1b5e4c2e8
-                    $('#permisson').val(permission);
+                    $('#permission').val(permission);
+                } else {
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                        yes: function(index){
+                            if(result.msg.indexOf('请登录') != -1) {
+                                layer.close(index);
+                                window.location.href = '/signin.html';
+                            }
+                        }
+                    });
                 }
             }
         })
@@ -53,8 +48,6 @@
 
     getInformation();
 
-<<<<<<< HEAD
-=======
     $('#username').change(function() {
         var ano = $('#username').val();
         _g.ajax({
@@ -103,7 +96,6 @@
         })
     })
 
->>>>>>> 38175fc31e217a0488bd6042cb1543e1b5e4c2e8
 
 
 

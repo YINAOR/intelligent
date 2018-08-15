@@ -216,7 +216,7 @@
         $('.webTitle').text('欢迎来到' + _c.webTitle);
         $('.webFooter').html(' &copy;&nbsp;&nbsp;2018&nbsp;&nbsp;' + _c.copyright + '&nbsp;&nbsp;' + _c.webTitle + '版权所有');
 
-        if(!sessionStorage.admin || !sessionStorage.token) {
+        if (!sessionStorage.admin || !sessionStorage.token) {
             window.location.href = '/signin.html';
         }
 
@@ -280,15 +280,17 @@
         };
 
         $('#logoutBtn').click(function() {
-            $.ajax({
-                url: '/admin/logout.do',
-                dataType: 'json',
-                type: 'GET',
-                /* contentType:"application/json", */
+            _g.ajax({
+                url: 'http://118.89.26.114/admin/logout.do',
                 success: function(respData) {
-                    if (respData.code == 200) {
+                    if (respData.code === 200) {
                         sessionStorage.admin = '';
                         window.location.href = '/signin.html';
+                    } else {
+                        layer.open({
+                            title: '消息',
+                            content: result.msg
+                        });
                     }
                 }
             });
