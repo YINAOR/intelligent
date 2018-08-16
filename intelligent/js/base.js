@@ -196,7 +196,7 @@
             // postData.token = _g.dm.tokenKey;
             // postData.token = md5.go(_g.jsonToPostDataStr(_g.ksort(postData)));
             // console.log(_g.jsonToPostDataStr(_g.ksort(postData)) + _g.dm.tokenKey);
-            console.log(postData.token);
+            // console.log(postData.token);
             // console.log(postData);
             $.ajax({
                 type: opts.type || 'post',
@@ -207,7 +207,7 @@
                 contentType: opts.contentType || 'application/json', //'application/x-www-form-urlencoded'
                 processData: opts.processData || false, //!== false,
                 success: function (result) {
-                    console.log(opts.async);
+                    // console.log(opts.async);
                     _g.hideLoading();
                     // if (result.code != 200) {
                     //     if (_c.env == 'dev' || _c.env == 'test') {
@@ -224,6 +224,7 @@
                     opts.success && opts.success(result);
                 },
                 error: function (err) {
+                    _g.hideLoading();
                     if(opts.error) {
                         opts.error && opts.error(err);
                     }

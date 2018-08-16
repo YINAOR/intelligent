@@ -11,8 +11,12 @@
         }
     }
 
+    var data1 = { list: [] };
+    _g.render('user/admin-V', data1, '#table');
+
     function getList() {
         _g.ajax({
+            lock: true,
             url: 'http://118.89.26.114/manageAdmin/queryAllAdminByPaging.do',
             async: false,
             data: { paging: data },
@@ -31,8 +35,6 @@
                     });
                     _g.render('user/admin-V', data1, '#table');
                 } else {
-                    var data1 = { list: [] };
-                    _g.render('user/admin-V', data1, '#table');
                     layer.open({
                         title: '消息',
                         content: result.msg,
@@ -45,10 +47,6 @@
                     });
                 }
 
-            },
-            error: function(error) {
-                var data1 = { list: [] };
-                _g.render('user/admin-V', data1, '#table');
             }
         });
     }

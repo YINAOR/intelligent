@@ -8,33 +8,34 @@
         pageSize: 20
     }
 
+    var result = { list: [] };
+    _g.render('lecture/list-V', result, '#table');
+
     function getList() {
-        $.ajax({
+        _g.ajax({
+            lock: true,
             url: 'http://118.89.26.114/lecture/queryLectureByAid.do',
-            dataType: 'json',
-            type: 'POST',
             async: false,
-            processData: false,
-            contentType: 'application/json',
-            // xhrFields: {
-            //     withCredentials: true
-            // },
-            // crossDomain: true,
-            data: JSON.stringify({data: {paging: data}}),
+            data:  {paging: data},
             success: function(result) {
-                alert(1111)
-                if(result.num == 1) {
-    			    var result = { list: result.lecturePaging.list };
+                if(result.code === 200) {
+    			    var result = { list: result.data.paging.list };
                     _g.render('lecture/list-V', result, '#table');
     			} else {
     				layer.open({
     					title: '消息',
-    					content: result.msg
+    					content: result.msg,
+                        yes: function(index){
+                            if(result.msg.indexOf('请登录') != -1) {
+                                layer.close(index);
+                                window.location.href = '/signin.html';
+                            }
+                        }
     				});
     			}
-            },
+            },  
         });
     }
-    // getList();
+    getList();
 
 })();

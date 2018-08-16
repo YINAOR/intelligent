@@ -11,8 +11,12 @@
         }
     }
 
+    var data1 = { list: [] };
+    _g.render('user/speaker-V', data1, '#table');
+
     function getList() {
         _g.ajax({
+            lock: true,
             url: 'http://118.89.26.114/speakerAndLecType/queryAllSpeakerByPaging.do',
             async: false,
             data: {
@@ -33,24 +37,17 @@
                     });
                     _g.render('user/speaker-V', data1, '#table');
                 } else {
-                    var data1 = { list: [] };
-                    _g.render('user/speaker-V', data1, '#table');
                     layer.open({
                         title: '消息',
                         content: result.msg,
-                        yes: function(index){
-                            if(result.msg.indexOf('请登录') != -1) {
+                        yes: function(index) {
+                            if (result.msg.indexOf('请登录') != -1) {
                                 layer.close(index);
                                 window.location.href = '/signin.html';
                             }
                         }
                     });
                 }
-
-            },
-            error: function(error) {
-                var data1 = { list: [] };
-                _g.render('user/speaker-V', data1, '#table');
             }
         });
     }

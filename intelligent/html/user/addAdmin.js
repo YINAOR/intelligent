@@ -8,19 +8,17 @@
 
     if (id) {
         $('#header').text("编辑管理员");
+        $('.hidePassword').css('display','none');
+        
     }
 
     function getAuthority() {
-        $.ajax({
+        _g.ajax({
+            lock: true,
             url: 'http://118.89.26.114/manageAdmin/queryAllPermission.do',
-            dataType:'json',
             async: false,
-            type: 'post',
-            contentType: 'application/json',
-            processData: false,
-            data: {},
             success: function(data) {
-                _.each(data,function(item,index) {
+                _.each(data.data.perlist,function(item,index) {
                     $('#allAuthority').append('<option value="' + item.pid + '">' + item.pdesc + '</option>');
                 })
             },

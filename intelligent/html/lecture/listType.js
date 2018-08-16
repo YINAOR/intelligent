@@ -3,35 +3,41 @@
     _g.setNowPage('lecture/listType');
     $('#formContent').html(_g.getTemplate('lecture/listType-V'));
 
+    var data = {
+        currentPage: 1,
+        pageSize: 5,
+        t: {
+            lproname: ''
+        }
+    }
+
+    var result1 = { list: [] };
+    _g.render('lecture/listType-V', result1, '#table');
+
     function getList() {
-        $.ajax({
-            url: 'http://118.89.26.114/speakerAndLecType/queryAllLPropertyByPage.do',
-            dataType: 'json',
-            type: 'POST',
+        _g.ajax({
+            lock: true,
+            url: 'http://118.89.26.114/speakerAndLecType/queryAllLPropertyByPaging.do',
             async: false,
-            processData: false,
-            contentType: 'application/json',
-            data: JSON.stringify({data: {paging: {currentPage: 1,
-                pageSize: 5}}
-            }),
+            data: {
+                paging: data
+            },
             success: function(result) {
-                if(result.num == 1) {
-    			    var result1 = { list: result.lpropertyPaging.list };
+                if(result.code === 200) {
+    			    var result1 = { list: result.data.paging.list };
                     _g.render('lecture/listType-V', result1, '#table');
     			} else {
     				layer.open({
-    					title: '消息',
-    					content: result.msg
-    				});
+                        title: '消息',
+                        content: result.msg,
+                        yes: function(index){
+                            if(result.msg.indexOf('请登录') != -1) {
+                                layer.close(index);
+                                window.location.href = '/signin.html';
+                            }
+                        }
+                    });
     			}
-            },
-            error: function(error) {
-                var result1 = { list: [] }; 
-                _g.render('lecture/listType-V', result1, '#table');
-                layer.open({
-                    title: '消息',
-                    content: '请求超时请重试'
-                });
             }
         });
     }

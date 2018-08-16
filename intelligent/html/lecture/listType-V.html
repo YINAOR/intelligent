@@ -1,37 +1,31 @@
-<section class="panel panel-default">
-    <div id="table" class="table-responsive">
-        <table class="table table-striped b-t b-light">
-            <thead>
-                <tr>
-                    <th>序号</th>
-                    <th>Id</th>
-                    <th>分类名称</th>
-                    <th>分类内容数量</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{if !list.length}}
-                <tr>
-                    <td colspan="6" style="text-align: center;">没有记录</td>
-                </tr>
-                {{else}} {{each list item index}}
-                <tr data-custom-id="{{item.aid}}">
-                    <td>{{index}}</td>
-                    <td>{{item.lprono}}</td>
-                    <td>{{item.lproname}}</td>
-                    <td></td>
-                    <td>
-                        <button onclick="_g.openWin('lecture/addType','id=1');" class="btn btn-success btn-xs">编辑</button>
-                        <button onclick="_g.pm.methods.deleteItem('1')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
-                    </td>
-                </tr>
-                {{/each}} {{/if}}
-            </tbody>
-        </table>
-    </div>
-</section>
-<!-- / 正文内容 -->
+<div id="table" class="table-responsive">
+    <table class="table table-striped b-t b-light">
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>Id</th>
+                <th>分类名称</th>
+                <th>分类内容数量</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{if !list.length}}
+            <tr>
+                <td colspan="6" style="text-align: center;">没有记录</td>
+            </tr>
+            {{else}} {{each list item index}}
+            <tr data-custom-id="{{item.aid}}">
+                <td>{{index}}</td>
+                <td>{{item.lprono}}</td>
+                <td>{{item.lproname}}</td>
+                <td></td>
+                <td>
+                    <button onclick="_g.openWin('lecture/addType','id=1');" class="btn btn-success btn-xs">编辑</button>
+                    <button onclick="_g.pm.methods.deleteItem('1')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+                </td>
+            </tr>
+            {{/each}} {{/if}}
+        </tbody>
+    </table>
 </div>
-</div>
-</section>

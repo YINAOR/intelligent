@@ -262,7 +262,7 @@
             if (newPassword1 != newPassword2) {
                 layer.msg('新密码不一致请重新输入!');
                 return;
-            }
+            }           
             $.ajax({
                 url: '/admin/updatePwd.do',
                 dataType: 'json',

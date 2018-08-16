@@ -10,7 +10,75 @@
             </ul>
             <!-- / .breadcrumb -->
             <!-- 正文内容 -->
-            <div id="formContent"></div>
+            <section class="panel panel-default" style="position: relative;">
+                <div class="panel-body">
+                    <form class="form-inline" role="form">
+                        <div class="btn-group m-r">
+                            <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
+                                <span class="dropdown-label" data-placeholder="Please select">讲堂分类</span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-select">
+                                <li class="active">
+                                    <input type="radio" name="d-s-r" checked=""><a href="#">全部</a></li>
+                                <li>
+                                    <input type="radio" name="d-s-r"><a href="#">学术类</a></li>
+                                <li>
+                                    <input type="radio" name="d-s-r"><a href="#">论坛类</a></li>
+                                <li>
+                                    <input type="radio" name="d-s-r"><a href="#">名人类</a></li>
+                                <li>
+                                    <input type="radio" name="d-s-r"><a href="#">文化类</a></li>
+                                <li>
+                                    <input type="radio" name="d-s-r"><a href="#">热点类</a></li>
+                            </ul>
+                        </div>
+                        <div class="btn-group m-r">
+                            <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
+                                <span class="dropdown-label" data-placeholder="Please select">时间</span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-select">
+                                <li class="active">
+                                    <input type="radio" name="d-s-r" checked=""><a href="#">全部</a></li>
+                                <li>
+                                    <input type="radio" name="d-s-r"><a href="#">即将开始</a></li>
+                                <li>
+                                    <input type="radio" name="d-s-r"><a href="#">过去一周</a></li>
+                                <li>
+                                    <input type="radio" name="d-s-r"><a href="#">过去一个月</a></li>
+                            </ul>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="id" class="form-control" placeholder="讲堂名称">
+                            <label class="control-label padder"></label>
+                        </div>
+                        <button id="searchBtn" type="submit" class="btn btn-s-md btn-success">查询</button>
+                    </form>
+                </div>
+            </section>
+            <section class="panel panel-default">
+                <div class="row wrapper">
+                    <div class="col-sm-12">
+                        <button onclick="javascript:_g.openWin('lecture/edit');" class="btn btn-success">新增讲堂</button>
+                    </div>
+                </div>
+                <div id="formContent"></div>
+            </section>
+            <footer class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-4 hidden-xs">
+                        <small class="text-muted inline m-t-sm m-b-sm">
+                                一共 <span id="totalCount">0</span> 条记录 - 共 <span id="totalPages">0</span> 页
+                            </small>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                    </div>
+                    <div class="col-sm-6 text-right text-center-xs">
+                        <div id="pagination" style="margin: 0;"></div>
+                    </div>
+                </div>
+            </footer>
             <!-- / 正文内容 -->
             <!-- 页面脚本 -->
             <script src="./html/lecture/list.js"></script>
