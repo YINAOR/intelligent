@@ -22,7 +22,6 @@
                         $("#lprono").append(str);
                     }
                 }
-
                 if(result.code==1000){
                     window.location.href ="signin.html";
                 }
@@ -38,9 +37,12 @@
     editor.create();
 
     $(document).ready(function(){  
-        $("#addSpeaker").click(function(){  
-            var $copy = $("#speakerGroup").html();
-            $("#speakerGroup").after($copy);
+        $("#addSpeaker").click(function(){
+            if($("#speakerGroup2").is(':hidden')) {
+                $("#speakerGroup2").show();
+            }else{
+                $("#speakerMost").show();
+            }
         });  
 
         $('#submitBtn').click(function() {
@@ -50,23 +52,58 @@
             var startTimePicker = $('#startTimePicker').val();
             var endTimePicker = $('#endTimePicker').val();
             var address = $('#address').val();
-            //讲座证明var hasProof = $('#hasProof').text();
+            var lprove = $('#lprove').val();
 
             var speakerlink = new Array();
             speakerlink.push(
-                {spname:document.getElementById("spname").value,
-                spbrief:document.getElementById("spbrief").value});
+                {spname:$("#spname").val(),
+                spbrief:$("#spbrief").val()});       
 			speakerlink.push(
-                {spname:document.getElementById("spname1").value,
-                spbrief:document.getElementById("spbrief1").value});
+                {spname:$("#spname2").val(),
+                spbrief:$("#spbrief2").val()});
 
             var hour = $('#hour').val();
-            //editor
-            //讲座类别var type = $('#type').text();
+            var editor = "$('#editor').val();//editor";
+            var lprono = $('#lprono .active input').val();
             var object = $('#object').val();
             var number = $('#number').val();
             var sponsor = $('#sponsor').val();
 
+                
+
+            var lecture ={
+                lname :title,speakerlink:speakerlink,lproperty:{lprono:lprono},
+                ldate:date,lstarttime:startTimePicker,lendtime:endTimePicker,
+                laddr:address,lsponsor:sponsor,content:editor,lprove:lprove,
+                lhour:hour,lgroup:object,llimit:number
+            }
+
+            _g.ajax({
+                lock: true,
+    		    url: 'http://118.89.26.114/lecture/saveLecture.do',
+    		    async: false,
+    		    data: {
+                    lecture:lecture,
+    		    	t:{}
+                },
+                success:function(respData){
+                    alert(respData.msg);
+                    alert(respData.code)
+                    alert(111)
+                    //code==1000未登录或token失效跳转回登录页面
+                    if(respData.code==1000){
+                        window.location.href ="/signin.html";
+                    }
+                },
+                error:function(XMLHttpRequest,textStatus,errorThrown){
+                    alert(222)
+                    alert("Error");
+                    alert(XMLHttpRequest.status);
+                    alert(XMLHttpRequest.readyState);
+                    alert(textStatus);
+                }
+
+            })
         })
     })
 
