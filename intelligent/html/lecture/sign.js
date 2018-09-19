@@ -4,8 +4,9 @@
     $('#formContent').html(_g.getTemplate('lecture/sign-V'));
 
     if(set) {
-        clearInterval(set);
+        clearTimeout(set);
     }
+    $('#item').html('<div class="ui-loading__bd"><img src="/images/loading_more.gif" alt=""></div>');
 
     function getQrCode(getTime) {
         var supports = (new XMLHttpRequest()).withCredentials !== undefined;
@@ -14,13 +15,13 @@
             xmlhttp.open("POST", "http://lai.vipgz1.idcfengye.com/WebTest3/qRCodeServlet", true);
             xmlhttp.setRequestHeader('Content-Type', 'application/json');
             xmlhttp.responseType = "blob";
-            if(getTime) {
-                xmlhttp.onreadystatechange = function() {
-                    if(xmlhttp.readyState != 4) {
-                        $('#item').html('<div class="ui-loading__bd"><img src="/images/loading_more.gif" alt=""></div>');
-                    }
-                }
-            }
+            // if(getTime) {
+            //     xmlhttp.onreadystatechange = function() {
+            //         if(xmlhttp.readyState != 4) {
+            //             $('#item').html('<div class="ui-loading__bd"><img src="/images/loading_more.gif" alt=""></div>');
+            //         }
+            //     }
+            // }
             xmlhttp.onload = function() {
                 console.log(this);
                 if (this.status == 200) {
@@ -40,14 +41,17 @@
                 lecture: 1
             }));
         }
-
     }
 
-    getQrCode('first');
+    getQrCode();
     
     var set = setTimeout(function () {
         getQrCode();
-        setTimeout(arguments.callee, 6000);
+        set = setTimeout(arguments.callee, 6000);
     }, 6000);
+
+    $('#stop').click(function() {
+        clearTimeout(set);
+    })
 
 })();
