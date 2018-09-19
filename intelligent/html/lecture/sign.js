@@ -3,6 +3,11 @@
     _g.setNowPage('lecture/sign');
     $('#formContent').html(_g.getTemplate('lecture/sign-V'));
 
+    if(true) {//判断讲座签到是否已结束，则无需再请求接口
+        $('#item').html('<div style="display: inline-block; height: 100%; width: 0; vertical-align: middle;"></div><div style="font-size: 20px; vertical-align: middle; display: inline-block;">讲座签到已结束</div>');
+        return
+    }
+
     if(set) {
         clearTimeout(set);
     }

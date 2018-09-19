@@ -4,6 +4,7 @@
             <tr>
                 <th>序号</th>
                 <th>名称</th>
+                <th>日期</th>
                 <th>开始时间</th>
                 <th>结束时间</th>
                 <th>地点</th>
@@ -12,6 +13,7 @@
                 <th>主讲人</th>
                 <th>分类</th>
                 <th>面向对象</th>
+                <th>限制人数</th>
                 <th style="width:300px">操作</th>
             </tr>
         </thead>
@@ -24,16 +26,19 @@
             <tr data-custom-id="{{item.lno}}">
                 <td>{{index}}</td>
                 <td>{{item.lname}}</td>
-                <td></td>
                 <td>{{item.ldate}}</td>
                 <td>{{item.lstarttime}}</td>
                 <td>{{item.lendtime}}</td>
                 <td>{{item.laddr}}</td>
                 <td>{{item.lprove == 0 ? '否':'是'}}</td>
                 <td>{{item.lhour}}</td>
+                {{if item.speakerlink}}
                 <td>
                     {{each item.speakerlink it ind}} {{it.spname}} {{/each}}
                 </td>
+                {{else}}
+                <td></td>
+                {{/if}}
                 <td>{{item.lproperty.lproname}}</td>
                 <td>{{item.lgroup}}</td>
                 <td>{{item.llimit}}</td>
