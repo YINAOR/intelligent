@@ -7,7 +7,7 @@
     var id = _g.pm.param.id;
 
     if (id) {
-        $('#header').text("编辑管理员");
+        $('#header').text("编辑管理员1");
         $('.hidePassword').css('display','none');
         
     }
@@ -47,7 +47,6 @@
                 errorText: '请输入5-20位英文或者英文和数字的组合'
             });
             $(this).val('');
-            $(this).focus();
        } else {
             $('#messageArea').html('');
        }
