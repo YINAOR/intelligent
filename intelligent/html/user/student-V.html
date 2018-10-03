@@ -32,11 +32,11 @@
                 <td>{{item.enrollmentTime}}</td>
                 <td>{{item.sstatus}}</td>
                 <td>
-                    <button onclick="" class="btn btn-danger btn-xs" data-id="1234">冻结</button>
-                    <button onclick="" class="btn btn-success btn-xs">解冻</button>
-                    <button onclick="" class="btn btn-danger btn-xs" data-id="1234">删除</button>
-                    <button onclick="" class="btn btn-success btn-xs">注销</button>
-                    <button onclick="" class="btn btn-danger btn-xs" data-id="1234">详情</button>
+                    <button id="freeze" class="btn btn-danger btn-xs" data-id="1234">冻结</button>
+                    <button id="reFreeze" class="btn btn-success btn-xs">解冻</button>
+                    <button id="delete" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+                    <button id="cancel" class="btn btn-success btn-xs">注销</button>
+                    <button id="detail" class="btn btn-danger btn-xs" data-id="1234">详情</button>
                 </td>
             </tr>
             {{/each}} {{/if}}

@@ -38,7 +38,7 @@
         var spname = $('#spname').val();
         var spbrief = $('#spbrief').val();
         $.ajax({
-            url: 'http://118.89.26.114/speakerAndLecType/saveSpeaker.do',
+            url: 'http://120.77.204.252/speakerAndLecType/saveSpeaker.do',
             dataType: 'json',
             type: 'POST',
             processData: false,

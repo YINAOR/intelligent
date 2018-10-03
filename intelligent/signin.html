@@ -32,6 +32,10 @@
                     <div class="form-group">
                         <input name="password" type="password" placeholder="密码" class="form-control rounded input-lg text-center no-border">
                     </div>
+                    <div class="form-group">
+                        <input name="seccode" type="text" placeholder="验证码" class="rounded input-lg text-center no-border" style="color: #555; width: 200px">
+                        <img id="code" src="http://120.77.204.252:80/seccode/generateCode.do" alt="验证码" class="r r-2x" style="width: 115px; height: 45px;margin-left: 10px; cursor: pointer" onclick="changeCode()">
+                    </div>
                     <button type="submit" class="btn btn-lg btn-warning lt b-white b-2x btn-block btn-rounded"><i class="icon-arrow-right pull-right"></i><span class="m-r-n-lg">登录</span></button>
                     <!-- 错误提示区 -->
                     <div id="messageArea"></div>
@@ -73,48 +77,85 @@
     <script src="js/md5.js"></script>
     <!-- Custom -->
     <script>
-    $(function() {
+    function changeCode() {
+        $('#code').attr('src',"http://120.77.204.252:80/seccode/generateCode.do?date="+new Date());
+    };
+    $(function() {    
         $('form').submit(function() {
+            $('#messageArea').html('');
             var username = $('input[name="username"]').val();
             var password = $('input[name="password"]').val();
-            if (username == '' || password == '') {
+            var seccode = $('input[name="seccode"]').val();
+            if (username == '') {
                 _g.setErrorAlert({
-                    errorText: '账号或者密码不能为空.'
+                    errorText: '账号不能为空.'
+                });
+            } else if(password == ''){
+                _g.setErrorAlert({
+                    errorText: '密码不能为空.'
+                });
+            } else if(seccode == ''){
+                _g.setErrorAlert({
+                    errorText: '验证码不能为空.'
                 });
             } else {
+        //         $.ajax({
+        //     url: "http://120.77.204.252:80/admin/login.do",
+        //     type: 'post',
+        //     data: JSON.stringify({data: {
+        //         account: username,
+        //         password: password,
+        //         seccode: seccode
+        //     }}),
+        //     dataType:"json",
+        //     xhrFields: {
+        //         withCredentials: true
+        //     },
+        //     success: function (result) {
+        //         console.log(result)
+                
+        //     }
+        // })
+
                 _g.ajax({
-                    url: 'http://118.89.26.114/admin/login.do',
+                    url: 'http://lai.vipgz1.idcfengye.com/admin/login.do',
+                    // type: 'get',
+                    isSignin: true,
                     data: {
                         account: username,
-                        apwd: password
+                        password: password,
+                        seccode: seccode
                     },
                 // $.ajax({
-                //     url: 'http://118.89.26.114/admin/login.do',
+                //     url: 'http://120.77.204.252:80/admin/login.do',
                 //     // async: false,
                 //     dataType: 'json',
                 //     type: 'POST',
                 //     processData: false, //true
                 //     contentType: 'application/json', // 'application/x-www-form-urlencoded'
-                //     // xhrFields: {
-                //     //     withCredentials: true
-                //     // },
+                //     xhrFields: {
+                //         withCredentials: true
+                //     },
                 //     // crossDomain: true,
                 //     data: JSON.stringify({data:{
                 //         account: username,
-                //         apwd: password
+                //         password: password,
+                //         seccode: seccode
                 //     }}),
                     success: function(data) {
                         if (data.code == 200) {
-                            sessionStorage.admin = data.data.admin;
-                            sessionStorage.token = data.data.token;
+                            sessionStorage.setItem('administrator',JSON.stringify(data.data.administrator));
+                            sessionStorage.setItem('token',data.data.token);
                             window.location.href = 'index.html';
                         } else {
+                            $('#code').attr('src',"http://120.77.204.252:80/seccode/generateCode.do?date="+new Date());
                             _g.setErrorAlert({
                                 errorText: data.msg
                             });
                         }
                     },
                     error: function(error) {
+                        $('#code').attr('src',"http://120.77.204.252:80/seccode/generateCode.do?date="+new Date());
                         _g.setErrorAlert({
                             errorText: '请求超时，请重试！'
                         });

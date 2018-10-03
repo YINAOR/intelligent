@@ -3,10 +3,10 @@
     _g.setNowPage('lecture/sign');
     $('#formContent').html(_g.getTemplate('lecture/sign-V'));
 
-    if(true) {//判断讲座签到是否已结束，则无需再请求接口
-        $('#item').html('<div style="display: inline-block; height: 100%; width: 0; vertical-align: middle;"></div><div style="font-size: 20px; vertical-align: middle; display: inline-block;">讲座签到已结束</div>');
-        return
-    }
+    // if() {//判断讲座签到是否已结束，则无需再请求接口
+    //     $('#item').html('<div style="display: inline-block; height: 100%; width: 0; vertical-align: middle;"></div><div style="font-size: 20px; vertical-align: middle; display: inline-block;">讲座签到已结束</div>');
+    //     return
+    // }
 
     if(set) {
         clearTimeout(set);
@@ -17,7 +17,7 @@
         var supports = (new XMLHttpRequest()).withCredentials !== undefined;
         if (supports) {
             var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("POST", "http://lai.vipgz1.idcfengye.com/WebTest3/qRCodeServlet", true);
+            xmlhttp.open("POST", "http://lai.vipgz1.idcfengye.com/lecture/lectureSign", true);
             xmlhttp.setRequestHeader('Content-Type', 'application/json');
             xmlhttp.responseType = "blob";
             // if(getTime) {
@@ -40,11 +40,12 @@
                     $('#item img').addClass('img-full');
                 }
             }
-            xmlhttp.send(JSON.stringify({
-                QRCode: 'Y',
-                status: 'S',
-                lecture: 1
-            }));
+            xmlhttp.send(JSON.stringify({data: {
+                QRCode: 'Y',//是否获取签到二维码
+                status: 'S',//开始签到or结束签到
+                lecture: 1 //讲座id
+            },
+            token: sessionStorage.getItem('token')}));
         }
     }
 
@@ -57,6 +58,7 @@
 
     $('#stop').click(function() {
         clearTimeout(set);
+        $('#item').html('<div style="display: inline-block; height: 100%; width: 0; vertical-align: middle;"></div><div style="font-size: 20px; vertical-align: middle; display: inline-block;">讲座签到已结束</div>');
     })
 
 })();

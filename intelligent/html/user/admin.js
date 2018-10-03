@@ -17,7 +17,7 @@
     function getList() {
         _g.ajax({
             lock: true,
-            url: 'http://118.89.26.114/manageAdmin/queryAllAdminByPaging.do',
+            url: 'http://120.77.204.252/manageAdmin/queryAllAdminByPaging.do',
             async: false,
             data: { paging: data },
             success: function(result) {
@@ -55,7 +55,7 @@
     deleteId = function(aid) {
         layer.confirm('您确定要删除此管理员吗？', { title: '询问' }, function(index) {
             $.ajax({
-                url: 'http://118.89.26.114/manageAdmin/deleteAdmin.do',
+                url: 'http://120.77.204.252/manageAdmin/deleteAdmin.do',
                 dataType: 'json',
                 type: 'POST',
                 data: {
@@ -73,7 +73,7 @@
     forbidden = function(aid) {
         layer.confirm('您确定要禁用此管理员吗？', { title: '询问' }, function(index) {
             $.ajax({
-                url: 'http://118.89.26.114/manageAdmin/freezeAccount.do',
+                url: 'http://120.77.204.252/manageAdmin/freezeAccount.do',
                 dataType: 'json',
                 type: 'POST',
                 data: {
@@ -92,7 +92,7 @@
 
     liftForbidden = function(aid) {
         $.ajax({
-            url: 'http://118.89.26.114/manageAdmin/freezeAccount.do',
+            url: 'http://120.77.204.252/manageAdmin/freezeAccount.do',
             dataType: 'json',
             type: 'POST',
             data: {

@@ -179,11 +179,15 @@
             var _g = this;
             if (!opts) return;
             if (opts.lock) this.showLoading();
+            if(opts.isSignin) {
+                var postData = {
+                    data: $.extend(true, {}, opts.data)
+                };
+            }
             var postData = {
                 data: $.extend(true, {}, opts.data),
-                token: opts.token || sessionStorage.token
+                token: opts.token || sessionStorage.getItem('token')
             };
-
 
             // postData.sessionKey = opts.sessionKey || _g.getCookie('sessionKey');
             // postData.data = opts.data;
@@ -196,7 +200,7 @@
             // postData.token = _g.dm.tokenKey;
             // postData.token = md5.go(_g.jsonToPostDataStr(_g.ksort(postData)));
             // console.log(_g.jsonToPostDataStr(_g.ksort(postData)) + _g.dm.tokenKey);
-            // console.log(postData.token);
+            console.log(postData.token);
             // console.log(postData);
             $.ajax({
                 type: opts.type || 'post',

@@ -17,7 +17,7 @@
     function getList() {
     	_g.ajax({
     		lock: true,
-    		url: 'http://118.89.26.114/manageStudent/queryAllStudentByPaging.do',
+    		url: 'http://120.77.204.252/manageStudent/queryAllStudentByPaging.do',
     		async: false,
     		data: {
     			paging: data
@@ -53,6 +53,15 @@
     }
 
     getList();
+
+    $('#delete').click(function() {
+        _g.ajax({
+            url: '',
+            data: {
+                id: 
+            }
+        })
+    })
 
 
 })();

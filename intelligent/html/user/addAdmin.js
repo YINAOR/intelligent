@@ -15,7 +15,7 @@
     function getAuthority() {
         _g.ajax({
             lock: true,
-            url: 'http://118.89.26.114/manageAdmin/queryAllPermission.do',
+            url: 'http://120.77.204.252/manageAdmin/queryAllPermission.do',
             async: false,
             success: function(data) {
                 _.each(data.data.perlist,function(item,index) {
@@ -118,7 +118,7 @@
             return
         }
         $.ajax({
-            url: 'http://118.89.26.114/manageAdmin/saveAdmin.do',
+            url: 'http://120.77.204.252/manageAdmin/saveAdmin.do',
             dataType: 'json',
             type: 'post',
             contentType: 'application/json',

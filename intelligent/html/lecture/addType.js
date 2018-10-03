@@ -9,7 +9,7 @@
         alert(lproname);
         _g.ajax({
             lock: true,
-    		url: 'http://118.89.26.114/speakerAndLecType/saveLProperty.do',
+    		url: 'http://120.77.204.252/speakerAndLecType/saveLProperty.do',
     		async: false,
     		data: {
                 lproperty:{
