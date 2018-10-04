@@ -15,12 +15,12 @@
             </tr>
             {{else}} {{each list item index}}
             <tr data-custom-id="{{item.dno}}">
-                <td>{{item.mno}}</td>
-                <td>{{item.mname}}</td>
-                <td>{{item.depart.dname}}</td>
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.college.name}}</td>
                 <td>
                     <button onclick="_g.openWin('user/editMajor','id=2')" class="btn btn-success btn-xs">编辑</button>
-                    <button onclick="deleteMajor('{{item.mno}}')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+                    <button onclick="deleteMajor('{{item.id}}')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
                 </td>
             </tr>
             {{/each}} {{/if}}

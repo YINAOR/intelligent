@@ -10,7 +10,7 @@
     function getList() {
         _g.ajax({
             lock: true,
-    		url: 'http://120.77.204.252/deptAndMajor/queryAllDepart.do',
+    		url: 'http://120.77.204.252:80/major/toEdit.do',
     		async: false,
     		data: {
     			paging: data
