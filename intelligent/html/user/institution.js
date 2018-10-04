@@ -17,7 +17,7 @@
     function getList() {
     	_g.ajax({
     		lock: true,
-    		url: 'http://118.89.26.114/deptAndMajor/queryAllDepartByPaging.do',
+    		url: 'http://120.77.204.252/deptAndMajor/queryAllDepartByPaging.do',
     		async: false,
     		data: {
     			paging: data
@@ -57,7 +57,7 @@
     function deleteInstitution(dno) {
     	_g.ajax({
     		lock: true,
-    		url: 'http://118.89.26.114/deptAndMajor/deleteDepart.do',
+    		url: 'http://120.77.204.252/deptAndMajor/deleteDepart.do',
     		async: false,
     		data: {
     			dno: dno

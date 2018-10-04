@@ -3,10 +3,16 @@
     _g.setNowPage('lecture/edit');
     $('#formContent').html(_g.getTemplate('lecture/edit-V'));
 
+    var id = _g.pm.param.id;
+    if(id) {
+        $('.panel-heading').text('编辑讲堂');
+        getList();
+    }
+
     function getList() {
         _g.ajax({
             lock: true,
-    		url: 'http://118.89.26.114/lecture/queryAllLProperty.do',
+    		url: 'http://120.77.204.252/lecture/queryAllLProperty.do',
     		async: false,
     		data: {
     			t:{}
@@ -29,8 +35,7 @@
             }
         })
     }
-
-    getList();
+    
 
     var E = window.wangEditor;
     var editor = new E('#editor');
@@ -43,7 +48,7 @@
             }else{
                 $("#speakerMost").show();
             }
-        });  
+        }); 
 
         $('#submitBtn').click(function() {
             var title = $('#title').val();
@@ -54,13 +59,18 @@
             var address = $('#address').val();
             var lprove = $('#lprove').val();
 
-            var speakerlink = new Array();
-            speakerlink.push(
-                {spname:$("#spname").val(),
-                spbrief:$("#spbrief").val()});       
-			speakerlink.push(
-                {spname:$("#spname2").val(),
-                spbrief:$("#spbrief2").val()});
+            var speakerlink = [];
+            speakerlink.push({
+                spname: $("#spname").val(),
+                spbrief: $("#spbrief").val()
+            });
+            if($("#spname2").val() != '') {
+                speakerlink.push({
+                    spname: $("#spname2").val(),
+                    spbrief: $("#spbrief2").val()
+                });
+            }  
+			
 
             var hour = $('#hour').val();
             var editor = "$('#editor').val();//editor";
@@ -80,7 +90,7 @@
 
             _g.ajax({
                 lock: true,
-    		    url: 'http://118.89.26.114/lecture/saveLecture.do',
+    		    url: 'http://120.77.204.252/lecture/saveLecture.do',
     		    async: false,
     		    data: {
                     lecture:lecture,
@@ -110,6 +120,19 @@
     laydate.render({
         elem: '#date' //指定元素
     });
+
+    $('input[type="file"]').change(function() {
+        $('#file').val($('input[type="file"]').val().substring($('input[type="file"]').val().lastIndexOf('\\') + 1));
+        var url;
+        if (window.createObjectURL != undefined) { // basic
+            url = window.createObjectURL(this.files[0]);
+        }else if (window.URL != undefined) { // mozilla(firefox)
+            url = window.URL.createObjectURL(this.files[0]);
+        } else if (window.webkitURL != undefined) { // webkit or chrome
+            url = window.webkitURL.createObjectURL(this.files[0]);
+        }
+        $('#prePhoto').html('<img src="'+ url +'" style="width: 120px; height:150px">');
+    })
 
     $('#startTimePicker').hunterTimePicker();
     $('#endTimePicker').hunterTimePicker();

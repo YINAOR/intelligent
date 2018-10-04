@@ -3,8 +3,8 @@
     <table class="table table-striped b-t b-light">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>账号</th>
+                <th>管理员ID</th>
+                <th>用户名</th>
                 <th>姓名</th>
                 <th>所属机构</th>
                 <th>状态</th>
@@ -18,19 +18,20 @@
             </tr>
             {{else}} {{each list item index}}
             <tr data-custom-id="{{item.aid}}">
-                <td>{{item.aid}}</td>
-                <td>{{item.ano}}</td>
-                <td>{{item.aname}}</td>
-                <td>{{item.aorganization}}</td>
-                <td>{{item.astatus == 0 ? '禁用' : '正常'}}</td>
+                <td>{{item.id}}</td>
+                <td>{{item.account}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.organization}}</td>
+                <td>{{item.status == 1 ? '冻结' : '正常'}}</td>
                 <td>
-                    <button onclick="_g.openWin('user/addAdmin', 'id={{item.aid}}')" class="btn btn-success btn-xs">编辑</button>
-                    <button onclick="deleteId('{{item.aid}}')" class="btn btn-danger btn-xs" data-id="1">删除</button>
-                    <button onclick="_g.openWin('user/addAdmin', 'id={{item.aid}}')" class="btn btn-success btn-xs">修改密码</button>
-                    {{if item.astatus == 1}}
-                    <button onclick="forbidden('{{item.aid}}')" class="btn btn-danger btn-xs" data-id="2">禁用</button>
+                    <button onclick="_g.openWin('user/addAdmin', 'id={{item.id}}')" class="btn btn-success btn-xs">编辑</button>
+                    <button onclick="deleteId('{{item.id}}')" class="btn btn-danger btn-xs">删除</button>
+                    <button onclick="logout('{{item.id}}')" class="btn btn-danger btn-xs">注销</button>
+                    <!-- <button onclick="_g.openWin('user/addAdmin', 'id={{item.id}}')" class="btn btn-success btn-xs">修改密码</button> -->
+                    {{if item.status == 0}}
+                    <button onclick="freeze('{{item.id}}',1)" class="btn btn-danger btn-xs">冻结</button>
                     {{else}}
-                    <button onclick="liftForbidden('{{item.aid}}')" class="btn btn-success btn-xs" data-id="3">解禁</button>
+                    <button onclick="freeze('{{item.id}}',0,'unfreeze')" class="btn btn-success btn-xs">解除冻结</button>
                     {{/if}}
                 </td>
             </tr>

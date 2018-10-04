@@ -9,20 +9,22 @@
     function getInformation() {
         _g.ajax({
             lock: true,
-            url: 'http://118.89.26.114/admin/queryAdministratorById.do',
+            // type: 'get',
+            url: 'http://120.77.204.252:80/admin/queryProfile.do',
+            // url: 'http://lai.vipgz1.idcfengye.com/admin/queryProfile.do',
             async: false,
             success: function(result) {
                 if (result.code == 200) {
-                    var id = result.data.admin.aid;
-                    var name = result.data.admin.aname;
-                    username = result.data.admin.ano;
-                    var institution = result.data.admin.aorganization;
-                    var email = result.data.admin.aemail;
-                    var phone = result.data.admin.amobile;
-                    var state = result.data.admin.astatus;
+                    var id = result.data.administrator.id;
+                    var name = result.data.administrator.name;
+                    username = result.data.administrator.account;
+                    var institution = result.data.administrator.organization;
+                    var email = result.data.administrator.email;
+                    var phone = result.data.administrator.mobile;
+                    var state = result.data.administrator.status;
                     var permission = '';
-                    for (var i = 0; i < result.data.admin.permission.length; i++) {
-                        permission += result.data.admin.permission[i].pdesc + '; ';
+                    for (var i = 0; i < result.data.administrator.permissionList.length; i++) {
+                        permission += result.data.administrator.permissionList[i].describe + '; ';
                     }
 
                     $('#id').val(id);
@@ -51,37 +53,58 @@
 
     getInformation();
 
-    $('#username').blur(function() {
-        var ano = $('#username').val();
-        if (ano != username) {
-            _g.ajax({
-                url: 'http://118.89.26.114/manageAdmin/checkMRepeat.do',
-                data: {
-                    ano: ano
-                },
-                success: function(result) {
+    function checkUserName() {
+        var account = $('#username').val();
+        _g.ajax({
+            url: 'http://120.77.204.252:80/admin/checkRepeat.do',
+            data: {
+                account: account
+            },
+            success: function(result) {
+                if(result.code === 200) {
                     if (result.msg.indexOf('用户名已存在') != -1) {
                         _g.setErrorAlert({
                             errorText: result.msg
                         });
                     } else if (result.msg.indexOf('可用') != -1) {
                         $('#messageArea').html('');
-                    } else {
-                        layer.open({
-                            title: '消息',
-                            content: result.msg,
-                            yes: function(index) {
-                                if (result.msg.indexOf('请登录') != -1) {
-                                    layer.close(index);
-                                    window.location.href = '/signin.html';
-                                }
-                            }
-                        });
                     }
+                } else if(result.code === 1000){
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                        yes: function(index) {
+                            // if (result.msg.indexOf('请登录') != -1) {
+                                layer.close(index);
+                                window.location.href = '/signin.html';
+                            // }
+                        }
+                    });
+                } else {
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                    });
                 }
-            })
+            }
+        })
+    }
+
+    function debounce() {
+        var timer = null;
+        return function() {
+            if(timer) {
+                clearTimeout(timer);
+            }
+            timer = setTimeout(checkUserName,1000);
         }
-    })
+    }
+
+    document.getElementById('username').addEventListener('keyup', debounce());
+
+    // $('#username').keyup(function() {
+    //     debounce();
+    // });
 
     $('#submitBtn').click(function() {
         var ano = $('#username').val();
@@ -90,14 +113,14 @@
         var amobile = $('#phone').val();
         var aemail = $('#email').val();
         _g.ajax({
-            url: 'http://118.89.26.114/admin/updateProfileById.do',
+            url: 'http://120.77.204.252:80/admin/updateProfile.do',
             data: {
-                admin: {
-                    ano: ano,
-                    aname: aname,
-                    aorganization: aorganization,
-                    amobile: amobile,
-                    aemail: aemail
+                administrator: {
+                    account: ano,
+                    name: aname,
+                    organization: aorganization,
+                    mobile: amobile,
+                    email: aemail
                 }
             },
             success: function(result) {

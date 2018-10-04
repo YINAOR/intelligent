@@ -10,7 +10,7 @@
     function getList() {
         _g.ajax({
             lock: true,
-    		url: 'http://118.89.26.114/deptAndMajor/queryAllDepart.do',
+    		url: 'http://120.77.204.252/deptAndMajor/queryAllDepart.do',
     		async: false,
     		data: {
     			paging: data
@@ -43,7 +43,7 @@
         if(mname && depart){
             _g.ajax({
                 lock: true,
-                url: 'http://118.89.26.114/deptAndMajor/saveMajor.do',
+                url: 'http://120.77.204.252/deptAndMajor/saveMajor.do',
                 data: {
                     major: {
                         mname: mname,

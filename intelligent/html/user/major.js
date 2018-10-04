@@ -20,7 +20,7 @@
     function getList() {
     	_g.ajax({
     		lock: true,
-    		url: 'http://118.89.26.114/deptAndMajor/queryAllMajorByPaging.do',
+    		url: 'http://120.77.204.252/deptAndMajor/queryAllMajorByPaging.do',
     		async: false,
     		data: {
     			paging: data
@@ -60,7 +60,7 @@
     function deleteMajor(mno) {
     	_g.ajax({
     		lock: true,
-    		url: 'http://118.89.26.114/deptAndMajor/deleteMajor.do',
+    		url: 'http://120.77.204.252/deptAndMajor/deleteMajor.do',
     		async: false,
     		data: {
     			mno: mno

@@ -10,7 +10,7 @@
 
     function getList() {
         $.ajax({
-            url: 'http://118.89.26.114/lecture/queryLectureByAid.do',
+            url: 'http://120.77.204.252/lecture/queryLectureByAid.do',
             dataType: 'json',
             type: 'POST',
             async: false,

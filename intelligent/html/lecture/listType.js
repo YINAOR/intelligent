@@ -17,7 +17,7 @@
     function getList() {
         _g.ajax({
             lock: true,
-            url: 'http://118.89.26.114/speakerAndLecType/queryAllLPropertyByPaging.do',
+            url: 'http://120.77.204.252/speakerAndLecType/queryAllLPropertyByPaging.do',
             async: false,
             data: {
                 paging: data

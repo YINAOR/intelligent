@@ -5,11 +5,12 @@
 
     var data = {
         currentPage: 1,
-        pageSize: 5,
-        t: {
-            sname: ''
-        }
-    }
+        showCount: 5
+    };
+
+    var t = {
+
+    };
 
     var data1 = { list: [] };
     _g.render('user/student-V', data1, '#table');
@@ -17,7 +18,7 @@
     function getList() {
     	_g.ajax({
     		lock: true,
-    		url: 'http://118.89.26.114/manageStudent/queryAllStudentByPaging.do',
+    		url: 'http://120.77.204.252:80/manageStudent/queryListByPage.do',
     		async: false,
     		data: {
     			paging: data
@@ -27,7 +28,7 @@
     				var data1 = { list: result.data.paging.list };
                     _g.initPaginator({
                         currentPage: result.data.paging.currentPage,
-                        totalPages: result.data.paging.totalPage,
+                        totalPages: result.data.paging.totalResult,
                         totalCount: result.data.paging.tatalCount,
                         onPageClicked: function(page) {
                             console.log(page)
@@ -36,23 +37,53 @@
                         }
                     });
                     _g.render('user/student-V', data1, '#table');
-    			} else {
+    			} else if(result.code === 1000){
     				layer.open({
                         title: '消息',
                         content: result.msg,
                         yes: function(index) {
-                            if (result.msg.indexOf('请登录') != -1) {
-                                layer.close(index);
-                                window.location.href = '/signin.html';
-                            }
+                            layer.close(index);
+                            window.location.href = '/signin.html';
                         }
                     });
-    			}
+    			} else {
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                    });
+                }
     		}
     	})
     }
 
     getList();
+    
+    deleteStudent = function(id) {
+        _g.ajax({
+            lock: true,
+            url: 'http://120.77.204.252:80/manageStudent/delete.do',
+            data: {
+                id: id
+            },
+            success: function(result) {
+                if(result.code === 1000){
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                        yes: function(index) {
+                            layer.close(index);
+                            window.location.href = '/signin.html';
+                        }
+                    });
+                } else {
+                    layer.open({
+                       title: '消息',
+                       content: result.msg,
+                    });
+                }
+            }
+        })
+    }
 
 
 })();

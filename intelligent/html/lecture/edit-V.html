@@ -16,12 +16,18 @@
                 <label class="col-sm-2 control-label">讲堂海报</label>
                 <div id="photoInput" class="col-sm-8">
                     <input type="hidden" name="imgUrl" value="">
-                    <input type="file" name="file" accept="image/*" class="filestyle" id="filestyle-0" tabindex="-1" style="position: absolute; clip: rect(0px, 0px, 0px, 0px);">
+                    <!-- <form enctype="multipart/form-data" method="post" id="ajaxForm" name="ajaxForm"> -->
+                        <input type="file" name="file" accept="image/*" class="filestyle" id="filestyle-0" tabindex="-1" style="position: absolute; clip: rect(0px, 0px, 0px, 0px);">
+                    <!-- </form> -->
                     <div class="bootstrap-filestyle input-group">
-                        <input type="text" class="form-control " placeholder="请选择上传文件" disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="filestyle-0" class="btn btn btn-default "><span class="buttonText">选择文件</span></label>
+                        <input type="text" class="form-control" id="file" placeholder="请选择上传文件" disabled=""> 
+                        <span class="group-span-filestyle input-group-btn" tabindex="0">
+                            <label for="filestyle-0" class="btn btn btn-default ">
+                                <span class="buttonText">选择文件</span>
+                            </label>
                         </span>
                     </div>
-                    <span class="help-block m-b-none">图片尺寸为 300x540 图.</span>
+                    <span class="help-block m-b-none">图片尺寸为 120x150 图.</span>
                     <!-- 上传预览图 -->
                     <div>
                         <span id="prePhoto"></span>

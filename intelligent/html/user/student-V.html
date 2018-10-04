@@ -21,22 +21,22 @@
                 <td colspan="10" style="text-align: center;">没有记录</td>
             </tr>
             {{else}} {{each list item index}}
-            <tr data-custom-id="{{item.spno}}">
+            <tr data-custom-id="{{item.id}}">
                 <td>{{index+1}}</td>
-                <td>{{item.sno}}</td>
-                <td>{{item.sname}}</td>
-                <td>{{item.ssex}}</td>
-                <td>{{item.depart.dname}}</td>
-                <td>{{item.major.mname}}</td>
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.gender === 0 ? '男' : '女'}}</td>
+                <td>{{item.college.name}}</td>
+                <td>{{item.major.name}}</td>
                 <td>{{item.classNum}}</td>
-                <td>{{item.enrollmentTime}}</td>
-                <td>{{item.sstatus}}</td>
+                <td>{{item.enrollmentTimeStr}}</td>
+                <td>{{item.status === 0 ? '正常' : '冻结'}}</td>
                 <td>
-                    <button onclick="" class="btn btn-danger btn-xs" data-id="1234">冻结</button>
-                    <button onclick="" class="btn btn-success btn-xs">解冻</button>
-                    <button onclick="" class="btn btn-danger btn-xs" data-id="1234">删除</button>
-                    <button onclick="" class="btn btn-success btn-xs">注销</button>
-                    <button onclick="" class="btn btn-danger btn-xs" data-id="1234">详情</button>
+                    <button id="freeze" class="btn btn-danger btn-xs" data-id="1234">冻结</button>
+                    <button id="reFreeze" class="btn btn-success btn-xs">解冻</button>
+                    <button id="delete" onclick="deleteStudent('{{item.id}}')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+                    <button id="cancel" class="btn btn-success btn-xs">注销</button>
+                    <button onclick="_g.openWin('user/studentDetail','{{id=item.id}}')" class="btn btn-danger btn-xs" data-id="1234">详情</button>
                 </td>
             </tr>
             {{/each}} {{/if}}

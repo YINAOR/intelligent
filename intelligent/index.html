@@ -216,7 +216,7 @@
         $('.webTitle').text('欢迎来到' + _c.webTitle);
         $('.webFooter').html(' &copy;&nbsp;&nbsp;2018&nbsp;&nbsp;' + _c.copyright + '&nbsp;&nbsp;' + _c.webTitle + '版权所有');
 
-        if (!sessionStorage.admin || !sessionStorage.token) {
+        if (!sessionStorage.administrator || !sessionStorage.token) {
             window.location.href = '/signin.html';
         }
 
@@ -242,13 +242,16 @@
             });
         }
 
-        $('#globalUsername').text(sessionStorage.admin.aname);
+        $('#globalUsername').text(JSON.parse(sessionStorage.getItem('administrator')).name);
 
         $('#updPassword').click(function() {
             _g.openBaseModal('user/list-password-V', {}, '修改密码');
         });
         $('#personalInformation').click(function() {
             _g.openWin('user/personalInformation');
+        });
+        $('#changeAvatar').click(function() {
+            
         });
 
         _g.updPassword = function() {
@@ -263,16 +266,37 @@
                 layer.msg('新密码不一致请重新输入!');
                 return;
             }           
-            $.ajax({
-                url: '/admin/updatePwd.do',
-                dataType: 'json',
-                type: 'POST',
-                processData: false,
-                contentType: 'application/json',
-                data: JSON.stringify({ data: { oldPwd: oldPassword, newPwd: newPassword1 } }),
+            _g.ajax({
+                url: 'http://120.77.204.252:80/admin/updatePassword.do',
+                // url: 'http://lai.vipgz1.idcfengye.com/admin/updatePassword.do',
+                data: { 
+                    oldPassword: oldPassword, 
+                    newPassword: newPassword1 
+                },
                 success: function(respData) {
-                    if (respData.code == 200) {
+                    if(respData.code==200){
                         window.location.href = "/signin.html";
+                    }else{
+                        $('#oldPassword').val(''); 
+                        $('#newPassword1').val('');
+                        $('#newPassword2').val('');
+                    }
+                    if(respData.code==1000){//code==1000未登录或token失效跳转回登录页面
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                            yes: function(index) {
+                            // if (result.msg.indexOf('请登录') != -1) {
+                                layer.close(index);
+                                window.location.href = '/signin.html';
+                            // }
+                            }
+                       });
+                    } else {
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                        });
                     }
                 }
             })
@@ -281,7 +305,7 @@
 
         $('#logoutBtn').click(function() {
             _g.ajax({
-                url: 'http://118.89.26.114/admin/logout.do',
+                url: 'http://120.77.204.252:80/admin/logout.do',
                 success: function(respData) {
                     if (respData.code === 200) {
                         sessionStorage.admin = '';
