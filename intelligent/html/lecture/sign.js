@@ -17,11 +17,7 @@
         var supports = (new XMLHttpRequest()).withCredentials !== undefined;
         if (supports) {
             var xmlhttp = new XMLHttpRequest();
-<<<<<<< HEAD
-            xmlhttp.open("POST", "http://yanhuo.free.idcfengye.com/WebTest3/qRCodeServlet", true);
-=======
             xmlhttp.open("POST", "http://lai.vipgz1.idcfengye.com/lecture/lectureSign", true);
->>>>>>> 171bd493a0cebe8b31a5f1784e6357196d028448
             xmlhttp.setRequestHeader('Content-Type', 'application/json');
             xmlhttp.responseType = "blob";
             // if(getTime) {
