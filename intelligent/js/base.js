@@ -231,11 +231,12 @@
                     _g.hideLoading();
                     if(opts.error) {
                         opts.error && opts.error(err);
-                    }
-                    layer.open({
-                        title: '消息',
-                        content: '请求超时，请重试！'
-                    });
+                    } else {
+                        layer.open({
+                            title: '消息',
+                            content: '请求超时，请重试！'
+                        });
+                    } 
                 }
             });
         },

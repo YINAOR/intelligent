@@ -7,13 +7,14 @@
                 <th>日期</th>
                 <th>开始时间</th>
                 <th>结束时间</th>
+                <th>讲座时长</th>
                 <th>地点</th>
                 <th>讲座证明</th>
-                <th>讲座时长</th>
                 <th>主讲人</th>
                 <th>分类</th>
                 <th>面向对象</th>
                 <th>限制人数</th>
+                <th>状态</th>
                 <th style="width:300px">操作</th>
             </tr>
         </thead>
@@ -23,33 +24,34 @@
                 <td colspan="11" style="text-align: center;">没有记录</td>
             </tr>
             {{else}} {{each list item index}}
-            <tr data-custom-id="{{item.lno}}">
-                <td>{{item.lecture.id}}</td>
-                <td>{{item.lecture.name}}</td>
-                <td>{{item.lectrue.dateStr}}</td>
-                <td>{{item.lectrue.startTime}}</td>
-                <td>{{item.lectrue.endTime}}</td>
-                <td>{{item.lectrue.address}}</td>
-                <td>{{item.lecture.isProved == 0 ? '否':'是'}}</td>
-                <td>{{item.lecture.hour}}</td>
-                {{if item.lecture.speakerLinkList}}
+            <tr data-custom-id="{{item.id}}">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.dateStr}}</td>
+                <td>{{item.startTime}}</td>
+                <td>{{item.endTime}}</td>
+                <td>{{item.hour}}</td>
+                <td>{{item.address}}</td>
+                <td>{{item.isProved == 0 ? '否':'是'}}</td>
+                {{if item.speakerLinkList}}
                 <td>
-                    {{each item.lecture.speakerLinkList it ind}} {{it.speaker.name}} {{/each}}
+                    {{each item.speakerLinkList it ind}} {{it.name}} {{/each}}
                 </td>
                 {{else}}
                 <td></td>
                 {{/if}}
-                <td>{{item.lecture.category.name}}</td>
-                <td>{{item.lecture.groupOfPep}}</td>
-                <td>{{item.lecture.limitNumOfPep}}</td>
+                <td>{{item.category.name}}</td>
+                <td>{{item.groupOfPep}}</td>
+                <td>{{item.limitNumOfPep}}</td>
+                <td>{{item.status === 0 ? '待审核' : item.status === 1 ? '通过审核' : '审核不通过'}}</td>
                 <td>
-                    <button onclick="_g.openWin('lecture/sign','lno={{item.lno}}');" class="btn btn-success btn-xs">讲座开始签到</button>
-                    <button onclick="_g.openWin('lecture/sign','lno={{item.lno}}');" class="btn btn-success btn-xs">讲座结束签到</button>
-                    <button onclick="_g.openWin('lecture/signResult','lno={{item.lno}}');" class="btn btn-success btn-xs">签到结果</button>
-                    <button onclick="_g.openWin('lecture/edit','lno={{item.lno}}');" class="btn btn-success btn-xs">详情</button>
-                    <button onclick="_g.openWin('lecture/edit','lno={{item.lno}}');" class="btn btn-success btn-xs">编辑</button>
-                    <button onclick="_g.openWin('lecture/comment','lno={{item.lno}}');" class="btn btn-success btn-xs">查看评论</button>
-                    <button onclick="deleteItem('{{item.lno}}')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+                    <button onclick="_g.openWin('lecture/sign','id={{item.id}}');" class="btn btn-success btn-xs" style="margin-bottom: 10px;">讲座开始签到</button>
+                    <button onclick="_g.openWin('lecture/sign','id={{item.id}}');" class="btn btn-success btn-xs" style="margin-bottom: 10px;">讲座结束签到</button>
+                    <button onclick="_g.openWin('lecture/signResult','id={{item.id}}');" class="btn btn-success btn-xs" style="margin-bottom: 10px;">签到结果</button>
+                    <button onclick="_g.openWin('lecture/edit','id={{item.id}}');" class="btn btn-success btn-xs" style="margin-bottom: 10px;">详情</button>
+                    <button onclick="_g.openWin('lecture/edit','id={{item.id}}');" class="btn btn-success btn-xs" style="margin-bottom: 10px;">编辑</button>  
+                    <button onclick="_g.openWin('lecture/comment','id={{item.id}}');" class="btn btn-success btn-xs" style="margin-bottom: 10px;">查看评论</button>
+                    <button onclick="deleteItem('{{item.id}}')" class="btn btn-danger btn-xs" data-id="1234" style="margin-bottom: 10px;">删除</button>
                 </td>
             </tr>
             {{/each}} {{/if}}
