@@ -3,6 +3,7 @@
         <thead>
             <tr>
                 <th>序号</th>
+                <th>学院编码</th>
                 <th>学院名称</th>
                 <th>操作</th>
             </tr>
@@ -13,12 +14,13 @@
                 <td colspan="3" style="text-align: center;">没有记录</td>
             </tr>
             {{else}} {{each list item index}}
-            <tr data-custom-id="{{item.dno}}">
-                <td>{{item.dno}}</td>
-                <td>{{item.dname}}</td>
+            <tr data-custom-id="{{item.id}}">
+                <td>{{item.id}}</td>
+                <td>{{item.code}}</td>
+                <td>{{item.name}}</td>
                 <td>
                     <button onclick="_g.openWin('user/editInstitution','id={{item.dno}}')" class="btn btn-success btn-xs">编辑</button>
-                    <button onclick="deleteInstitution('{{item.dno}}')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+                    <button onclick="deleteInstitution('{{item.id}}')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
                 </td>
             </tr>
             {{/each}} {{/if}}
