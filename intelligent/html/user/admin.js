@@ -5,9 +5,9 @@
 
     var data = {
         currentPage: 1,
-        pageSize: 5,
+        showCount: 5,
         t: {
-            aname: ''
+            name: ''
         }
     }
 
@@ -17,7 +17,7 @@
     function getList() {
         _g.ajax({
             lock: true,
-            url: 'http://120.77.204.252/manageAdmin/queryAllAdminByPaging.do',
+            url: 'http://120.77.204.252:80/manageAdmin/queryListByPage.do',
             async: false,
             data: { paging: data },
             success: function(result) {
@@ -26,7 +26,7 @@
                     _g.initPaginator({
                         currentPage: result.data.paging.currentPage,
                         totalPages: result.data.paging.totalPage,
-                        totalCount: result.data.paging.totalCount,
+                        totalCount: result.data.paging.totalResult,
                         onPageClicked: function(page) {
                             console.log(page)
                             data.currentPage = page;
@@ -34,16 +34,19 @@
                         }
                     });
                     _g.render('user/admin-V', data1, '#table');
-                } else {
+                } else if(result.code === 1000){
                     layer.open({
                         title: '消息',
                         content: result.msg,
                         yes: function(index){
-                            if(result.msg.indexOf('请登录') != -1) {
-                                layer.close(index);
-                                window.location.href = '/signin.html';
-                            }
+                            layer.close(index);
+                            window.location.href = '/signin.html';
                         }
+                    });
+                } else {
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
                     });
                 }
 
@@ -52,58 +55,105 @@
     }
     getList();
 
-    deleteId = function(aid) {
+    deleteId = function(id) {
         layer.confirm('您确定要删除此管理员吗？', { title: '询问' }, function(index) {
-            $.ajax({
-                url: 'http://120.77.204.252/manageAdmin/deleteAdmin.do',
-                dataType: 'json',
-                type: 'POST',
+            _g.ajax({
+                url: 'http://120.77.204.252:80/manageAdmin/delete.do',
                 data: {
-                    aid: aid
+                    id: id
                 },
                 success: function(result) {
-                    getList();
+                    if(result.code === 200) {
+                        getList();
+                    } else if(result.code === 1000){
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                            yes: function(index){
+                                layer.close(index);
+                                window.location.href = '/signin.html';
+                            }
+                        });
+                    } else {
+                        layer.open({
+                           title: '消息',
+                           content: result.msg,
+                        });
+                    }
+                    
                 }
             });
-
             layer.close(index);
         });
     }
 
-    forbidden = function(aid) {
-        layer.confirm('您确定要禁用此管理员吗？', { title: '询问' }, function(index) {
-            $.ajax({
-                url: 'http://120.77.204.252/manageAdmin/freezeAccount.do',
-                dataType: 'json',
-                type: 'POST',
+    freeze = function(id,status,unfreeze) {
+        if(unfreeze) {
+            freezeAjax(id,status);
+        } else {
+            layer.confirm('您确定要冻结此管理员吗？', { title: '询问' }, function(index) {
+                freezeAjax(id,status);
+                layer.close(index);
+            });
+        }
+        function freezeAjax(id,status) {
+            _g.ajax({
+                url: 'http://120.77.204.252:80/manageAdmin/freezeAccount.do',
                 data: {
-                    aid: aid,
-                    astatus: 0
+                    adminstrator: {
+                        id: id,
+                        status: status
+                    }
                 },
                 success: function(result) {
-                    getList();
+                    if(result.code === 200) {
+                        getList();
+                    } else if(result.code === 1000){
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                            yes: function(index){
+                                layer.close(index);
+                                window.location.href = '/signin.html';
+                            }
+                        });
+                    } else {
+                        layer.open({
+                           title: '消息',
+                           content: result.msg,
+                        });
+                    }
                 }
             })
-
-            layer.close(index);
-        });
+        }
 
     }
 
-    liftForbidden = function(aid) {
-        $.ajax({
-            url: 'http://120.77.204.252/manageAdmin/freezeAccount.do',
-            dataType: 'json',
-            type: 'POST',
+
+    logout = function(id) {
+        _g.ajax({
+            url: 'http://120.77.204.252:80/manageAdmin/forcedLogout.do',
             data: {
-                aid: aid,
-                astatus: 1
+                id: id
             },
             success: function(result) {
-                getList();
+                if(result.code === 1000){
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                        yes: function(index){
+                            layer.close(index);
+                            window.location.href = '/signin.html';
+                        }
+                    });
+                } else {
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                    });
+                }
             }
         })
-
     }
 
 })();

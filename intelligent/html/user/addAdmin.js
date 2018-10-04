@@ -7,15 +7,48 @@
     var id = _g.pm.param.id;
 
     if (id) {
-        $('#header').text("编辑管理员1");
+        $('#header').text("编辑管理员");
         $('.hidePassword').css('display','none');
+        $('.adminId').show();
+        function getDetail() {
+            _g.ajax({
+                url: 'http://120.77.204.252:80/manageAdmin/queryDetail.do',
+                data: {
+                    id: id
+                },
+                success: function(result) {
+                    if(result.code === 200) {
+                        var adminstrator = result.data.administrator;
+                        $('#id').val(administrator.id);
+                        $('#username').val(administrator.account);
+                        $('#name').val(administrator.name);
+                        $('#institution').val(adminstrator.organization);
+                    } else if(result.code === 1000){
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                            yes: function(index){
+                                layer.close(index);
+                                window.location.href = '/signin.html';
+                            }
+                        });
+                    } else {
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                        });
+                    }
+                }
+            })
+        }
+        getDetail();
         
     }
 
     function getAuthority() {
         _g.ajax({
             lock: true,
-            url: 'http://120.77.204.252/manageAdmin/queryAllPermission.do',
+            url: 'http://120.77.204.252:80/manageAdmin/queryDetail.do',
             async: false,
             success: function(data) {
                 _.each(data.data.perlist,function(item,index) {

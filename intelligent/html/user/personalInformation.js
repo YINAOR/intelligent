@@ -10,7 +10,8 @@
         _g.ajax({
             lock: true,
             // type: 'get',
-            url: 'http://lai.vipgz1.idcfengye.com/admin/queryProfile.do',
+            url: 'http://120.77.204.252:80/admin/queryProfile.do',
+            // url: 'http://lai.vipgz1.idcfengye.com/admin/queryProfile.do',
             async: false,
             success: function(result) {
                 if (result.code == 200) {

@@ -5,7 +5,7 @@
     <div class="panel-body">
         <form data-validate="parsley" class="form-horizontal">
             <input type="hidden" name="id" value="">
-            <div class="form-group">
+            <div class="form-group adminId" style="display: none">
                 <label class="col-sm-2 control-label">管理员账号</label>
                 <div class="col-sm-8">
                     <input type="text" id="id" class="form-control parsley-validated" value="" data-required="true" data-error-message="账号不能为空." placeholder="请填写管理员账号（要求是5-20位纯英文或者英文和数字的组合）">
@@ -30,6 +30,13 @@
                 <label class="col-sm-2 control-label">用户名</label>
                 <div class="col-sm-8">
                     <input type="text" id="username" class="form-control parsley-validated" value="" data-required="true" placeholder="请填写用户名">
+                    <span class="help-block m-b-none"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">姓名</label>
+                <div class="col-sm-8">
+                    <input type="text" id="name" class="form-control parsley-validated" value="" data-required="true" placeholder="请填写姓名">
                     <span class="help-block m-b-none"></span>
                 </div>
             </div>
