@@ -3,6 +3,12 @@
     _g.setNowPage('lecture/edit');
     $('#formContent').html(_g.getTemplate('lecture/edit-V'));
 
+    var id = _g.pm.param.id;
+    if(id) {
+        $('.panel-heading').text('编辑讲堂');
+        getList();
+    }
+
     function getList() {
         _g.ajax({
             lock: true,
@@ -30,7 +36,6 @@
         })
     }
     
-    //getList();//需判断是不是edit
 
     var E = window.wangEditor;
     var editor = new E('#editor');

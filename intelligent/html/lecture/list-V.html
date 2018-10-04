@@ -2,7 +2,7 @@
     <table class="table table-striped b-t b-light">
         <thead>
             <tr>
-                <th>序号</th>
+                <th>ID</th>
                 <th>名称</th>
                 <th>日期</th>
                 <th>开始时间</th>
@@ -24,24 +24,24 @@
             </tr>
             {{else}} {{each list item index}}
             <tr data-custom-id="{{item.lno}}">
-                <td>{{index}}</td>
-                <td>{{item.lname}}</td>
-                <td>{{item.ldate}}</td>
-                <td>{{item.lstarttime}}</td>
-                <td>{{item.lendtime}}</td>
-                <td>{{item.laddr}}</td>
-                <td>{{item.lprove == 0 ? '否':'是'}}</td>
-                <td>{{item.lhour}}</td>
-                {{if item.speakerlink}}
+                <td>{{item.lecture.id}}</td>
+                <td>{{item.lecture.name}}</td>
+                <td>{{item.lectrue.dateStr}}</td>
+                <td>{{item.lectrue.startTime}}</td>
+                <td>{{item.lectrue.endTime}}</td>
+                <td>{{item.lectrue.address}}</td>
+                <td>{{item.lecture.isProved == 0 ? '否':'是'}}</td>
+                <td>{{item.lecture.hour}}</td>
+                {{if item.lecture.speakerLinkList}}
                 <td>
-                    {{each item.speakerlink it ind}} {{it.spname}} {{/each}}
+                    {{each item.lecture.speakerLinkList it ind}} {{it.speaker.name}} {{/each}}
                 </td>
                 {{else}}
                 <td></td>
                 {{/if}}
-                <td>{{item.lproperty.lproname}}</td>
-                <td>{{item.lgroup}}</td>
-                <td>{{item.llimit}}</td>
+                <td>{{item.lecture.category.name}}</td>
+                <td>{{item.lecture.groupOfPep}}</td>
+                <td>{{item.lecture.limitNumOfPep}}</td>
                 <td>
                     <button onclick="_g.openWin('lecture/sign','lno={{item.lno}}');" class="btn btn-success btn-xs">讲座开始签到</button>
                     <button onclick="_g.openWin('lecture/sign','lno={{item.lno}}');" class="btn btn-success btn-xs">讲座结束签到</button>

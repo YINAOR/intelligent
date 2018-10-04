@@ -5,24 +5,10 @@
     <div class="panel-body">
         <form data-validate="parsley" class="form-horizontal">
             <input type="hidden" name="id" value="">
-            <div class="form-group adminId" style="display: none">
+            <div class="form-group admin" style="display: none">
                 <label class="col-sm-2 control-label">管理员账号</label>
                 <div class="col-sm-8">
-                    <input type="text" id="id" class="form-control parsley-validated" value="" data-required="true" data-error-message="账号不能为空." placeholder="请填写管理员账号（要求是5-20位纯英文或者英文和数字的组合）">
-                    <span class="help-block m-b-none"></span>
-                </div>
-            </div>
-            <div class="form-group hidePassword">
-                <label class="col-sm-2 control-label">管理员密码</label>
-                <div class="col-sm-8">
-                    <input type="password" id="password" class="form-control parsley-validated" value="" data-required="true" data-error-message="密码不能为空." placeholder="请填写管理员密码（要求是10-20位字母、数字或者下划线的组合）">
-                    <span class="help-block m-b-none"></span>
-                </div>
-            </div>
-            <div class="form-group hidePassword">
-                <label class="col-sm-2 control-label">密码确认</label>
-                <div class="col-sm-8">
-                    <input type="password" id="passwordSure" class="form-control parsley-validated" value="" data-required="true" data-error-message="密码不一致." placeholder="请再次确认密码">
+                    <input type="text" id="id" class="form-control parsley-validated" value="" data-required="true" disabled>
                     <span class="help-block m-b-none"></span>
                 </div>
             </div>
@@ -30,6 +16,13 @@
                 <label class="col-sm-2 control-label">用户名</label>
                 <div class="col-sm-8">
                     <input type="text" id="username" class="form-control parsley-validated" value="" data-required="true" placeholder="请填写用户名">
+                    <span class="help-block m-b-none"></span>
+                </div>
+            </div>
+            <div class="form-group admin" style="display: none">
+                <label class="col-sm-2 control-label">状态</label>
+                <div class="col-sm-8">
+                    <input type="text" id="status" class="form-control parsley-validated" disabled>
                     <span class="help-block m-b-none"></span>
                 </div>
             </div>
@@ -44,6 +37,34 @@
                 <label class="col-sm-2 control-label">所属机构</label>
                 <div class="col-sm-8">
                     <input type="text" id="institution" class="form-control parsley-validated" value="" data-required="true" placeholder="请填写所属机构">
+                    <span class="help-block m-b-none"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">手机号码</label>
+                <div class="col-sm-8">
+                    <input type="text" id="mobile" class="form-control parsley-validated" value="" data-required="true" placeholder="请填写手机号码">
+                    <span class="help-block m-b-none"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">联系邮件</label>
+                <div class="col-sm-8">
+                    <input type="text" id="email" class="form-control parsley-validated" value="" data-required="true" placeholder="请填写联系邮件">
+                    <span class="help-block m-b-none"></span>
+                </div>
+            </div>
+            <div class="form-group hidePassword">
+                <label class="col-sm-2 control-label">管理员密码</label>
+                <div class="col-sm-8">
+                    <input type="password" id="password" class="form-control parsley-validated" value="" data-required="true" data-error-message="密码不能为空." placeholder="请填写管理员密码（要求是10-20位字母、数字或者下划线的组合）">
+                    <span class="help-block m-b-none"></span>
+                </div>
+            </div>
+            <div class="form-group hidePassword">
+                <label class="col-sm-2 control-label">密码确认</label>
+                <div class="col-sm-8">
+                    <input type="password" id="passwordSure" class="form-control parsley-validated" value="" data-required="true" data-error-message="密码不一致." placeholder="请再次确认密码">
                     <span class="help-block m-b-none"></span>
                 </div>
             </div>

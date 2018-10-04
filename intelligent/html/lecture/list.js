@@ -29,7 +29,10 @@
 
     var data = {
         currentPage: 1,
-        pageSize: 20
+        showCount: 5,
+        t: {
+
+        }
     }
 
     var result = { list: [] };
@@ -38,20 +41,13 @@
     function getList() {
         _g.ajax({
             lock: true,
-            url: 'http://120.77.204.252/lecture/queryLectureByAid.do',
+            url: 'http://120.77.204.252:80/lecture/queryListPageByAid.do',
             async: false,
-            data:  {paging: data},
+            data:  {
+                paging: data
+            },
             success: function(result) {
-                $("#lprono").empty();
                 if(result.code === 200) {
-                    var lpropertyList = result.data.lpropertyList;
-                    for(var i in lpropertyList){
-                        var id = lpropertyList[i].lprono;
-                        var name = lpropertyList[i].lproname;
-                        var str="<li><input type='radio' name='d-s-r' value="+id+"><a href='#'>"+ name +"</a></li>"
-                        $("#lprono").append(str);
-                    };
-                    
     			    var result = { list: result.data.paging.list };
                     _g.render('lecture/list-V', result, '#table');
     			} else {

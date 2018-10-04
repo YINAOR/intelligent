@@ -156,4 +156,14 @@
         })
     }
 
+    downloadExcelTemplet = function() {
+        var token = sessionStorage.getItem('token');;
+        window.location.href='http://120.77.204.252:80/manageAdmin/downExcelTemplets.do?token=' + token;
+    }
+
+    exportExcel = function() {
+        var token = sessionStorage.getItem('token');
+        window.location.href='http://120.77.204.252:80/manageAdmin/exportExcel.do?token=' + token;
+    }
+
 })();
