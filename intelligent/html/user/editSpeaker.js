@@ -3,11 +3,13 @@
     _g.setNowPage('user/editSpeaker');
     $('#formContent').html(_g.getTemplate('user/editSpeaker-V'));
 
+
     var id = _g.pm.param.id;
     if(id) {
         $('.head').text('编辑主讲人');
         $('.speakerId').show();
         _g.ajax({
+            lock: true,
             url: 'http://120.77.204.252:80/speaker/queryDetail.do',
             data: {
                 id: id
@@ -17,7 +19,10 @@
                     var speaker = result.data.speaker;
                     $('#spid').val(speaker.id);
                     $('#spname').val(speaker.name);
-                    $('dropdown-label').text(speaker.gender === 0 ? '男' : '女');
+                    $('.dropdown-label').text(speaker.gender === 0 ? '男' : '女');
+                    if(speaker.imageUrl != '') {
+                        
+                    }
                     $('#spbrief').val(speaker.brief);
                 } else if(result.code === 1000){
                     layer.open({
@@ -69,20 +74,20 @@
     // });
 
     submitSp = function(){
-        var name = $('#spname').val();
-        var brief = $('#spbrief').val();
-        var gender = $('dropdown-label').text() === '性别'? '' : $('dropdown-label').text() === '男' ? 0 : 1;
+        var gender = $('.dropdown-label').text() === '性别'? '' : $('.dropdown-label').text() === '男' ? 0 : 1;
         var token = sessionStorage.getItem('token');
-        console.log(new FormData($('.form-horizontal')[0]))
-        return 
+        var formData = new FormData($('.form-horizontal')[0]);
+        formData.delete('id');
+        formData.delete('d-s-r');
+        formData.append('gender', gender);
         $.ajax({
             url: 'http://120.77.204.252:80/speaker/save.do?token='+ token +'&uploadsign=speaker',
-            dataType: 'json',
-            type: 'POST',
-            async: false,
-            processData: false,
-            contentType: 'application/json',
-            data: new FormData($('.form-horizontal')[0]),
+            dataType:"json",
+            type:"POST",
+            async:false,
+            contentType:false,
+            processData:false,
+            data: formData,
             success: function(result) {
                 if(result.code === 1000){
                     layer.open({
@@ -103,8 +108,11 @@
                     }
                 }
             },
-            error: function(data) {
-                
+            error: function(error) {
+                layer.open({
+                    title: '消息',
+                    content: '请求超时，请重试！',
+                });
             }
         })
     }

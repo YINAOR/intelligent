@@ -19,7 +19,7 @@
                 <td>{{item.id}}</td>
                 <td>{{item.name}}</td>
                 <td>{{item.gender === 0 ? '男' : '女'}}</td>
-                <td><img src="http://120.77.204.252:80{{item.imageUrl}}"></td>               
+                <td><img src="http://120.77.204.252:80{{item.imageUrl}}" style="width: 100px; height: 130px"></td>               
                 <td>
                     <button onclick="_g.openWin('user/editSpeaker', 'id={{item.id}}')" class="btn btn-success btn-xs">编辑</button>
                     <button onclick="deleteId('{{item.id}}')" class="btn btn-danger btn-xs" data-id="1">删除</button>
