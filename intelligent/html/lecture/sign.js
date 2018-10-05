@@ -53,8 +53,8 @@
     
     var set = setTimeout(function () {
         getQrCode();
-        set = setTimeout(arguments.callee, 10000);
-    }, 10000);
+        set = setTimeout(arguments.callee, 1000000);
+    }, 1000000);
 
     $('#stop').click(function() {
         clearTimeout(set);

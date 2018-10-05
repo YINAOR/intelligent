@@ -81,7 +81,7 @@
         formData.delete('d-s-r');
         formData.append('gender', gender);
         $.ajax({
-            url: 'http://120.77.204.252:80/speaker/save.do?token='+ token +'&uploadsign=speaker',
+            url: 'http://120.77.204.252:80/speaker/save.do'+ token +'&uploadsign=speaker',
             dataType:"json",
             type:"POST",
             async:false,
