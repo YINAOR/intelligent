@@ -21,8 +21,8 @@
                 <td>{{item.name}}</td>
                 <td></td>
                 <td>
-                    <button onclick="_g.openWin('lecture/addType','id=1');" class="btn btn-success btn-xs">编辑</button>
-                    <button onclick="_g.pm.methods.deleteItem('1')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+                    <button onclick="_g.openWin('lecture/addType','id={{item.id}}');" class="btn btn-success btn-xs">编辑</button>
+                    <button onclick="deleteItem('{{item.id}}')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
                 </td>
             </tr>
             {{/each}} {{/if}}
