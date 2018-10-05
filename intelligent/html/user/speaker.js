@@ -62,12 +62,16 @@
 
     deleteId = function(id) {
         _g.ajax({
-            url: '',
+            url: 'http://120.77.204.252:80/speaker/delete.do',
             data: {
                 id: id
             },
             success: function(result) {
                 if(result.code === 200) {
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                    });
                     getList();
                 } else if(result.code === 1000){
                     layer.open({
