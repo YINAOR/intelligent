@@ -17,7 +17,7 @@
         var supports = (new XMLHttpRequest()).withCredentials !== undefined;
         if (supports) {
             var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("POST", "http://lai.vipgz1.idcfengye.com/lecture/lectureSign", true);
+            xmlhttp.open("POST", "http://lai.vipgz1.idcfengye.com/intelligent/lecture/generateQRCode.do", true);
             xmlhttp.setRequestHeader('Content-Type', 'application/json');
             xmlhttp.responseType = "blob";
             // if(getTime) {
@@ -53,8 +53,8 @@
     
     var set = setTimeout(function () {
         getQrCode();
-        set = setTimeout(arguments.callee, 6000);
-    }, 6000);
+        set = setTimeout(arguments.callee, 10000);
+    }, 10000);
 
     $('#stop').click(function() {
         clearTimeout(set);
