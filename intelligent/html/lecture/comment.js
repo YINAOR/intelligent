@@ -64,13 +64,99 @@
     deleteReply = function(id, floorId) {
     	_g.ajax({
     		lock: true,
-    		url: '',
+    		url: 'http://120.77.204.252:80/lecture/cancelReply.do',
     		data: {
-
-    		}
+    			lectureComment: {
+    				id: id,
+    				floorId: floorId
+    			}
+    		},
+    		success: function(result)  {
+                if(result.code == 200){
+                	getComment();
+                } else if(result.code === 1000){
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                        yes: function(index){
+                            layer.close(index);
+                            window.location.href = '/signin.html';
+                        }
+                    });
+                } else {
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                    });
+                }
+            }
     	})
     };
 
+    deleteComment = function(id,floorId) {
+    	_g.ajax({
+    		lock: true,
+    		url: 'http://120.77.204.252:80/lecture/deleteComment.do',
+    		data: {
+    			lectureComment:{
+    				id: id,
+    				floorId: floorId
+    			}
+    		},
+    		success: function(result) {
+    			if(result.code == 200){
+                	getComment();
+                } else if(result.code === 1000){
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                        yes: function(index){
+                            layer.close(index);
+                            window.location.href = '/signin.html';
+                        }
+                    });
+                } else {
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                    });
+                }
+    		}
+    	})
+    }
 
+    _g.reply = function() {
+    	var replyContent = $('#replyContent').val();
+    	_g.ajax({
+    		lock: true,
+    		url: 'http://120.77.204.252:80/lecture/replyComment.do',
+    		data: {
+    			lectureComment: {
+    				id: id,
+    				floorId: floorId,
+    				replyContent: replyContent
+    			}
+    		},
+    		success: function(result) {
+    			if(result.code == 200){
+                	getComment();
+                } else if(result.code === 1000){
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                        yes: function(index){
+                            layer.close(index);
+                            window.location.href = '/signin.html';
+                        }
+                    });
+                } else {
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                    });
+                }
+    		}
+    	})
+    }
 
 })();
