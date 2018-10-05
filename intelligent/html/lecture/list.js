@@ -5,6 +5,7 @@
 
     function getTypeList() {
         _g.ajax({
+            lock: true,
             url: 'http://120.77.204.252:80/lecture/toEdit.do',
             success: function(result)  {
                 if(result.code == 200){
@@ -45,7 +46,10 @@
         currentPage: 1,
         showCount: 5,
         t: {
-
+            name: $('#name').val(),
+            date: '',
+            category: $('#type .active input').val(),
+            status: $('#status .active input').val()
         }
     }
 
@@ -90,5 +94,39 @@
         });
     }
     getList();
+
+    $('#searchBtn').click(function(){
+        data.currentPage = 1;
+        getList();
+    });
+
+    deleteItem = function(id) {
+        _g.ajax({
+            lock: true,
+            url: 'http://120.77.204.252:80/lecture/delete.do',
+            data: {
+                id: id
+            },
+            success: function(result) {
+                if(result.code === 200) {
+                    getList();
+                }else if(result.code === 1000){
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                        yes: function(index){
+                            layer.close(index);
+                            window.location.href = '/signin.html';
+                        }
+                    });
+                } else {
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                    });
+                }
+            }
+        })
+    }
 
 })();

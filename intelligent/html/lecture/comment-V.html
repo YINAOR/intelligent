@@ -1,19 +1,4 @@
-<section class="panel panel-default" style="position: relative;">
-    <div class="panel-body">
-        <form class="form-inline" role="form">
-            <div class="form-group">
-                <input type="text" name="id" class="form-control" placeholder="学号">
-                <label class="control-label padder"></label>
-            </div>
-            <div class="form-group">
-                <input type="text" name="username" class="form-control" placeholder="姓名">
-                <label class="control-label padder"></label>
-            </div>
-            <button id="searchBtn" type="submit" class="btn btn-s-md btn-success">查询</button>
-        </form>
-    </div>
-</section>
-<section class="panel panel-default">
+
     <div id="table" class="table-responsive">
         <table class="table table-striped b-t b-light">
             <thead>
@@ -24,76 +9,34 @@
                     <th>专业</th>
                     <th>评论</th>
                     <th>评论时间</th>
+                    <th>回复</th>
+                    <th>回复时间</th>
                     <th>操作</th>
                 </tr>
             </thead>
             <tbody>
-                <tr data-custom-id="{{item.lno}}">
-                    <td>1</td>
-                    <td>3215004752</td>
-                    <td>xxx</td>
-                    <td>信息管理与信息系统</td>
-                    <td>评论评论评论评论评论评论评论评论评论评论评论评论</td>
-                    <td>2018-07-04 21:59</td>
-                    <td>
-                        <button onclick="_g.openWin('lecture/sign','lno={{item.lno}}');" class="btn btn-success btn-xs">审核</button>
-                        <button onclick="_g.openWin('lecture/sign','lno={{item.lno}}');" class="btn btn-danger btn-xs">删除</button>
-                        <button onclick="_g.openWin('lecture/sign','lno={{item.lno}}');" class="btn btn-danger btn-xs">警告</button>
-                    </td>
-                </tr>
-                <!-- {{if !list.length}}
+            {{if !list.length}}
                 <tr>
-                    <td colspan="6" style="text-align: center;">没有记录</td>
+                    <td colspan="9" style="text-align: center;">没有记录</td>
                 </tr>
-                {{else}} {{each list item index}}
-                <tr data-custom-id="{{item.lno}}">
+            {{else}} {{each list item index}}
+                <tr data-custom-id="{{item.id}}">
                     <td>{{index}}</td>
-                    <td>{{item.lname}}</td>
-                    <td></td>
-                    <td>{{item.ldate}}</td>
-                    <td>{{item.lstarttime}}</td>
-                    <td>{{item.lendtime}}</td>
-                    <td>{{item.laddr}}</td>
-                    <td>{{item.lprove == 0 ? '否':'是'}}</td>
-                    <td>{{item.lhour}}</td>
+                    <td>{{item.studentId}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.major}}</td>
+                    <td>{{item.commenContent}}</td>
+                    <td>{{item.commentTime}}</td>
+                    <td>{{item.replyContent || '暂无回复'}}</td>
+                    <td>{{item.replyTime || ''}}</td>
                     <td>
-                    {{each item.speakerlink it ind}}
-                    {{it.spname}}
-                    {{/each}}
-                    </td>
-                    <td>{{item.lproperty.lproname}}</td>
-                    <td>{{item.lgroup}}</td>
-                    <td>{{item.llimit}}</td>
-                    <td>
-                        <button onclick="_g.openWin('lecture/edit','lno={{item.lno}}');" class="btn btn-success btn-xs">详情</button>
-                        <button onclick="_g.openWin('lecture/edit','lno={{item.lno}}');" class="btn btn-success btn-xs">编辑</button>
-                        <button onclick="deleteItem('{{item.lno}}')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+                        <button onclick="deleteReply('{{item.id}},{{item.floorId}}')" class="btn btn-success btn-xs">删除回复</button>
+                        <button onclick="reply('{{item.id}},{{item.floorId}}')" class="btn btn-danger btn-xs">回复</button>
+                        <button onclick="deleteComment('{{item.id}},{{item.floorId}}')" class="btn btn-danger btn-xs">删除评论</button>
                     </td>
                 </tr>
-                {{/each}} {{/if}} -->
+            {{/each}} {{/if}} 
             </tbody>
         </table>
     </div>
-    <footer class="panel-footer">
-        <div class="row">
-            <div class="col-sm-4 hidden-xs">
-                <small class="text-muted inline m-t-sm m-b-sm">
-                    一共 <span id="totalCount">9</span> 条记录 - 共 <span id="totalPages">3</span> 页
-                </small>
-            </div>
-            <div class="col-sm-2 text-center">
-            </div>
-            <div class="col-sm-6 text-right text-center-xs">
-                <div id="pagination" style="margin: 0;" class="pagination">
-                    <ul class="pagination pagination-sm m-t-none m-b-none">
-                        <li class="active"><a title="Current page is 1">1</a></li>
-                        <li><a title="Go to page 2">2</a></li>
-                        <li><a title="Go to page 3">3</a></li>
-                        <li><a title="Go to next page">&gt;</a></li>
-                        <li><a title="Go to last page">&gt;&gt;</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-</section>
+   
