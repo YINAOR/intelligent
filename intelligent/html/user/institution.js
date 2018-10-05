@@ -3,13 +3,11 @@
     _g.setNowPage('user/institution');
     $('#formContent').html(_g.getTemplate('user/institution-V'));
 
-    var college = $('#college').val();
-
     var data = {
         currentPage: 1,
         showCount: 5,
         t: {
-            name: college
+            name: $('#college').val()
         }
     }
 
@@ -62,8 +60,7 @@
 
     getList();
 
-    function deleteInstitution(dno) {
-
+    deleteInstitution = function(dno) {
     	_g.ajax({
     		lock: true,
     		url: 'http://120.77.204.252:80/college/delete.do',
@@ -91,6 +88,16 @@
                 }
     		}
     	})
+    }
+
+    downloadExcelTemplet = function() {
+        var token = sessionStorage.getItem('token');;
+        window.location.href='http://120.77.204.252:80/college/downExcelTemplets.do?token='+token;
+    }
+
+    exportExcel = function() {
+        var token = sessionStorage.getItem('token');
+        window.location.href='http://120.77.204.252:80/college/exportExcel.do?token='+token;
     }
 
 })();

@@ -32,10 +32,10 @@
                 <td>{{item.enrollmentTimeStr}}</td>
                 <td>{{item.status === 0 ? '正常' : '冻结'}}</td>
                 <td>
-                    <button id="freeze" class="btn btn-danger btn-xs" data-id="1234">冻结</button>
-                    <button id="reFreeze" class="btn btn-success btn-xs">解冻</button>
-                    <button id="delete" onclick="deleteStudent('{{item.id}}')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
-                    <button id="cancel" class="btn btn-success btn-xs">注销</button>
+                    <button onclick="freeze('{{item.id}}',1)" class="btn btn-danger btn-xs" data-id="1234">冻结</button>
+                    <button onclick="freeze('{{item.id}}',0,'unfreeze')" class="btn btn-success btn-xs">解冻</button>
+                    <button  onclick="deleteStudent('{{item.id}}')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+                    <button onclick="logout('{{item.id}}')" class="btn btn-success btn-xs">注销</button>
                     <button onclick="_g.openWin('user/studentDetail','{{id=item.id}}')" class="btn btn-danger btn-xs" data-id="1234">详情</button>
                 </td>
             </tr>

@@ -9,7 +9,7 @@
     };
 
     var t = {
-
+        name: $('#name').val()
     };
 
     var data1 = { list: [] };
@@ -84,6 +84,122 @@
             }
         })
     }
+
+    $('#searchBtn').click(function() {
+        data.currentPage = 1;
+        getList();
+    })
+
+    freeze = function(id,status,unfreeze) {
+        if(unfreeze) {
+            freezeAjax(id,status);
+        } else {
+            layer.confirm('您确定要冻结此学生吗？', { title: '询问' }, function(index) {
+                freezeAjax(id,status);
+                layer.close(index);
+            });
+        }
+        function freezeAjax(id,status) {
+            _g.ajax({
+                url: 'http://120.77.204.252:80/manageStudent/freezeAccount.do',
+                data: {
+                    student: {
+                        id: id,
+                        status: status
+                    }
+                },
+                success: function(result) {
+                    if(result.code === 200) {
+                        getList();
+                    } else if(result.code === 1000){
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                            yes: function(index){
+                                layer.close(index);
+                                window.location.href = '/signin.html';
+                            }
+                        });
+                    } else {
+                        layer.open({
+                           title: '消息',
+                           content: result.msg,
+                        });
+                    }
+                }
+            })
+        }
+
+    }
+
+    deleteStudent = function(id) {
+        _g.ajax({
+            url: 'http://120.77.204.252:80/manageStudent/delete.do',
+            data: {
+                id: id
+            },
+            success: function(result) {
+                if(result.code === 1000){
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                        yes: function(index){
+                            layer.close(index);
+                            window.location.href = '/signin.html';
+                        }
+                    });
+                } else {
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                    });
+                    if(result.code === 200) {
+                        getList();
+                    }
+                }                    
+            }
+        })
+    }
+
+    logout = function(id) {
+        _g.ajax({
+            url: 'http://120.77.204.252:80/manageStudent/forcedLogout.do',
+            data: {
+                id: id
+            },
+            success: function(result) {
+                if(result.code === 1000){
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                        yes: function(index){
+                            layer.close(index);
+                            window.location.href = '/signin.html';
+                        }
+                    });
+                } else {
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                    });
+                    if(result.code === 200) {
+                        getList();
+                    }
+                }                    
+            }
+        })
+    }
+
+    downloadExcelTemplet = function() {
+        var token = sessionStorage.getItem('token');;
+        window.location.href='http://120.77.204.252:80/manageStudent/downExcelTemplets.do?token='+token;
+    }
+
+    exportExcel = function() {
+        var token = sessionStorage.getItem('token');
+        window.location.href='http://120.77.204.252:80/manageStudent/exportExcel.do?token='+token;
+    }
+
 
 
 })();

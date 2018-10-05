@@ -3,15 +3,13 @@
     _g.setNowPage('user/major');
     $('#formContent').html(_g.getTemplate('user/major-V'));
 
-    var name = $('#major').val();
-
     var data = {
         currentPage: 1,
         showCount: 5,
         t: {
-            name: name,
+            name: $('#major').val(),
             college:{
-                id:''
+                id: $('#id').val()
             }
         }
     }
@@ -58,19 +56,13 @@
                         content: result.msg,
                     });
                 }
-            },
-            error:function(XMLHttpRequest,textStatus,errorThrown){
-                alert("Error");
-                alert(XMLHttpRequest.status);
-                alert(XMLHttpRequest.readyState);
-                alert(textStatus);
             }
     	})
     }
 
     getList();
 
-    function deleteMajor(mno) {
+    deleteMajor = function(mno) {
     	_g.ajax({
     		lock: true,
     		url: 'http://120.77.204.252:80/major/delete.do',
@@ -98,6 +90,21 @@
                 }
     		}
     	})
+    }
+
+    $('#searchBtn').click(function() {
+        data.currentPage = 1;
+        getList();
+    })
+
+    downloadExcelTemplet = function() {
+        var token = sessionStorage.getItem('token');;
+        window.location.href='http://120.77.204.252:80/major/downExcelTemplets.do?token='+token;
+    }
+
+    exportExcel = function() {
+        var token = sessionStorage.getItem('token');
+        window.location.href='http://120.77.204.252:80/major/exportExcel.do?token='+token;
     }
 
 })();
