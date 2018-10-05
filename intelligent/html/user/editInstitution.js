@@ -20,14 +20,11 @@
             },
     		success: function(result) {
                 if(result.code === 200){
-                    alert("111")
                     layer.open({
                         title: '消息',
                         content: result.msg
                     })
-                }
-                else if(result.code === 1000){
-                    alert("123")
+                } else if(result.code === 1000){
                     layer.open({
                         title: '消息',
                         content: result.msg,
@@ -37,7 +34,6 @@
                         }
                     });
                 } else {
-                    alert("456")
                     layer.open({
                         title: '消息',
                         content: result.msg,

@@ -12,36 +12,89 @@
     function getList() {
         _g.ajax({
             lock: true,
-    		url: 'http://120.77.204.252/lecture/queryAllLProperty.do',
+    		url: 'http://120.77.204.252:80/lecture/toEdit.do',
     		async: false,
-    		data: {
-    			t:{}
-    		},
+    		data: {},
     		success: function(result) {
-                $("#lprono").empty();
+                $("#categoryId").empty();
                 if(result.code == 200){
-                    var lpropertyList = result.data.lpropertyList;
-                    for(var i in lpropertyList){
-                        var id = lpropertyList[i].lprono;
-                        var name = lpropertyList[i].lproname;
+                    var categoryList = result.data.categoryList;
+                    for(var i in categoryList){
+                        var id = categoryList[i].id;
+                        var name = categoryList[i].name;
                         var str="<li><input type='radio' name='d-s-r' value="+id+"><a href='#'>"+ name +"</a></li>"
-                        $("#lprono").append(str);
+                        $("#categoryId").append(str);
                     }
+                } else if(result.code === 1000){
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                        yes: function(index){
+                            layer.close(index);
+                            window.location.href = '/signin.html';
+                        }
+                    });
+                } else {
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                    });
                 }
-                if(result.code==1000){
-                    window.location.href ="signin.html";
-                }
-
             }
         })
     }
+    getList();
     
-
     var E = window.wangEditor;
     var editor = new E('#editor');
     editor.create();
 
-    $(document).ready(function(){  
+    $(document).ready(function(){ 
+
+        $('#spname').on('input propertychange', function(){
+            let name = $('#spname').val();
+            if(name != null){
+                _g.ajax({
+                    lock: true,
+                    url: 'http://120.77.204.252:80/lecture/querySpeakerList.do',
+                    async: false,
+                    data: {
+                        speaker: {
+                            name: name
+                        }
+                    },
+                    success: function(result) {
+                        $('#speakerquery').empty();
+                        if(result.code == 200){
+                            var speakerList = result.data.speakerList;
+        
+                            for(var i in speakerList){
+                                var name=speakerList[i].name;
+                                var brief=speakerList[i].brief;
+                                //返回结果
+                                var str="<li>" +name+ "</li>";
+                                $("#speakerquery").append(str);
+                            }
+                        } else if(result.code === 1000){
+                            layer.open({
+                                title: '消息',
+                                content: result.msg,
+                                yes: function(index){
+                                    layer.close(index);
+                                    window.location.href = '/signin.html';
+                                }
+                            });
+                        } else {
+                            layer.open({
+                                title: '消息',
+                                content: result.msg,
+                            });
+                        }
+                    }
+                })
+            }
+        });
+
         $("#addSpeaker").click(function(){
             if($("#speakerGroup2").is(':hidden')) {
                 $("#speakerGroup2").show();
@@ -52,7 +105,7 @@
 
         $('#submitBtn').click(function() {
             var title = $('#title').val();
-            //海报
+            var imageUrl = $('#photoInput').val();
             var date = $('#date').val();
             var startTimePicker = $('#startTimePicker').val();
             var endTimePicker = $('#endTimePicker').val();
@@ -74,7 +127,7 @@
 
             var hour = $('#hour').val();
             var editor = "$('#editor').val();//editor";
-            var lprono = $('#lprono .active input').val();
+            var categoryId = $('#categoryId .active input').val();
             var object = $('#object').val();
             var number = $('#number').val();
             var sponsor = $('#sponsor').val();
@@ -82,37 +135,37 @@
                 
 
             var lecture ={
-                lname :title,speakerlink:speakerlink,lproperty:{lprono:lprono},
-                ldate:date,lstarttime:startTimePicker,lendtime:endTimePicker,
-                laddr:address,lsponsor:sponsor,content:editor,lprove:lprove,
-                lhour:hour,lgroup:object,llimit:number
+                name :title,speakerLinkList:speakerlink,category:{id:categoryId},
+                date:date,startTime:startTimePicker,endTime:endTimePicker,
+                address:address,sponsor:sponsor,content:editor,isProved:lprove,
+                hour:hour,groupOfPep:object,limitNumOfPep:number,imageUrl:imageUrl
             }
 
             _g.ajax({
                 lock: true,
-    		    url: 'http://120.77.204.252/lecture/saveLecture.do',
+    		    url: 'http://120.77.204.252:80/lecture/save.do',
     		    async: false,
     		    data: {
-                    lecture:lecture,
-    		    	t:{}
+                    lecture:lecture
                 },
-                success:function(respData){
-                    alert(respData.msg);
-                    alert(respData.code)
-                    alert(111)
+                success:function(result){
                     //code==1000未登录或token失效跳转回登录页面
-                    if(respData.code==1000){
-                        window.location.href ="/signin.html";
+                    if(result.code === 1000){
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                            yes: function(index){
+                                layer.close(index);
+                                window.location.href = '/signin.html';
+                            }
+                        });
+                    } else {
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                        });
                     }
-                },
-                error:function(XMLHttpRequest,textStatus,errorThrown){
-                    alert(222)
-                    alert("Error");
-                    alert(XMLHttpRequest.status);
-                    alert(XMLHttpRequest.readyState);
-                    alert(textStatus);
                 }
-
             })
         })
     })

@@ -62,8 +62,18 @@
             },
             success: function(result) {
                 if(result.code === 200) {
-    			    var result = { list: result.data.paging.list };
-                    _g.render('lecture/list-V', result, '#table');
+                    var data1 = { list: result.data.paging.list };
+                    _g.initPaginator({
+                        currentPage: result.data.paging.currentPage,
+                        totalPages: result.data.paging.totalPage,
+                        totalCount: result.data.paging.totalResult,
+                        onPageClicked: function(page) {
+                            console.log(page)
+                            data.currentPage = page;
+                            getList();
+                        }
+                    });
+                    _g.render('lecture/list-V', data1, '#table');
     			} else {
     				layer.open({
     					title: '消息',

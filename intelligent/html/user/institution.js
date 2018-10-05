@@ -32,7 +32,7 @@
                         _g.initPaginator({
                             currentPage: result.data.paging.currentPage,
                             totalPages: result.data.paging.totalPage,
-                            totalCount: result.data.paging.tatalResult,
+                            totalCount: result.data.paging.totalResult,
                             onPageClicked: function(page) {
                                 console.log(page)
                                 data.currentPage = page;

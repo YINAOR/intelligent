@@ -5,29 +5,36 @@
 
 
     $("#addlproperty").click(function() {
-        var lproname = $("#lproname").val();
-        alert(lproname);
+        var code = $("#code").val();
+        var name = $('#name').val();
+
         _g.ajax({
             lock: true,
-    		url: 'http://120.77.204.252/speakerAndLecType/saveLProperty.do',
+    		url: 'http://120.77.204.252:80/category/save.do',
     		async: false,
     		data: {
-                lproperty:{
-                    lproname:lproname
-                },t:{}
+                category:{
+                    parentCode: "LC0001",
+                    code: code,
+                    name: name
+                }
             },
     		success: function(result) {
-                alert(111)
-                if(result.code==1000){
-                    window.location.href ="signin.html";
+                if(result.code === 1000){
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                        yes: function(index){
+                            layer.close(index);
+                            window.location.href = '/signin.html';
+                        }
+                    });
+                } else {
+                    layer.open({
+                        title: '消息',
+                        content: result.msg
+                    });
                 }
-
-            },
-            error:function(XMLHttpRequest,textStatus,errorThrown){
-                alert("Error");
-                alert(XMLHttpRequest.status);
-                alert(XMLHttpRequest.readyState);
-                alert(textStatus);
             }
         })
     })

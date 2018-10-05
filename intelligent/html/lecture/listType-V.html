@@ -15,10 +15,10 @@
                 <td colspan="6" style="text-align: center;">没有记录</td>
             </tr>
             {{else}} {{each list item index}}
-            <tr data-custom-id="{{item.aid}}">
+            <tr data-custom-id="{{item.id}}">
                 <td>{{index}}</td>
-                <td>{{item.lprono}}</td>
-                <td>{{item.lproname}}</td>
+                <td>{{item.code}}</td>
+                <td>{{item.name}}</td>
                 <td></td>
                 <td>
                     <button onclick="_g.openWin('lecture/addType','id=1');" class="btn btn-success btn-xs">编辑</button>
