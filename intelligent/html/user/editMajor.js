@@ -110,7 +110,7 @@
                             title: '消息',
                             content: result.msg
                         })
-                        _g.openWin('user/major');
+                        history.back(-1);
                     } else if(result.code === 1000){
                         layer.open({
                             title: '消息',
