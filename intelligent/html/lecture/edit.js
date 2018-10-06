@@ -3,30 +3,6 @@
     _g.setNowPage('lecture/edit');
     $('#formContent').html(_g.getTemplate('lecture/edit-V'));
 
-    $('#speakerInput').focus(function() {
-        $('#speakerDiv').addClass('chosen-with-drop chosen-container-active');
-    })
-
-    
-
-    $('#speakerquery li').mouseover(function() {
-        $(this).siblings().removeClass('highlighted');
-        $(this).addClass('highlighted');
-    })
-
-    $('#speakerquery li').click(function() {
-        $('#speakerInput').val($(this).text());
-        $('#speakerDiv').removeClass('chosen-with-drop chosen-container-active');
-    })
-
-    $('#speakerInput').blur(function(e) {
-        console.log(e.currentTarget.id)
-        return
-        $('#speakerDiv').removeClass('chosen-with-drop chosen-container-active');   
-    })
-
-    return
-
     var id = _g.pm.param.id;
     if(id) {
         $('.panel-heading').text('编辑讲座');
@@ -146,19 +122,6 @@
         if(str) {
             speakerName = $('#spname2').val();
         }
-        var speakerList = [{name: 5656},{name: 7777}];
-                    for(var i in speakerList){
-                        var name=speakerList[i].name;
-                        // var brief=speakerList[i].brief;
-                        //返回结果
-                        var list='<option value="'+ name + '">'+ name +'</option>';
-                        if(str) {
-                            $("#speakerquery2").append(list);
-                        } else {
-                            $("#speakerquery").append(list);
-                        }     
-                    }
-        return
         _g.ajax({
             url: 'http://120.77.204.252:80/lecture/querySpeakerList.do',
             data: {
@@ -176,9 +139,7 @@
                     var speakerList = result.data.speakerList;
                     for(var i in speakerList){
                         var name=speakerList[i].name;
-                        var brief=speakerList[i].brief;
-                        //返回结果
-                        var list="<li>" +name+ "</li>";
+                        var list = '<li class="active-result">' + Alaska +'</li>';
                         if(str) {
                             $("#speakerquery2").append(list);
                         } else {
@@ -214,8 +175,8 @@
         }
     }
 
-    document.getElementById('spname').addEventListener('keyup', debounce());
-    document.getElementById('spname2').addEventListener('keyup', debounce('spname2'));
+    document.getElementById('speakerInput').addEventListener('keyup', debounce());
+    document.getElementById('speakerInput2').addEventListener('keyup', debounce('speakerInput2'));
 
 
         $("#addSpeaker").click(function(){
@@ -312,6 +273,50 @@
 
     $('#startTimePicker').hunterTimePicker();
     $('#endTimePicker').hunterTimePicker();
+
+    $('#speakerInput').focus(function() {
+        $('#speakerDiv').addClass('chosen-with-drop chosen-container-active');
+    })
+    
+    $('#speakerInput2').focus(function() {
+        $('#speakerDiv2').addClass('chosen-with-drop chosen-container-active');
+    })
+
+    $(document).click(function(event) {
+        var target = event.target;
+        if (target.id === 'speakerquery' || target.id === 'speakerInput') {
+            return false;
+        } else {
+            $('#speakerDiv').removeClass('chosen-with-drop chosen-container-active');  
+        }
+        if (target.id === 'speakerquery2' || target.id === 'speakerInput2') {
+            return false;
+        } else {
+            $('#speakerDiv2').removeClass('chosen-with-drop chosen-container-active');  
+        }
+    });
+    
+
+    $('#speakerquery li').mouseover(function() {
+        $(this).siblings().removeClass('highlighted');
+        $(this).addClass('highlighted');
+    })
+
+    $('#speakerquery li').click(function() {
+        $('#speakerInput').val($(this).text());
+        $('#speakerDiv').removeClass('chosen-with-drop chosen-container-active');
+    })
+
+    $('#speakerquery2 li').mouseover(function() {
+        $(this).siblings().removeClass('highlighted');
+        $(this).addClass('highlighted');
+    })
+
+    $('#speakerquery2 li').click(function() {
+        $('#speakerInput2').val($(this).text());
+        $('#speakerDiv2').removeClass('chosen-with-drop chosen-container-active');
+    })
+
 
 
     
