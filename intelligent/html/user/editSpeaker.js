@@ -21,7 +21,8 @@
                     $('#spname').val(speaker.name);
                     $('.dropdown-label').text(speaker.gender === 0 ? '男' : '女');
                     if(speaker.imageUrl != '') {
-                        
+                        $('#file').val(speaker.imageUrl);
+                        $('#prePhoto').append("<img src='http://120.77.204.252:80/" + speaker.imageUrl +"' alt=''/>");
                     }
                     $('#spbrief').val(speaker.brief);
                 } else if(result.code === 1000){
@@ -74,6 +75,44 @@
     // });
 
     submitSp = function(){
+
+        if(id){
+            _g.ajax({
+                lock: true,
+                url: 'http://120.77.204.252:80/speaker/update.do',
+                data: {
+                    speaker:{
+                        id: id,
+                        name: $('#spname').val(),
+                        brief: $('#spbrief').val()
+                    }
+                },
+                success: function(result) {
+                    if(result.code === 200) {
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                        });
+                        history.back();
+                    } else if(result.code === 1000){
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                            yes: function(index){
+                                layer.close(index);
+                                window.location.href = '/signin.html';
+                            }
+                        });
+                    } else {
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                        });
+                    }
+                } 
+            })
+        }
+
         var gender = $('.dropdown-label').text() === '性别'? '' : $('.dropdown-label').text() === '男' ? 0 : 1;
         var token = sessionStorage.getItem('token');
         var formData = new FormData($('.form-horizontal')[0]);
@@ -81,7 +120,7 @@
         formData.delete('d-s-r');
         formData.append('gender', gender);
         $.ajax({
-            url: 'http://120.77.204.252:80/speaker/save.do'+ token +'&uploadsign=speaker',
+            url: 'http://120.77.204.252:80/speaker/save.do?token='+ token +'&uploadsign=speaker',
             dataType:"json",
             type:"POST",
             async:false,
@@ -89,7 +128,13 @@
             processData:false,
             data: formData,
             success: function(result) {
-                if(result.code === 1000){
+                if(result.code === 200) {
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                    });
+                    history.back();
+                } else if(result.code === 1000){
                     layer.open({
                         title: '消息',
                         content: result.msg,
@@ -103,9 +148,6 @@
                         title: '消息',
                         content: result.msg,
                     });
-                    if(result.code === 200) {
-                        _g.openWin('user/speaker');
-                    }
                 }
             },
             error: function(error) {
