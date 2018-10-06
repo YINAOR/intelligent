@@ -125,7 +125,7 @@
     	})
     }
 
-    _g.reply = function() {
+    _g.reply = function(id,floorId) {
     	var replyContent = $('#replyContent').val();
     	_g.ajax({
     		lock: true,

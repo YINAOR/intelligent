@@ -4,20 +4,25 @@
     </header>
     <div class="panel-body">
         <form data-validate="parsley" class="form-horizontal">
-            <input type="hidden" name="id" value="">
+            <div class="form-group lectureId" style="display: none;">
+                <label class="col-sm-2 control-label">讲座id</label>
+                <div class="col-sm-8">
+                    <input type="text" id="name" class="form-control parsley-validated" value="" data-required="true" disabled>
+                    <span class="help-block m-b-none"></span>
+                </div>
+            </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">讲座名称</label>
                 <div class="col-sm-8">
-                    <input type="text" id="title" class="form-control parsley-validated" value="" data-required="true" data-error-message="名称不能为空." placeholder="请填写讲座名称">
+                    <input type="text" id="name" class="form-control parsley-validated" value="" data-required="true" data-error-message="名称不能为空." placeholder="请填写讲座名称">
                     <span class="help-block m-b-none"></span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">讲座海报</label>
                 <div id="photoInput" class="col-sm-8">
-                    <input type="hidden" name="imgUrl" value="">
                     <!-- <form enctype="multipart/form-data" method="post" id="ajaxForm" name="ajaxForm"> -->
-                    <input type="file" name="file" accept="image/*" class="filestyle" id="filestyle-0" tabindex="-1" style="position: absolute; clip: rect(0px, 0px, 0px, 0px);">
+                    <input type="file" name="file" accept="image/*" class="filestyle" id="imageUrl" tabindex="-1" style="position: absolute; clip: rect(0px, 0px, 0px, 0px);">
                     <!-- </form> -->
                     <div class="bootstrap-filestyle input-group">
                         <input type="text" class="form-control" id="file" placeholder="请选择上传文件" disabled=""> 
@@ -35,6 +40,27 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-sm-2 control-label">讲座申请证明</label>
+                <div id="provePhoto" class="col-sm-8">
+                    <!-- <form enctype="multipart/form-data" method="post" id="ajaxForm" name="ajaxForm"> -->
+                    <input type="file" name="file" accept="image/*" class="filestyle" id="lectureProvedImage" tabindex="-1" style="position: absolute; clip: rect(0px, 0px, 0px, 0px);">
+                    <!-- </form> -->
+                    <div class="bootstrap-filestyle input-group">
+                        <input type="text" class="form-control" id="file" placeholder="请选择上传文件" disabled=""> 
+                        <span class="group-span-filestyle input-group-btn" tabindex="0">
+                            <label for="filestyle-0" class="btn btn btn-default ">
+                                <span class="buttonText">选择文件</span>
+                            </label>
+                        </span>
+                    </div>
+                    <span class="help-block m-b-none">图片尺寸为 120x150 图.</span>
+                    <!-- 上传预览图 -->
+                    <div>
+                        <span id="preProvePhoto"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-sm-2 control-label">讲座举办日期</label>
                 <div class="col-sm-8">
                     <!--<input type="text" id="date1" class="form-control" value="" data-required="true" data-error-message="举办日期不能为空." placeholder="请填写讲座举办日期">
@@ -45,14 +71,14 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">讲座开始时间</label>
                 <div class="col-sm-8">
-                    <input type="text" style="padding-left: 12px; height: 34px; width: 100%; line-height: 38px; border: 1px solid #cbd5dd;  background-color: #fff;  border-radius: 2px;" id="startTimePicker" value="" data-required="true" data-error-message="开始时间不能为空." readonly>
+                    <input type="text" style="padding-left: 12px; height: 34px; width: 100%; line-height: 38px; border: 1px solid #cbd5dd;  background-color: #fff;  border-radius: 2px;" id="startTimePicker" value="" data-required="true" placeholder="请选择讲座开始时间" data-error-message="开始时间不能为空." readonly>
                     <span class="help-block m-b-none"></span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">讲座结束时间</label>
                 <div class="col-sm-8">
-                    <input type="text" style="padding-left: 12px; height: 34px; width: 100%; line-height: 38px; border: 1px solid #cbd5dd;  background-color: #fff;  border-radius: 2px;" id="endTimePicker" value="" data-required="true" data-error-message="结束时间不能为空." readonly>
+                    <input type="text" style="padding-left: 12px; height: 34px; width: 100%; line-height: 38px; border: 1px solid #cbd5dd;  background-color: #fff;  border-radius: 2px;" id="endTimePicker" value="" data-required="true" placeholder="请选择讲座结束时间" data-error-message="结束时间不能为空." readonly>
                     <span class="help-block m-b-none"></span>
                 </div>
             </div>
@@ -65,19 +91,34 @@
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">讲座证明</label>
+                <div class="col-sm-8">
+                        <div class="btn-group m-r">
+                            <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
+                                <span class="dropdown-label lectureProve" data-placeholder="Please select">讲座证明</span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul id="lprove" class="dropdown-menu dropdown-select">
+                                <li><input type="radio" name="d-s-r" value="0"><a href="#">否</a></li>
+                                <li><input type="radio" name="d-s-r" value="1"><a href="#">是</a></li>
+                            </ul>
+                        </div>
+                </div>
+            </div>
+            <!-- <div class="form-group">
+                <label class="col-sm-2 control-label">讲座证明</label>
                 <div class="col-sm-10" style="position:relative">
                     <div class="btn-group m-r" style="position:absolute; top:5px;">
                         <select id="lprove" style="margin-right:20px; display:inline-block">
-                                <option name="d-s-r" value="0">是</option>
-                                <option name="d-s-r" value"1">否</option>
+                            <option name="d-s-r" value="0">是</option>
+                            <option name="d-s-r" value"1">否</option>
                         </select>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="form-group">
                 <label class="col-sm-2 control-label">讲座时长</label>
                 <div class="col-sm-8">
-                    <input type="text" id="hour" class="form-control" value="" data-required="false" placeholder="请填写讲座时长">
+                    <input type="number" id="hour" class="form-control" value="" data-required="false" placeholder="请填写讲座时长">
                     <span class="help-block m-b-none"></span>
                 </div>
             </div>
@@ -85,14 +126,24 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">主讲人</label>
                     <div class="col-sm-8">
-                        <input type="text" id="spname" class="form-control speaker1" value="" data-required="true" data-error-message="主讲人不能为空." placeholder="请填写主讲人">
-                        <span class="help-block m-b-none"></span>
-                        <ul id="speakerquery" class="dropdown-menu dropdown-select">
-
-                        </ul>
+                        <div class="chosen-container chosen-container-multi" style="width: 260px;" id="speakerDiv">
+                            <ul class="chosen-choices">
+                                <li class="search-field">
+                                    <input type="text" placeholder ="Select Some Options" class="default" autocomplete="off" style="width: 138px;" id="speakerInput">
+                                </li>
+                            </ul>
+                            <div class="chosen-drop">
+                                <ul class="chosen-results" id="speakerquery">
+                                    <li class="active-result" data-option-array-index="0">Alaska</li>
+                                    <!-- <li class="active-result" data-option-array-index="1">Hawaii</li>
+                                    <li class="active-result" data-option-array-index="2">California</li>
+                                    <li class="active-result" data-option-array-index="3">Nevada</li>
+                                    <li class="active-result" data-option-array-index="4">Oregon</li>
+                                    <li class="active-result" data-option-array-index="5">Washington</li> -->
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-
-                  
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">主讲人介绍</label>
@@ -106,12 +157,24 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">主讲人</label>
                     <div class="col-sm-8">
-                        <input type="text" id="spname2" class="form-control speaker1" value="" data-required="true" data-error-message="主讲人不能为空." placeholder="请填写主讲人">
-                        <span class="help-block m-b-none"></span>
+                        <div class="chosen-container chosen-container-multi" style="width: 260px;" id="speakerDiv2">
+                            <ul class="chosen-choices">
+                                <li class="search-field">
+                                    <input type="text" placeholder ="Select Some Options" class="default" autocomplete="off" style="width: 138px;" id="speakerInput2">
+                                </li>
+                            </ul>
+                            <div class="chosen-drop">
+                                <ul class="chosen-results" id="speakerquery2">
+                                    <li class="active-result" data-option-array-index="0">Alaska</li>
+                                    <!-- <li class="active-result" data-option-array-index="1">Hawaii</li>
+                                    <li class="active-result" data-option-array-index="2">California</li>
+                                    <li class="active-result" data-option-array-index="3">Nevada</li>
+                                    <li class="active-result" data-option-array-index="4">Oregon</li>
+                                    <li class="active-result" data-option-array-index="5">Washington</li> -->
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <ul id="speakerquery" class="dropdown-menu dropdown-select">
-                            
-                    </ul>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">主讲人介绍</label>
@@ -154,21 +217,28 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">面向对象</label>
                 <div class="col-sm-8">
-                    <input type="text" id="object" class="form-control parsley-validated" value="" data-required="false" placeholder="学院/专业/年级等">
+                    <input type="text" id="groupOfPep" class="form-control parsley-validated" value="" data-required="false" placeholder="学院/专业/年级等">
                     <span class="help-block m-b-none"></span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">限制人数</label>
                 <div class="col-sm-8">
-                    <input type="address" id="number" class="form-control" value="" data-required="true" data-error-message="限制人数不能为空." placeholder="请填写限制人数">
+                    <input type="number" id="limitNumOfPep" class="form-control" value="" data-required="true" data-error-message="限制人数不能为空." placeholder="请填写限制人数">
                     <span class="help-block m-b-none"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">主办方</label>
+                <label class="col-sm-2 control-label">发起方</label>
                 <div class="col-sm-8">
-                    <input type="address" id="sponsor" class="form-control" value="" data-required="true" data-error-message="主办方不能为空." placeholder="请填写主办方">
+                    <input type="text" id="sponsor" class="form-control" value="" data-required="true" data-error-message="主办方不能为空." placeholder="请填写主办方">
+                    <span class="help-block m-b-none"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">承办方</label>
+                <div class="col-sm-8">
+                    <input type="text" id="organization" class="form-control" value="" data-required="true" data-error-message="承办方不能为空." placeholder="请填写承办方">
                     <span class="help-block m-b-none"></span>
                 </div>
             </div>
