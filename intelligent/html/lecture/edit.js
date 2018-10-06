@@ -7,11 +7,7 @@
         $('#speakerDiv').addClass('chosen-with-drop chosen-container-active');
     })
 
-    $('#speakerInput').blur(function(e) {
-        if(e.target.id != 'speakerquery') {
-            $('#speakerDiv').removeClass('chosen-with-drop chosen-container-active');
-        }    
-    })
+    
 
     $('#speakerquery li').mouseover(function() {
         $(this).siblings().removeClass('highlighted');
@@ -21,6 +17,12 @@
     $('#speakerquery li').click(function() {
         $('#speakerInput').val($(this).text());
         $('#speakerDiv').removeClass('chosen-with-drop chosen-container-active');
+    })
+
+    $('#speakerInput').blur(function(e) {
+        console.log(e.currentTarget.id)
+        return
+        $('#speakerDiv').removeClass('chosen-with-drop chosen-container-active');   
     })
 
     return
