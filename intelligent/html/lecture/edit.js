@@ -122,52 +122,50 @@
         if(str) {
             speakerName = $('#speakerInput2').val();
         }
-        _g.ajax({
-            url: 'http://120.77.204.252:80/lecture/querySpeakerList.do',
-            data: {
-                speaker: {
-                    name: speakerName
-                }
-            },
-            success: function(result) {
-                if(str){
-                    $('#speakerquery2').empty();
-                }else {
-                    $('#speakerquery2').empty()
-                }
-                
-                if(result.code == 200){
-                    alert("success")
-                    var speakerList = result.data.speakerList;
-                    alert(speakerList)
-                    alert(speakerList.length)
-                    for(var i=0;i<speakerList.length;i++){
-                        var name=speakerList[i].name;
-                        var list = '<li class="active-result">' + name +'</li>';
-                        alert(list)
-                        if(str) {
-                            $("#speakerquery2").append(list);
-                        } else {
-                            $("#speakerquery").append(list);
-                        }     
+        if(speakerName != ""){
+            _g.ajax({
+                url: 'http://120.77.204.252:80/lecture/querySpeakerList.do',
+                data: {
+                    speaker: {
+                        name: speakerName
                     }
-                } else if(result.code === 1000){
-                    layer.open({
-                        title: '消息',
-                        content: result.msg,
-                        yes: function(index){
-                            layer.close(index);
-                            window.location.href = '/signin.html';
+                },
+                success: function(result) {
+                    if(str){
+                        $('#speakerquery2').empty();
+                    }else {
+                        $('#speakerquery').empty()
+                    }
+                    
+                    if(result.code == 200){
+                        var speakerList = result.data.speakerList;
+                        for(var i=0;i<speakerList.length;i++){
+                            var name=speakerList[i].name;
+                            var list = '<li class="active-result" data-option-array-index="' + i + '">' + name + '</li>';
+                            if(str) {
+                                $("#speakerquery2").append(list);
+                            } else {
+                                $("#speakerquery").append(list);
+                            }
                         }
-                    });
-                } else {
-                    layer.open({
-                        title: '消息',
-                        content: result.msg,
-                    });
+                    } else if(result.code === 1000){
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                            yes: function(index){
+                                layer.close(index);
+                                window.location.href = '/signin.html';
+                            }
+                        });
+                    } else {
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                        });
+                    }
                 }
-            }
-        })
+            })
+        }
     }
 
     function debounce(str) {
@@ -313,24 +311,24 @@
     });
     
 
-    $('#speakerquery li').mouseover(function() {
+    $('#speakerquery').on("mouseover","li",function(){
         $(this).siblings().removeClass('highlighted');
         $(this).addClass('highlighted');
     })
 
-    $('#speakerquery li').click(function() {
+    $('#speakerquery').on("click","li",function(){
         $('#speakerInput').val($(this).text());
         $('#speakerDiv').removeClass('chosen-with-drop chosen-container-active');
     })
 
-    $('#speakerquery2 li').mouseover(function() {
+    $('#speakerquery2').on("mouseover","li",function(){
         $(this).siblings().removeClass('highlighted');
         $(this).addClass('highlighted');
     })
 
-    $('#speakerquery2 li').click(function() {
-        $('#speakerInput2').val($(this).text());
-        $('#speakerDiv2').removeClass('chosen-with-drop chosen-container-active');
+    $('#speakerquery2').on("click","li",function(){
+        $('#speakerInput').val($(this).text());
+        $('#speakerDiv').removeClass('chosen-with-drop chosen-container-active');
     })
 
 
