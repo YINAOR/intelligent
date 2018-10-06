@@ -33,9 +33,9 @@
                     var sponsor = result.data.lecture.sponsor;
                     var organization = result.data.lecture.organization;
                     $('#name').val(name);
-                    $('#imageUrl').val(imageUrl);
+                    $('input[name="imagefile"]').val(imageUrl);
                     $('#prePhoto').html('<img src="http://120.77.204.252:80'+ imageUrl +'" style="width: 120px; height:150px">');
-                    $('#lectureProvedImage').val(lectureProvedImage);
+                    $('input[name="provefile"]').val(lectureProvedImage);
                     $('#preProvePhoto').html('<img src="http://120.77.204.252:80'+ lectureProvedImage +'" style="width: 120px; height:150px">');
                     $('#date').val(dateStr);
                     $('#startTimePicker').val(startTime);
@@ -212,16 +212,13 @@
                     spbrief: $("#spbrief2").val()
                 });
             }  
-			
 
             var hour = $('#hour').val();
-            var editor = "$('#editor').val();//editor";
+            var editor = $('#editor').val();//editor;
             var categoryId = $('#categoryId .active input').val();
             var object = $('#object').val();
             var number = $('#number').val();
             var sponsor = $('#sponsor').val();
-
-                
 
             var lecture ={
                 name :title,speakerLinkList:speakerlink,category:{id:categoryId},
@@ -263,8 +260,7 @@
         elem: '#date' //指定元素
     });
 
-    $('input[type="file"]').change(function() {
-        $('#file').val($('input[type="file"]').val().substring($('input[type="file"]').val().lastIndexOf('\\') + 1));
+    $('input[name="imagefile"]').change(function() {
         var url;
         if (window.createObjectURL != undefined) { // basic
             url = window.createObjectURL(this.files[0]);
@@ -272,8 +268,23 @@
             url = window.URL.createObjectURL(this.files[0]);
         } else if (window.webkitURL != undefined) { // webkit or chrome
             url = window.webkitURL.createObjectURL(this.files[0]);
-        }
-        $('#prePhoto').html('<img src="'+ url +'" style="width: 120px; height:150px">');
+        } 
+            $('#file').val($('input[name="imagefile"]').val().substring($('input[name="imagefile"]').val().lastIndexOf('\\') + 1));
+            $('#prePhoto').html('<img src="'+ url +'" style="width: 120px; height:150px">');
+            $('#proveFile').val($('input[name="provefile"]').val().substring($('input[name="provefile"]').val().lastIndexOf('\\') + 1));
+            $('#preProvePhoto').html('<img src="'+ url +'" style="width: 120px; height:150px">'); 
+    })
+    $('input[name="provefile"]').change(function() {
+        var url;
+        if (window.createObjectURL != undefined) { // basic
+            url = window.createObjectURL(this.files[0]);
+        }else if (window.URL != undefined) { // mozilla(firefox)
+            url = window.URL.createObjectURL(this.files[0]);
+        } else if (window.webkitURL != undefined) { // webkit or chrome
+            url = window.webkitURL.createObjectURL(this.files[0]);
+        } 
+        $('#proveFile').val($('input[name="provefile"]').val().substring($('input[name="provefile"]').val().lastIndexOf('\\') + 1));
+        $('#preProvePhoto').html('<img src="'+ url +'" style="width: 120px; height:150px">'); 
     })
 
     $('#startTimePicker').hunterTimePicker();

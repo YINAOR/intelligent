@@ -7,7 +7,7 @@
             <div class="form-group lectureId" style="display: none;">
                 <label class="col-sm-2 control-label">讲座id</label>
                 <div class="col-sm-8">
-                    <input type="text" id="name" class="form-control parsley-validated" value="" data-required="true" disabled>
+                    <input type="text" id="id" class="form-control parsley-validated" value="" data-required="true" disabled>
                     <span class="help-block m-b-none"></span>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                 <label class="col-sm-2 control-label">讲座海报</label>
                 <div id="photoInput" class="col-sm-8">
                     <!-- <form enctype="multipart/form-data" method="post" id="ajaxForm" name="ajaxForm"> -->
-                    <input type="file" name="file" accept="image/*" class="filestyle" id="imageUrl" tabindex="-1" style="position: absolute; clip: rect(0px, 0px, 0px, 0px);">
+                    <input type="file" name="imagefile" accept="image/*" class="filestyle" id="filestyle-0" tabindex="-1" style="position: absolute; clip: rect(0px, 0px, 0px, 0px);">
                     <!-- </form> -->
                     <div class="bootstrap-filestyle input-group">
                         <input type="text" class="form-control" id="file" placeholder="请选择上传文件" disabled=""> 
@@ -43,10 +43,10 @@
                 <label class="col-sm-2 control-label">讲座申请证明</label>
                 <div id="provePhoto" class="col-sm-8">
                     <!-- <form enctype="multipart/form-data" method="post" id="ajaxForm" name="ajaxForm"> -->
-                    <input type="file" name="file" accept="image/*" class="filestyle" id="lectureProvedImage" tabindex="-1" style="position: absolute; clip: rect(0px, 0px, 0px, 0px);">
+                    <input type="file" name="provefile" accept="image/*" class="filestyle" id="filestyle-1" tabindex="-1" style="position: absolute; clip: rect(0px, 0px, 0px, 0px);">
                     <!-- </form> -->
                     <div class="bootstrap-filestyle input-group">
-                        <input type="text" class="form-control" id="file" placeholder="请选择上传文件" disabled=""> 
+                        <input type="text" class="form-control" id="proveFile" placeholder="请选择上传文件" disabled=""> 
                         <span class="group-span-filestyle input-group-btn" tabindex="0">
                             <label for="filestyle-0" class="btn btn btn-default ">
                                 <span class="buttonText">选择文件</span>
