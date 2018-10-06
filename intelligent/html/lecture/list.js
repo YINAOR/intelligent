@@ -45,7 +45,7 @@
     function getList() {
         _g.ajax({
             lock: true,
-            url: 'http://120.77.204.252:80/lecture/queryListPageByAid.do',
+            url: 'http://lai.vipgz1.idcfengye.com/intelligent/lecture/queryListPageByAid.do',
             async: false,
             data:  {
                 paging: data
@@ -92,13 +92,37 @@
     deleteItem = function(id) {
         _g.ajax({
             lock: true,
-            url: 'http://120.77.204.252:80/lecture/delete.do',
+            url: 'http://lai.vipgz1.idcfengye.com/intelligent/lecture/delete.do',
             data: {
                 id: id
             },
             success: function(result) {
                 if(result.code === 200) {
                     getList();
+                }
+            }
+        })
+    }
+
+    sendItem = function(id){
+        _g.ajax({
+            lock: true,
+            url: 'http://lai.vipgz1.idcfengye.com/intelligent/lecture/send.do',
+            data: {
+                id: id
+            },
+            success: function(result) {
+                if(result.code === 200) {
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                    });
+                    getList();
+                } else{
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                    });
                 }
             }
         })
