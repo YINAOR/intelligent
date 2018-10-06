@@ -31,7 +31,7 @@
                     <td>{{item.replyTime || ''}}</td>
                     <td>
                         <button onclick="deleteReply('{{item.id}},{{item.floorId}}')" class="btn btn-success btn-xs">删除回复</button>
-                        <button onclick="_g.openBaseModal('lecture/reply-V', {}, '修改密码');" class="btn btn-danger btn-xs">回复</button>
+                        <button onclick="_g.openBaseModal('lecture/reply-V', {id: '{{item.id}}', floorId: '{{item.floorId}}'}, '修改密码');" class="btn btn-danger btn-xs">回复</button>
                         <button onclick="deleteComment('{{item.id}},{{item.floorId}}')" class="btn btn-danger btn-xs">删除评论</button>
                     </td>
                 </tr>

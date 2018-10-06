@@ -3,10 +3,100 @@
     _g.setNowPage('lecture/edit');
     $('#formContent').html(_g.getTemplate('lecture/edit-V'));
 
+    $('#speakerInput').focus(function() {
+        $('#speakerDiv').addClass('chosen-with-drop chosen-container-active');
+    })
+
+    $('#speakerInput').blur(function(e) {
+        if(e.target.id != 'speakerquery') {
+            $('#speakerDiv').removeClass('chosen-with-drop chosen-container-active');
+        }    
+    })
+
+    $('#speakerquery li').mouseover(function() {
+        $(this).siblings().removeClass('highlighted');
+        $(this).addClass('highlighted');
+    })
+
+    $('#speakerquery li').click(function() {
+        $('#speakerInput').val($(this).text());
+        $('#speakerDiv').removeClass('chosen-with-drop chosen-container-active');
+    })
+
+    return
+
     var id = _g.pm.param.id;
     if(id) {
         $('.panel-heading').text('编辑讲座');
-        getList();
+        $('.lectureId').show();
+        $('#id').val(id);
+        _g.ajax({
+            lock: true,
+            url: 'http://120.77.204.252:80/lecture/queryDetail.do',
+            data: {
+                id: id
+            },
+            success: function(result) {
+                if(result.code === 200) {
+                    var name = result.data.lecture.name;
+                    var imageUrl = result.data.lecture.imageUrl;
+                    var lectureProvedImage = result.data.lecture.lectureProvedImage;
+                    var dateStr = result.data.lecture.dateStr;
+                    var startTime = result.data.lecture.startTime;
+                    var endTime = result.data.lecture.endTime;
+                    var address = result.data.lecture.address;
+                    var isProved = result.data.lecture.isProved;
+                    var hour = result.data.lecture.hour;
+                    var speakerLinkList = result.data.lecture.speakerLinkList;
+                    var content = result.data.lecture.content;
+                    var category = result.data.lecture.category;
+                    var groupOfPep = result.data.lecture.groupOfPep;
+                    var limitNumOfPep = result.data.lecture.limitNumOfPep;
+                    var sponsor = result.data.lecture.sponsor;
+                    var organization = result.data.lecture.organization;
+                    $('#name').val(name);
+                    $('#imageUrl').val(imageUrl);
+                    $('#prePhoto').html('<img src="http://120.77.204.252:80'+ imageUrl +'" style="width: 120px; height:150px">');
+                    $('#lectureProvedImage').val(lectureProvedImage);
+                    $('#preProvePhoto').html('<img src="http://120.77.204.252:80'+ lectureProvedImage +'" style="width: 120px; height:150px">');
+                    $('#date').val(dateStr);
+                    $('#startTimePicker').val(startTime);
+                    $('#endTimePicker').val(endTime);
+                    $('#address').val(address);
+                    $('.lectureProve').val(isProved === 0 ? '否' : '是');
+                    $('#lprove li input[value="'+ isProved +'"]').addClass('active');
+                    $('#hour').val(hour);
+                    $('#spname').val(speakerLinkList[0].name);
+                    $('#spbrief').val(speakerLinkList[0].brief);
+                    if(speakerLinkList.length > 1) {
+                        $('#speakerGroup2').show();
+                        $('#spname2').val(speakerLinkList[1].name);
+                        $('#spbrief2').val(speakerLinkList[1].brief);
+                    }
+                    $('#editor').val(content);
+                    $('#type').val(category.name);
+                    $('#lprove li input[value="'+ category.id +'"]').addClass('active');
+                    $('#limitNumOfPep').val(limitNumOfPep);
+                    $('#sponsor').val(sponsor);
+                    $('#organization').val(organization);
+                } else if(result.code === 1000){
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                        yes: function(index){
+                            layer.close(index);
+                            window.location.href = '/signin.html';
+                        }
+                    });
+                } else {
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                    });
+                }
+
+            }
+        })
     }
 
     function getList() {
@@ -49,51 +139,82 @@
     var editor = new E('#editor');
     editor.create();
 
-    $(document).ready(function(){ 
-
-        $('#spname').on('input propertychange', function(){
-            let name = $('#spname').val();
-            if(name != null){
-                _g.ajax({
-                    lock: true,
-                    url: 'http://120.77.204.252:80/lecture/querySpeakerList.do',
-                    async: false,
-                    data: {
-                        speaker: {
-                            name: name
-                        }
-                    },
-                    success: function(result) {
-                        $('#speakerquery').empty();
-                        if(result.code == 200){
-                            var speakerList = result.data.speakerList;
-        
-                            for(var i in speakerList){
-                                var name=speakerList[i].name;
-                                var brief=speakerList[i].brief;
-                                //返回结果
-                                var str="<li>" +name+ "</li>";
-                                $("#speakerquery").append(str);
-                            }
-                        } else if(result.code === 1000){
-                            layer.open({
-                                title: '消息',
-                                content: result.msg,
-                                yes: function(index){
-                                    layer.close(index);
-                                    window.location.href = '/signin.html';
-                                }
-                            });
+    function querySpeakerList(str) {
+        var speakerName = $('#spname').val();
+        if(str) {
+            speakerName = $('#spname2').val();
+        }
+        var speakerList = [{name: 5656},{name: 7777}];
+                    for(var i in speakerList){
+                        var name=speakerList[i].name;
+                        // var brief=speakerList[i].brief;
+                        //返回结果
+                        var list='<option value="'+ name + '">'+ name +'</option>';
+                        if(str) {
+                            $("#speakerquery2").append(list);
                         } else {
-                            layer.open({
-                                title: '消息',
-                                content: result.msg,
-                            });
-                        }
+                            $("#speakerquery").append(list);
+                        }     
                     }
-                })
+        return
+        _g.ajax({
+            url: 'http://120.77.204.252:80/lecture/querySpeakerList.do',
+            data: {
+                speaker: {
+                    name: speakerName
+                }
+            },
+            success: function(result) {
+                if(str) {
+                    $('#speakerquery2').empty();
+                } else {
+                    $('#speakerquery').empty();
+                } 
+                if(result.code == 200){
+                    var speakerList = result.data.speakerList;
+                    for(var i in speakerList){
+                        var name=speakerList[i].name;
+                        var brief=speakerList[i].brief;
+                        //返回结果
+                        var list="<li>" +name+ "</li>";
+                        if(str) {
+                            $("#speakerquery2").append(list);
+                        } else {
+                            $("#speakerquery").append(list);
+                        }     
+                    }
+                } else if(result.code === 1000){
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                        yes: function(index){
+                            layer.close(index);
+                            window.location.href = '/signin.html';
+                        }
+                    });
+                } else {
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                    });
+                }
             }
-        });
+        })
+    }
+
+    function debounce(str) {
+        var timer = null;
+        return function() {
+            if(timer) {
+                clearTimeout(timer);
+            }
+            timer = setTimeout(querySpeakerList(str),2000);
+        }
+    }
+
+    document.getElementById('spname').addEventListener('keyup', debounce());
+    document.getElementById('spname2').addEventListener('keyup', debounce('spname2'));
+
 
         $("#addSpeaker").click(function(){
             if($("#speakerGroup2").is(':hidden')) {
@@ -168,7 +289,7 @@
                 }
             })
         })
-    })
+
 
     laydate.render({
         elem: '#date' //指定元素
