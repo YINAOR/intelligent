@@ -90,7 +90,7 @@
         formData.append('gender', gender);
 
         if(id){
-                url = 'http://120.77.204.252:80/speaker/update.do';
+            url = 'http://120.77.204.252:80/speaker/update.do';
         } 
 
         $.ajax({
@@ -100,9 +100,7 @@
             async:false,
             contentType:false,
             processData:false,
-            data: {
-                id:id
-            },
+            data: speaker,
             success: function(result) {
                 if(result.code === 200) {
                     layer.open({

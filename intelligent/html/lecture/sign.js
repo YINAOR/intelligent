@@ -42,7 +42,7 @@
             }
             xmlhttp.send(JSON.stringify({data: {
                 QRCode: 'Y',//是否获取签到二维码
-                status: 'S',//开始签到or结束签到
+                status: 'A',//开始签到or结束签到
                 lectureId: 2 //讲座id
             },
             token: sessionStorage.getItem('token')}));
