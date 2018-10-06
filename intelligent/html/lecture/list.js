@@ -16,15 +16,6 @@
                         var str='<li><input type="radio" name="d-s-r" value="'+ id +'"><a href="#">'+name+'</a></li>'
                         $("#type").append(str);
                     }
-                } else if(result.code === 1000){
-                    layer.open({
-                        title: '消息',
-                        content: result.msg,
-                        yes: function(index){
-                            layer.close(index);
-                            window.location.href = '/signin.html';
-                        }
-                    });
                 } else {
                     layer.open({
                         title: '消息',
@@ -78,17 +69,6 @@
                         }
                     });
                     _g.render('lecture/list-V', data1, '#table');
-    			} else {
-    				layer.open({
-    					title: '消息',
-    					content: result.msg,
-                        yes: function(index){
-                            if(result.msg.indexOf('请登录') != -1) {
-                                layer.close(index);
-                                window.location.href = '/signin.html';
-                            }
-                        }
-    				});
     			}
             },  
         });
