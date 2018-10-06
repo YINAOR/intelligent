@@ -7,7 +7,8 @@
         currentPage: 1,
         showCount: 5,
         t: {
-            name: $('#college').val()
+            name: $('#college').val(),
+            status: $('#status .active input').val()
         }
     }
 
@@ -24,9 +25,9 @@
     		},
     		success: function(result) {
     			if(result.code === 200) {
-                    if(result.data.paging.list.length > 0){
+                    if(result.data.paging) {
+                        if(result.data.paging.list.length > 0){
                         var data1 = { list: result.data.paging.list };
-
                         _g.initPaginator({
                             currentPage: result.data.paging.currentPage,
                             totalPages: result.data.paging.totalPage,
@@ -39,6 +40,11 @@
                         });
                         _g.render('user/institution-V', data1, '#table');
                     }
+                } else {
+                    var data1 = { list: [] };
+                    _g.render('user/institution-V', data1, '#table');
+                }
+                    
                 } else if(result.code === 1000){
                     layer.open({
                         title: '消息',
@@ -89,6 +95,13 @@
     		}
     	})
     }
+
+    $('#searchBtn').click(function() {
+        data.currentPage = 1;
+        data.t.name = $('#college').val();
+        data.t.status = $('#status .active input').val();
+        getList();
+    })
 
     downloadExcelTemplet = function() {
         var token = sessionStorage.getItem('token');;

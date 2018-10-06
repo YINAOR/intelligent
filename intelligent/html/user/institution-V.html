@@ -5,19 +5,21 @@
                 <th>序号</th>
                 <th>学院编码</th>
                 <th>学院名称</th>
+                <th>状态</th>
                 <th>操作</th>
             </tr>
         </thead>
         <tbody>
             {{if !list.length}}
             <tr>
-                <td colspan="3" style="text-align: center;">没有记录</td>
+                <td colspan="5" style="text-align: center;">没有记录</td>
             </tr>
             {{else}} {{each list item index}}
             <tr data-custom-id="{{item.id}}">
                 <td>{{item.id}}</td>
                 <td>{{item.code}}</td>
                 <td>{{item.name}}</td>
+                <td>{{item.status === 0 ? '使用中' : '已停用'}}</td>
                 <td>
                     <button onclick="_g.openWin('user/editInstitution','id={{item.id}}')" class="btn btn-success btn-xs">编辑</button>
                     <!-- <button onclick="deleteInstitution('{{item.id}}')" class="btn btn-danger btn-xs" data-id="1234">删除</button> -->

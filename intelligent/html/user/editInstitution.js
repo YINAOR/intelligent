@@ -39,7 +39,9 @@
     $('#adddepart').click(function(){
         var code = $('#code').val();
         var name = $('#name').val();
-        var college = {
+        $('#messageArea').html('');
+        if(code && name) {
+            var college = {
             code : code,
             name : name
         };
@@ -50,12 +52,12 @@
         }  
         _g.ajax({
             lock: true,
-    		url: url,
-    		async: false,
-    		data: {
-    			college : college
+            url: url,
+            async: false,
+            data: {
+                college : college
             },
-    		success: function(result) {
+            success: function(result) {
                 if(result.code === 1000){
                     layer.open({
                         title: '消息',
@@ -76,6 +78,13 @@
                 }
             }
         })
+    } else {
+        _g.setErrorAlert({
+                errorText: '学院编码和学院名称不能为空'
+            });
+    }
+       
     })
+    }
 
 })();

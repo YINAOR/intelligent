@@ -78,9 +78,12 @@
     // });
 
     submitSp = function(){
+        
         $('#messageArea').html('');
         var gender = $('#gender .active input').val();
         if(gender && $('#spname').val() && $('#spbrief').val()) {
+          document.activeElement.blur();
+          $('.ui-loading').show();
             var token = sessionStorage.getItem('token');
             var url = 'http://120.77.204.252:80/speaker/save.do?token='+ token +'&uploadsign=speaker';
             var formData = new FormData($('.form-horizontal')[0]);
@@ -146,10 +149,6 @@
       //    打印信息如下：
       //    Blob {size: 9585, type: "image/jpg"}
       //    */     }
-                
-            
-            document.activeElement.blur();
-            $('.ui-loading').show();
             $.ajax({
                 url: url,
                 dataType:"json",
@@ -159,7 +158,7 @@
                 processData:false,
                 data: formData,
                 success: function(result) {
-                    $('.ui-loading').hide();
+                    _g.hideLoading();
                     if(result.code === 200) {
                         layer.open({
                             title: '消息',
@@ -183,7 +182,7 @@
                     }
                 },
                 error: function(error) {
-                    $('.ui-loading').hide();
+                    _g.hideLoading();
                     layer.open({
                        title: '消息',
                        content: '请求超时，请重试！',

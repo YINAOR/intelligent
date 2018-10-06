@@ -7,15 +7,15 @@
         currentPage: 1,
         showCount: 5,
         t: {
-            name: $('#major').val(),
+            name: $('#majorName').val(),
             college:{
-                id: $('#id').val()
+                id: $('#majorId').val()
             }
         }
     }
 
     var data1 = { list: [] };
-    _g.render('user/institution-V', data1, '#table');
+    _g.render('user/major-V', data1, '#table');
 
     function getList() {
     	_g.ajax({
@@ -27,7 +27,8 @@
     		},
     		success: function(result) {
     			if(result.code === 200) {
-                    if(result.data.paging.list.length > 0){
+                    if(result.data.paging) {
+                        if(result.data.paging.list.length > 0){
                         var data1 = { list: result.data.paging.list };
                         _g.initPaginator({
                             currentPage: result.data.paging.currentPage,
@@ -41,6 +42,11 @@
                         });
                         _g.render('user/major-V', data1, '#table');
                     }
+                } else {
+                    var data1 = { list: [] };
+                    _g.render('user/major-V', data1, '#table');
+                }
+                    
     			} else if(result.code === 1000){
                     layer.open({
                         title: '消息',
@@ -92,8 +98,10 @@
     	})
     }
 
-    $('#searchBtn').click(function() {
+    $('#search').click(function() {
         data.currentPage = 1;
+        data.t.name = $('#majorName').val();
+        data.t.college.id = $('#majorId').val();
         getList();
     })
 
