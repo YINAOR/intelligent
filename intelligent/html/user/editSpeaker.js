@@ -75,43 +75,12 @@
     // });
 
     submitSp = function(){
-
-        if(id){
-            _g.ajax({
-                lock: true,
-                url: 'http://120.77.204.252:80/speaker/update.do',
-                data: {
-                    speaker:{
-                        id: id,
-                        name: $('#spname').val(),
-                        brief: $('#spbrief').val()
-                    }
-                },
-                success: function(result) {
-                    if(result.code === 200) {
-                        layer.open({
-                            title: '消息',
-                            content: result.msg,
-                        });
-                        history.back();
-                    } else if(result.code === 1000){
-                        layer.open({
-                            title: '消息',
-                            content: result.msg,
-                            yes: function(index){
-                                layer.close(index);
-                                window.location.href = '/signin.html';
-                            }
-                        });
-                    } else {
-                        layer.open({
-                            title: '消息',
-                            content: result.msg,
-                        });
-                    }
-                } 
-            })
+        var speaker = {
+            id: id,
+            name: $('spname').val(),
+            brief: $('spbrief').val()
         }
+        var url = 'http://120.77.204.252:80/speaker/save.do?token='+ token +'&uploadsign=speaker';
 
         var gender = $('.dropdown-label').text() === '性别'? '' : $('.dropdown-label').text() === '男' ? 0 : 1;
         var token = sessionStorage.getItem('token');
@@ -119,14 +88,21 @@
         formData.delete('id');
         formData.delete('d-s-r');
         formData.append('gender', gender);
+
+        if(id){
+                url = 'http://120.77.204.252:80/speaker/update.do';
+        } 
+
         $.ajax({
-            url: 'http://120.77.204.252:80/speaker/save.do?token='+ token +'&uploadsign=speaker',
+            url: url,
             dataType:"json",
             type:"POST",
             async:false,
             contentType:false,
             processData:false,
-            data: formData,
+            data: {
+                id:id
+            },
             success: function(result) {
                 if(result.code === 200) {
                     layer.open({
