@@ -26,19 +26,26 @@
             },
             success: function(result) {
                 if(result.code === 200) {
-                    if(result.data.paging.list.length>0){
-                        var categoryList = { list: result.data.paging.list };
+
+                    var categoryList = { list:result.data.paging.list };
+                    var LcCategory = {list:[]};
+                    for(let i=0;i<categoryList.list.length;i++){
+                        if(categoryList.list[i].parentCode == "LC0001"){                           
+                            LcCategory.list.push(categoryList.list[i])
+                        }
+                    }
+                    if(LcCategory.list.length>0){
                         _g.initPaginator({
                             currentPage: result.data.paging.currentPage,
                             totalPages: result.data.paging.totalPage,
-                            totalCount: result.data.paging.totalResult,
+                            totalCount: LcCategory.list.length,
                             onPageClicked: function(page) {
                                 console.log(page)
                                 data.currentPage = page;
                                 getList();
                             }
                         });
-                        _g.render('lecture/listType-V', categoryList, '#table');
+                        _g.render('lecture/listType-V', LcCategory, '#table');
                     }    
     			} else if(result.code === 1000){
                     layer.open({
