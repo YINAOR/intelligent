@@ -5,7 +5,7 @@
 
     var id = _g.pm.param.id;
     if(id) {
-        $('.panel-heading').text('编辑讲堂');
+        $('.panel-heading').text('编辑讲座');
         getList();
     }
 
