@@ -16,11 +16,6 @@
                         var str='<li><input type="radio" name="d-s-r" value="'+ id +'"><a href="#">'+name+'</a></li>'
                         $("#type").append(str);
                     }
-                } else {
-                    layer.open({
-                        title: '消息',
-                        content: result.msg,
-                    });
                 }
             },
             error: function(error) {
@@ -69,7 +64,21 @@
                         }
                     });
                     _g.render('lecture/list-V', data1, '#table');
-    			}
+    			} else if(result.code === 1000){
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                        yes: function(index){
+                            layer.close(index);
+                            window.location.href = '/signin.html';
+                        }
+                    });
+                } else{
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                    })
+                }
             },  
         });
     }
@@ -90,20 +99,6 @@
             success: function(result) {
                 if(result.code === 200) {
                     getList();
-                }else if(result.code === 1000){
-                    layer.open({
-                        title: '消息',
-                        content: result.msg,
-                        yes: function(index){
-                            layer.close(index);
-                            window.location.href = '/signin.html';
-                        }
-                    });
-                } else {
-                    layer.open({
-                        title: '消息',
-                        content: result.msg,
-                    });
                 }
             }
         })

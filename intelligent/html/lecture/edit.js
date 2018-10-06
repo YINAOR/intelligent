@@ -118,9 +118,9 @@
     editor.create();
 
     function querySpeakerList(str) {
-        var speakerName = $('#spname').val();
+        var speakerName = $('#speakerInput').val();
         if(str) {
-            speakerName = $('#spname2').val();
+            speakerName = $('#speakerInput2').val();
         }
         _g.ajax({
             url: 'http://120.77.204.252:80/lecture/querySpeakerList.do',
@@ -130,16 +130,21 @@
                 }
             },
             success: function(result) {
-                if(str) {
+                if(str){
                     $('#speakerquery2').empty();
-                } else {
-                    $('#speakerquery').empty();
-                } 
+                }else {
+                    $('#speakerquery2').empty()
+                }
+                
                 if(result.code == 200){
+                    alert("success")
                     var speakerList = result.data.speakerList;
-                    for(var i in speakerList){
+                    alert(speakerList)
+                    alert(speakerList.length)
+                    for(var i=0;i<speakerList.length;i++){
                         var name=speakerList[i].name;
-                        var list = '<li class="active-result">' + Alaska +'</li>';
+                        var list = '<li class="active-result">' + name +'</li>';
+                        alert(list)
                         if(str) {
                             $("#speakerquery2").append(list);
                         } else {
