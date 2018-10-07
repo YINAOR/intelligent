@@ -2,7 +2,7 @@
     <table class="table table-striped b-t b-light">
         <thead>
             <tr>
-                <th>ID</th>
+                <th style="width:60px;">序号</th>
                 <th>名称</th>  
                 <th>开始时间</th>
                 <th>结束时间</th>
@@ -10,11 +10,11 @@
                 <th>地点</th>
                 <th>讲座证明</th>
                 <th>主讲人</th>
-                <th>分类</th>
+                <th>讲座类别</th>
                 <th>面向对象</th>
                 <th>限制人数</th>
-                <th>状态</th>
-                <th style="width:300px">操作</th>
+                <th>审核状态</th>
+                <th style="width:280px">操作</th>
             </tr>
         </thead>
         <tbody>
@@ -24,7 +24,7 @@
             </tr>
             {{else}} {{each list item index}}
             <tr data-custom-id="{{item.id}}">
-                <td>{{item.id}}</td>
+                <td>{{index + 1}}</td>
                 <td>{{item.name}}</td>
                
                 <td>{{item.startTime}}</td>

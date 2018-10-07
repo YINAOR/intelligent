@@ -19,6 +19,7 @@
                 if(result.code === 200) {
                     var speaker = result.data.speaker;
                     $('#spid').val(speaker.id);
+                    $('#spname').attr("readonly",true);
                     $('#spname').val(speaker.name);
                     $('#gender li input[value='+ speaker.gender +']').parent().addClass('active');
                     $('.dropdown-label').text(speaker.gender === 0 ? '男' : '女');

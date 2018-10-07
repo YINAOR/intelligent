@@ -2,32 +2,31 @@
     <table class="table table-striped b-t b-light">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>名称</th>
-               
+                <th style="width:60px;">序号</th>
+                <th>名称</th> 
                 <th>开始时间</th>
                 <th>结束时间</th>
                 <th>讲座时长</th>
                 <th>地点</th>
                 <th>讲座证明</th>
                 <th>主讲人</th>
-                <th>分类</th>
+                <th>讲座类别</th>
                 <th>面向对象</th>
                 <th>限制人数</th>
-                <th>状态</th>
-                <th style="width:300px">操作</th>
+                <th>发送状态</th>
+                <th>审核状态</th>
+                <th style="width:280px">操作</th>
             </tr>
         </thead>
         <tbody>
             {{if !list.length}}
             <tr>
-                <td colspan="13" style="text-align: center;">没有记录</td>
+                <td colspan="14" style="text-align: center;">没有记录</td>
             </tr>
             {{else}} {{each list item index}}
             <tr data-custom-id="{{item.id}}">
-                <td>{{item.id}}</td>
+                <td>{{index + 1}}</td>
                 <td>{{item.name}}</td>
-               
                 <td>{{item.startTime}}</td>
                 <td>{{item.endTime}}</td>
                 <td>{{item.hour}}</td>
@@ -43,6 +42,7 @@
                 <td>{{item.category.name}}</td>
                 <td>{{item.groupOfPep}}</td>
                 <td>{{item.limitNumOfPep}}</td>
+                <td>{{item.isSend === 0 ? '未发送' : item.isSend === 1 ? '已发送' : '回退'}}</td>
                 <td>{{item.status === 0 ? '待审核' : item.status === 1 ? '通过审核' : '审核不通过'}}</td>
                 <td>
                     <button onclick="_g.openWin('lecture/sign','id={{item.id}}');" class="btn btn-success btn-xs" style="margin-bottom: 10px;">讲座开始签到</button>

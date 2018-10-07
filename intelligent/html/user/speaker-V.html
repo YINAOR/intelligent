@@ -2,12 +2,10 @@
     <table class="table table-striped b-t b-light">
         <thead>
             <tr>
-                <th>序号</th>
+                <th style="width:60px;">序号</th>
                 <th>讲师照片</th>
-                <th>姓名</th>
-                <th>性别</th>
-                <th>简介</th>
-                <th>操作</th>
+                <th>讲师信息</th>
+                <th style="width:280px;">操作</th>
             </tr>
         </thead>
         <tbody>
@@ -19,9 +17,11 @@
             <tr data-custom-id="{{item.id}}">
                 <td>{{showCount * (currentPage-1) + index + 1}}</td>
                 <td><img src="http://120.77.204.252:80{{item.imageUrl}}" style="width: 100px; height: 150px"/></td>
-                <td>{{item.name}}</td>
-                <td>{{item.gender === 0 ? '男' : '女'}}</td>
-                <td>{{item.brief}}</td>               
+                <td>
+                姓名：{{item.name}}</br>
+                性别：{{item.gender === 0 ? '男' : '女'}}</br>
+                简介：{{item.brief}}
+                </td>               
                 <td>
                     <button onclick="_g.openWin('user/editSpeaker', 'id={{item.id}}')" class="btn btn-success btn-xs">编辑</button>
                     <button onclick="deleteId('{{item.id}}','{{index+1}}')" class="btn btn-danger btn-xs" data-id="1">删除</button>
