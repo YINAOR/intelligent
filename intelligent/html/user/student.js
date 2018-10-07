@@ -35,7 +35,6 @@
     		success: function(result) {
     			if(result.code === 200) {
                     if(result.data.paging) {
-                        var data1 = { list: result.data.paging.list };
                         _g.initPaginator({
                         currentPage: result.data.paging.currentPage,
                         totalPages: result.data.paging.totalPage,
@@ -46,6 +45,7 @@
                             getList();
                         }
                     });
+                    var data1 = { list: result.data.paging.list, currentPage: data.currentPage, showCount: data.showCount};
                     _g.render('user/student-V', data1, '#table');
                     } else {
                         var data1 = { list: [] };
@@ -162,61 +162,97 @@
     }
 
     deleteStudent = function(id) {
-        _g.ajax({
-            url: 'http://120.77.204.252:80/manageStudent/delete.do',
-            data: {
-                id: id
-            },
-            success: function(result) {
-                if(result.code === 1000){
-                    layer.open({
-                        title: '消息',
-                        content: result.msg,
-                        yes: function(index){
-                            layer.close(index);
-                            window.location.href = '/signin.html';
+        layer.confirm('您确定要删除此学生吗？', { title: '询问' }, function(index) {
+            _g.ajax({
+                url: 'http://120.77.204.252:80/manageStudent/delete.do',
+                data: {
+                    id: id
+                },
+                success: function(result) {
+                    if(result.code === 1000){
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                            yes: function(index){
+                                layer.close(index);
+                                window.location.href = '/signin.html';
+                            }
+                        });
+                    } else {
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                        });
+                        if(result.code === 200) {
+                           getList();
                         }
-                    });
-                } else {
-                    layer.open({
-                        title: '消息',
-                        content: result.msg,
-                    });
-                    if(result.code === 200) {
-                        getList();
-                    }
-                }                    
-            }
-        })
+                    }                    
+                }
+           })
+            layer.close(index);
+        });
+        
     }
 
     logout = function(id) {
-        _g.ajax({
-            url: 'http://120.77.204.252:80/manageStudent/forcedLogout.do',
-            data: {
-                id: id
-            },
-            success: function(result) {
-                if(result.code === 1000){
-                    layer.open({
-                        title: '消息',
-                        content: result.msg,
-                        yes: function(index){
-                            layer.close(index);
-                            window.location.href = '/signin.html';
+        layer.confirm('您确定要强制让此学生下线吗？', { title: '询问' }, function(index) {
+            _g.ajax({
+                url: 'http://120.77.204.252:80/manageStudent/forcedLogout.do',
+                data: {
+                    id: id
+                },
+                success: function(result) {
+                    if(result.code === 1000){
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                            yes: function(index){
+                                layer.close(index);
+                                window.location.href = '/signin.html';
+                            }
+                        });
+                    } else {
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                        });
+                        if(result.code === 200) {
+                           getList();
                         }
-                    });
-                } else {
-                    layer.open({
-                        title: '消息',
-                        content: result.msg,
-                    });
-                    if(result.code === 200) {
-                        getList();
-                    }
-                }                    
-            }
-        })
+                    }                    
+                }
+           })
+            layer.close(index);
+        });
+    }
+
+    resetPassword = function(id) {
+        layer.confirm('您确定要重置此学生密码吗？', { title: '询问' }, function(index) {
+            _g.ajax({
+                url: 'http://120.77.204.252:80/manageStudent/resetPassword.do',
+                data: {
+                    id: id
+                },
+                success: function(result) {
+                    if(result.code === 1000){
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                            yes: function(index){
+                                layer.close(index);
+                                window.location.href = '/signin.html';
+                            }
+                        });
+                    } else {
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                        });
+                    }                    
+                }
+           })
+            layer.close(index);
+        });
     }
 
     downloadExcelTemplet = function() {

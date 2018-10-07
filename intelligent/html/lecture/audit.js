@@ -1,7 +1,7 @@
 (function () {
 
-    _g.setNowPage('lecture/list');
-    $('#formContent').html(_g.getTemplate('lecture/list-V'));
+    _g.setNowPage('lecture/audit');
+    $('#formContent').html(_g.getTemplate('lecture/audit-V'));
 
     function getTypeList() {
         _g.ajax({
@@ -49,7 +49,7 @@
     function getList() {
         _g.ajax({
             lock: true,
-            url: 'http://120.77.204.252:80/lecture/queryListPageByAid.do',
+            url: 'http://120.77.204.252:80/allLecture/queryListPage.do',
             async: false,
             data:  {
                 paging: data
@@ -68,10 +68,10 @@
                             getList();
                         }
                     });
-                    _g.render('lecture/list-V', data1, '#table');
+                    _g.render('lecture/audit-V', data1, '#table');
                     } else {
                         var result = { list: [] };
-                        _g.render('lecture/list-V', result, '#table');
+                        _g.render('lecture/audit-V', result, '#table');
                     }
     			} else if(result.code === 1000){
                     layer.open({
@@ -126,28 +126,44 @@
         })
     }
 
-    sendItem = function(id){
+    auditItem = function(id) {
+        _g.openBaseModal('lecture/list-audit-V', {id: id}, '审核讲座');
+    }
+
+
+    _g.audit = function(id) {
+        var status = $('input[name=a]:checked').val();
+        var opinion = $('#opinion').val();
         _g.ajax({
             lock: true,
-            url: 'http://lai.vipgz1.idcfengye.com/intelligent/lecture/send.do',
+            url: 'http://lai.vipgz1.idcfengye.com/intelligent/allLecture/audit.do',
             data: {
-                id: id
+                lecture: {
+                    id: id,
+                    status: status,
+                    checkDescription: opinion
+                }
             },
             success: function(result) {
-                if(result.code === 200) {
+                if(result.code === 1000){
                     layer.open({
                         title: '消息',
                         content: result.msg,
+                        yes: function(index){
+                            layer.close(index);
+                            window.location.href = '/signin.html';
+                        }
                     });
-                    getList();
                 } else{
                     layer.open({
                         title: '消息',
                         content: result.msg,
-                    });
+                    })
+                    if(result.code === 200) {
+                        _g.hideBaseModal();
+                    }
                 }
             }
-        })
+        })     
     }
-
 })();

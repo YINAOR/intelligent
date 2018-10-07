@@ -22,10 +22,13 @@
                     $('#spname').val(speaker.name);
                     $('#gender li input[value='+ speaker.gender +']').parent().addClass('active');
                     $('.dropdown-label').text(speaker.gender === 0 ? '男' : '女');
-                    firstFileName = speaker.imageUrl;
-                    if(speaker.imageUrl != '') {
+                    
+                    if(speaker.imageUrl) {
                         $('#file').val(speaker.imageUrl);
                         $('#prePhoto').append('<img src="http://120.77.204.252:80' + speaker.imageUrl +'" style="width：100px;height: 150px;"/>');
+                        firstFileName = speaker.imageUrl;
+                    } else {
+                      firstFileName = '';
                     }
                     $('#spbrief').val(speaker.brief);
                 } else if(result.code === 1000){
@@ -94,7 +97,7 @@
             formData.delete('d-s-r');
             formData.append('gender', gender);
             if(id){
-                url = 'http://lai.vipgz1.idcfengye.com/intelligent/speaker/update.do?token='+ token +'&uploadsign=speaker';
+                url = 'http://120.77.204.252:80/speaker/update.do?token='+ token +'&uploadsign=speaker';
                 formData.append('id', id);
                 if(firstFileName == $('#file').val()) {
                     formData.delete('imagefile');

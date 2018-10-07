@@ -9,7 +9,7 @@
 
     if (id) {
         $('#header').text("编辑管理员");
-        $('.hidePassword').css('display','none');
+        $('.hidePassword').hide();
         $('.admin').show();
         function getDetail() {
             _g.ajax({
@@ -24,6 +24,10 @@
                         $('#username').val(administrator.account);
                         $('#status').val(administrator.status  === 0 ? '正常' : '冻结');
                         $('#name').val(administrator.name);
+                        if(administrator.avatar) {
+                            $('#file').val(administrator.avatar);
+                            $('#prePhoto').append('<img src="http://120.77.204.252:80' + administrator.avatar +'" style="width：100px;height: 150px;"/>');
+                        }                        
                         $('#institution').val(administrator.organization);
                         $('#mobile').val(administrator.mobile);
                         $('#email').val(administrator.email);
@@ -49,11 +53,45 @@
                 }
             })
         }
-        getDetail();     
-    }
-
-
-    function getAuthority() {
+        getDetail();
+        function unassignedPerlist() {
+            _g.ajax({
+                url: 'http://120.77.204.252:80/manageAdmin/getPermissionListByAid.do',
+                data: {
+                    id: id
+                },
+                success: function(result) {
+                    if(result.code === 200) {
+                        var unassignedPerminssion = result.data.unassignedPerlist;
+                        _.each(unassignedPerminssion,function(item,index) {
+                            $('#allAuthority').append('<option value="' + item.id + '">' + item.describe + '</option>');
+                        })
+                    } else if(result.code === 1000){
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                            yes: function(index){
+                                layer.close(index);
+                                window.location.href = '/signin.html';
+                            }
+                        });
+                    } else {
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                        });
+                    }
+                }
+            })
+        }
+        unassignedPerlist();
+        $('#username').attr('disabled',true);
+        $('#name').attr('disabled',true);
+        $('#institution').attr('disabled',true);
+        $('#mobile').attr('disabled',true);
+        $('#email').attr('disabled',true); 
+    } else {
+        function getAuthority() {
         _g.ajax({
             lock: true,
             url: 'http://120.77.204.252:80/manageAdmin/queryPermissionList.do',
@@ -61,18 +99,9 @@
             success: function(result) {
                 if(result.code === 200) {
                     var permissionList = result.data.permissionList;
-                    if(id) {
-                        _.each(permissionList.concat(selectedPerminssion),function(item, index,arr) {
-                            if(arr.indexOf(item) === arr.lastIndexOf(item)) {
-                                $('#allAuthority').append('<option value="' + item.id + '">' + item.describe + '</option>');
-                            }
-                        })
-                    } else {
-                        _.each(permissionList,function(item,index) {
-                            $('#allAuthority').append('<option value="' + item.id + '">' + item.describe + '</option>');
-                        })
-                    }
-                    
+                    _.each(permissionList,function(item,index) {
+                        $('#allAuthority').append('<option value="' + item.id + '">' + item.describe + '</option>');
+                    })   
                 } else if(result.code === 1000){
                     layer.open({
                         title: '消息',
@@ -100,6 +129,10 @@
         })
     }
     getAuthority();
+    }
+
+
+    
     
 
     $('#allAuthority').change(function() {
@@ -197,58 +230,73 @@
     })
 
     $('#submitBtn').click(function() {
-        var id = $('#id').val();
+        var url = 'http://120.77.204.252:80/manageAdmin/save.do';
         var password = $('#password').val();
         var passwordSure = $('#passwordSure').val();
         var username = $('#username').val();
         var name = $('#name').val();
         var institution = $('#institution').val();
+        var mobile = $('#mobile').val();
+        var email = $('#email').val();  
         var authority = [];
         $('#selectedAuthority option').each(function() {
             var value = $(this).val();
             authority.push({id: value});
         })
-        if(id == '') {
-            layer.open({
-                title: '消息',
-                content: '管理员账号不能为空！'
-            });
-            return
-        }
-        if(password == '') {
-            layer.open({
-                title: '消息',
-                content: '密码不能为空！'
-            });
-            return
-        }
-        if(passwordSure == '') {
-            layer.open({
-                title: '消息',
-                content: '请先确认密码！'
-            });
-            return
-        }
-        if(username == '') {
+        var data;
+        if(id) {
+            url = 'http://120.77.204.252:80/manageAdmin/update';
+            data = {
+                administrator: { 
+                    id: id,
+                    permissionList: authority
+                }
+            }
+        } else {
+            data = {
+                administrator: { 
+                    password: password,
+                    account: username,
+                    name: name,
+                    mobile: mobile,
+                    email: email,
+                    organization: institution,
+                    permissionList: authority
+                }
+            };
+            if(username == '') {
             layer.open({
                 title: '消息',
                 content: '用户名不能为空！'
             });
             return
-        }
+            }
+            if(name == '') {
+            layer.open({
+                title: '消息',
+                content: '姓名不能为空！'
+            });
+            return
+            }
+            if(password == '') {
+            layer.open({
+                title: '消息',
+                content: '密码不能为空！'
+            });
+            return
+            }
+            if(passwordSure == '') {
+            layer.open({
+                title: '消息',
+                content: '请先确认密码！'
+            });
+            return
+            }
+        }   
         _g.ajax({
             lock: true,
-            url: 'http://120.77.204.252:80/manageAdmin/save.do',
-            data: {
-                administrator: { 
-                    ano: id,
-                    password: password,
-                    account: username,
-                    name: name,
-                    organization: institution,
-                    permissionList: authority
-                }
-            },
+            url: url,
+            data: data,
             success: function(result) {
                 if(result.code === 1000) {
                     layer.open({
@@ -264,8 +312,8 @@
                         title: '消息',
                         content: result.msg
                     })
-                    if(data.msg.indexOf('成功') != -1) {
-                       _g.openWin('user/admin');
+                    if(result.code === 200) {
+                        history.back(-1);
                     }
                 }
                 

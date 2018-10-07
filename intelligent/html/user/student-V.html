@@ -22,7 +22,7 @@
             </tr>
             {{else}} {{each list item index}}
             <tr data-custom-id="{{item.id}}">
-                <td>{{index+1}}</td>
+                <td>{{showCount*(currentPage-1)+index+1}}</td>
                 <td>{{item.id}}</td>
                 <td>{{item.name}}</td>
                 <td>{{item.gender === 0 ? '男' : '女'}}</td>
@@ -32,11 +32,16 @@
                 <td>{{item.enrollmentTimeStr}}</td>
                 <td>{{item.status === 0 ? '正常' : '冻结'}}</td>
                 <td>
+                    <button onclick="_g.openWin('user/studentDetail','id={{item.id}}')" class="btn btn-success btn-xs">详情</button>
+                    {{if item.status === 0}}
                     <button onclick="freeze('{{item.id}}',1)" class="btn btn-danger btn-xs" data-id="1234">冻结</button>
+                    {{else}}
                     <button onclick="freeze('{{item.id}}',0,'unfreeze')" class="btn btn-success btn-xs">解冻</button>
+                    {{/if}}
                     <button  onclick="deleteStudent('{{item.id}}','{{index+1}}')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
-                    <button onclick="logout('{{item.id}}')" class="btn btn-success btn-xs">注销</button>
-                    <button onclick="_g.openWin('user/studentDetail','{{id=item.id}}')" class="btn btn-danger btn-xs" data-id="1234">详情</button>
+                    <button onclick="resetPassword('{{item.id}}')" class="btn btn-danger btn-xs">重置密码</button>
+                    <button onclick="logout('{{item.id}}')" class="btn btn-danger btn-xs">强制下线</button>
+                    
                 </td>
             </tr>
             {{/each}} {{/if}}

@@ -10,6 +10,27 @@
             </ul>
             <!-- / .breadcrumb -->
             <!-- 正文内容 -->
+            <section class="panel panel-default" style="position: relative;">
+                <div class="panel-body">
+                    <form class="form-inline" role="form">
+                        <div class="form-group">
+                            <input id="account" type="text" name="id" class="form-control" placeholder="用户名">
+                            <label class="control-label padder"></label>
+                        </div>
+                        <div class="btn-group m-r">
+                            <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
+                                <span class="dropdown-label" data-placeholder="Please select">状态</span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-select" id="status">
+                                <li><input type="radio" name="d-s-r" value="1"><a href="#">冻结</a></li>
+                                <li><input type="radio" name="d-s-r" value="0"><a href="#">正常</a></li>
+                            </ul>
+                        </div>
+                        <div id="search" class="btn btn-s-md btn-success">查询</div>
+                    </form>
+                </div>
+            </section>
             <section class="panel panel-default">
                 <div class="row wrapper">
                     <div class="col-sm-12">

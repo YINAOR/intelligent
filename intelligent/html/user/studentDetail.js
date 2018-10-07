@@ -5,7 +5,6 @@
     $('#formContent').html(_g.getTemplate('user/studentDetail-V'));
 
     var id = _g.pm.param.id;
-    
 
     function getInformation() {
         _g.ajax({

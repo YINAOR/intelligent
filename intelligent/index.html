@@ -305,6 +305,7 @@
 
         $('#logoutBtn').click(function() {
             _g.ajax({
+                lock: true,
                 url: 'http://120.77.204.252:80/admin/logout.do',
                 success: function(result) {
                     if (result.code === 200) {

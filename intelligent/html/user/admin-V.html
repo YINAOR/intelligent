@@ -25,9 +25,9 @@
                 <td>{{item.status == 1 ? '冻结' : '正常'}}</td>
                 <td>
                     <button onclick="_g.openWin('user/addAdmin', 'id={{item.id}}')" class="btn btn-success btn-xs">编辑</button>
-                    <button onclick="deleteId('{{item.id}}')" class="btn btn-danger btn-xs">删除</button>
-                    <button onclick="logout('{{item.id}}')" class="btn btn-danger btn-xs">注销</button>
-                    <!-- <button onclick="_g.openWin('user/addAdmin', 'id={{item.id}}')" class="btn btn-success btn-xs">修改密码</button> -->
+                    <button onclick="deleteId('{{item.id}}'，'{{index+1}}')" class="btn btn-danger btn-xs">删除</button>
+                    <button onclick="logout('{{item.id}}')" class="btn btn-danger btn-xs">强制下线</button>
+                    <button onclick="resetPassword('{{item.id}}')" class="btn btn-success btn-xs">重置密码</button>
                     {{if item.status == 0}}
                     <button onclick="freeze('{{item.id}}',1)" class="btn btn-danger btn-xs">冻结</button>
                     {{else}}

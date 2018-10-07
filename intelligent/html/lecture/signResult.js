@@ -5,8 +5,10 @@
 
     var data = {
         currentPage: 1,
-        pageSize: 20
+        showCount: 5
     }
+
+    var id = _g.pm.param.id;
 
     function getList() {
         $.ajax({
@@ -45,9 +47,36 @@
     })
 
     _g.addSign = function() {
-        var studentName = $('#studentName').val();
+        // var studentName = $('#studentName').val();
         var studentId = $('#studentId').val();
-        
+        _g.ajax({
+            lock: true,
+            url:'http://120.77.204.252:80/lecture/supplement.do',
+            data: {
+                lectureId: id,
+                num: studentId,
+            },
+            success: function(result) {
+                if(result.code === 1000){
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                        yes: function(index){
+                            layer.close(index);
+                            window.location.href = '/signin.html';
+                        }
+                    });
+                } else {
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                    });
+                    if(result.code === 200) {
+                        $('#studentId').val('');
+                    }      
+                }
+            }
+        })
     };
 
 })();

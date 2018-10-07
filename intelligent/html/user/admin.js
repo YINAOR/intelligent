@@ -7,7 +7,8 @@
         currentPage: 1,
         showCount: 5,
         t: {
-            name: ''
+            account: $('#account').val(),
+            status: $('#status .active input').val()
         }
     }
 
@@ -22,8 +23,9 @@
             data: { paging: data },
             success: function(result) {
                 if (result.code === 200) {
-                    var data1 = { list: result.data.paging.list };
-                    _g.initPaginator({
+                    if(result.data.paging) {
+                        var data1 = { list: result.data.paging.list };
+                        _g.initPaginator({
                         currentPage: result.data.paging.currentPage,
                         totalPages: result.data.paging.totalPage,
                         totalCount: result.data.paging.totalResult,
@@ -34,6 +36,11 @@
                         }
                     });
                     _g.render('user/admin-V', data1, '#table');
+                    } else {
+                        var data1 = { list: [] };
+                        _g.render('user/admin-V', data1, '#table');
+                    }
+                    
                 } else if(result.code === 1000){
                     layer.open({
                         title: '消息',
@@ -55,7 +62,7 @@
     }
     getList();
 
-    deleteId = function(id) {
+    deleteId = function(id,index) {
         layer.confirm('您确定要删除此管理员吗？', { title: '询问' }, function(index) {
             _g.ajax({
                 url: 'http://120.77.204.252:80/manageAdmin/delete.do',
@@ -64,6 +71,9 @@
                 },
                 success: function(result) {
                     if(result.code === 200) {
+                        if(index%data.showCount === 1) {
+                            data.currentPage--;
+                        }
                         getList();
                     } else if(result.code === 1000){
                         layer.open({
@@ -131,6 +141,7 @@
 
 
     logout = function(id) {
+        layer.confirm('您确定要强制此管理员下线吗？', { title: '询问' }, function(index) {
         _g.ajax({
             url: 'http://120.77.204.252:80/manageAdmin/forcedLogout.do',
             data: {
@@ -154,7 +165,45 @@
                 }
             }
         })
+        layer.close(index);
+        });
     }
+
+    resetPassword = function(id) {
+        layer.confirm('您确定要重置此管理员密码吗？', { title: '询问' }, function(index) {
+            _g.ajax({
+                url: 'http://120.77.204.252:80/manageAdmin/resetPassword.do',
+                data: {
+                    id: id
+                },
+                success: function(result) {
+                    if(result.code === 1000){
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                            yes: function(index){
+                                layer.close(index);
+                                window.location.href = '/signin.html';
+                            }
+                        });
+                    } else {
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                        });
+                    }                    
+                }
+           })
+            layer.close(index);
+        });
+    }
+
+    $('#search').click(function() {
+        data.currentPage = 1;
+        data.t.account= $('#account').val();
+        data.t.status = $('#status .active input').val();
+        getList();
+    })
 
     downloadExcelTemplet = function() {
         var token = sessionStorage.getItem('token');;

@@ -27,7 +27,6 @@
     			if(result.code === 200) {
                     if(result.data.paging) {
                         if(result.data.paging.list.length > 0){
-                        var data1 = { list: result.data.paging.list };
                         _g.initPaginator({
                             currentPage: result.data.paging.currentPage,
                             totalPages: result.data.paging.totalPage,
@@ -38,6 +37,7 @@
                                 getList();
                             }
                         });
+                        var data1 = { list: result.data.paging.list, currentPage: data.currentPage, showCount: data.showCount};
                         _g.render('user/institution-V', data1, '#table');
                     }
                 } else {

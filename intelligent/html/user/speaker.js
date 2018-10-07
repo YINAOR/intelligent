@@ -7,7 +7,8 @@
         currentPage: 1,
         showCount: 5,
         t: {
-            name: $('#name').val()
+            name: $('#name').val(),
+            gender: $('#gender .active input').val()
         }
     }
 
@@ -24,7 +25,7 @@
             },
             success: function(result) {
                 if (result.code === 200) {
-                    var data1 = { list: result.data.paging.list };
+                    
                     _g.initPaginator({
                         currentPage: result.data.paging.currentPage,
                         totalPages: result.data.paging.totalPage,
@@ -35,6 +36,7 @@
                             getList();
                         }
                     });
+                    var data1 = { list: result.data.paging.list, currentPage: data.currentPage, showCount: data.showCount};
                     _g.render('user/speaker-V', data1, '#table');
                 } else if(result.code === 1000){
                     layer.open({
@@ -95,6 +97,13 @@
             }
         })
     }
+
+    $('#searchBtn').click(function() {
+        data.currentPage = 1;
+        data.t.name= $('#name').val();
+        data.t.gender = $('#gender .active input').val();
+        getList();
+    })
 
     downloadExcelTemplet = function() {
         var token = sessionStorage.getItem('token');;

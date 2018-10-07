@@ -17,7 +17,17 @@
                             <input type="text" name="name" id="name" class="form-control" placeholder="主讲人姓名">
                             <label class="control-label padder"></label>
                         </div>
-                        <button id="searchBtn" type="submit" class="btn btn-s-md btn-success">查询</button>
+                        <div class="btn-group m-r">
+                            <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
+                                <span class="dropdown-label" data-placeholder="Please select">性别</span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-select" id="gender">
+                                <li><input type="radio" name="d-s-r" value="1"><a href="#">女</a></li>
+                                <li><input type="radio" name="d-s-r" value="0"><a href="#">男</a></li>
+                            </ul>
+                        </div>
+                        <div id="searchBtn" type="submit" class="btn btn-s-md btn-success">查询</div>
                     </form>
                 </div>
             </section>
