@@ -6,6 +6,7 @@
     var id = _g.pm.param.id;
     var lectureUrl;
     var lectureProvedUrl;
+    var appendList = $('#speakerGroup').html();
     if(id) {
         $('.panel-heading').text('编辑讲座');
         $('.lectureId').show();
@@ -69,7 +70,7 @@
                             $('#speakerInput').val(speakerLinkList[i].name);
                             $('#spbrief').val(speakerLinkList[i].brief);
                         } else {
-                            $('#speakerGroup').append($('.speakerList').clone());
+                            $('#speakerGroup').append(appendList);
                             $('.speakerList:eq('+ i +') #speakerInput').val(speakerLinkList[i].name);
                             $('.speakerList:eq('+ i +') #spbrief').val(speakerLinkList[i].brief);
                         }
@@ -216,7 +217,7 @@
     // document.getElementById('speakerInput2').addEventListener('keyup', debounce('speakerInput2'));
 
         $("#addSpeaker").click(function(){
-            $('#speakerGroup').append($('.speakerList').clone());
+            $('#speakerGroup').append(appendList);
         }); 
 
         $('#submitBtn').click(function() {
