@@ -14,17 +14,19 @@
                 <div class="panel-body">
                     <form class="form-inline" role="form">
                         <div class="form-group">
-                            <input id="categoryId" type="text" name="id" class="form-control" placeholder="讲座类别ID">
+                            <input id="categoryName" type="text" name="id" class="form-control" placeholder="讲座类别名称">
                             <label class="control-label padder"></label>
                         </div>
-                        <button id="searchBtn" type="submit" class="btn btn-s-md btn-success">查询</button>
+                        <div id="searchBtn" class="btn btn-s-md btn-success">查询</div>
                     </form>
                 </div>
             </section>
             <section class="panel panel-default">
                 <div class="row wrapper">
                     <div class="col-sm-12">
-                        <button onclick="javascript:_g.openWin('lecture/addType');" class="btn btn-success">新增讲座分类</button>
+                        <button onclick="javascript:_g.openWin('lecture/addType');" class="btn btn-success" style="margin-right: 15px;">新增讲座分类</button>
+                        <button onclick="downloadExcelTemplet()" class="btn btn-success" style="margin-right: 15px;">下载模板</button>
+                        <button onclick="exportExcel()" class="btn btn-success">导出数据</button>
                     </div>
                 </div>
                 <div id="formContent"></div>

@@ -3,7 +3,7 @@
         <thead>
             <tr>
                 <th>序号</th>
-                <th>Id</th>
+                <th>code</th>
                 <th>分类名称</th>
                 <th>分类内容数量</th>
                 <th>操作</th>
@@ -16,8 +16,7 @@
             </tr>
             {{else}} {{each list item index}}
             <tr data-custom-id="{{item.id}}">
-                <td>{{index}}</td>
-                
+                <td>{{index +1}}</td>
                 <td>{{item.code}}</td>
                 <td>{{item.name}}</td>
                 <td></td>

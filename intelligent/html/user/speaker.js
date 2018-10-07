@@ -60,7 +60,7 @@
         getList();
     });
 
-    deleteId = function(id) {
+    deleteId = function(id,index) {
         _g.ajax({
             url: 'http://120.77.204.252:80/speaker/delete.do',
             data: {
@@ -72,6 +72,9 @@
                         title: '消息',
                         content: result.msg,
                     });
+                    if(index % data.showCount === 1) {
+                        data.currentPage--;
+                    }
                     getList();
                 } else if(result.code === 1000){
                     layer.open({

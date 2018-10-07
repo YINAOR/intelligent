@@ -8,6 +8,7 @@
         showCount: 5,
         t: {
             name: $('#majorName').val(),
+            status: $('#status .active input').val(),
             college:{
                 id: $('#majorId').val()
             }
@@ -101,6 +102,7 @@
     $('#search').click(function() {
         data.currentPage = 1;
         data.t.name = $('#majorName').val();
+        data.t.status = $('#status .active input').val();
         data.t.college.id = $('#majorId').val();
         getList();
     })

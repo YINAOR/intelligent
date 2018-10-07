@@ -18,7 +18,6 @@
             major: {
                 id: $('#majorId').val()
             }
-
         }
     };
 
@@ -74,7 +73,7 @@
 
     getList();
     
-    deleteStudent = function(id) {
+    deleteStudent = function(id,index) {
         _g.ajax({
             lock: true,
             url: 'http://120.77.204.252:80/manageStudent/delete.do',
@@ -96,6 +95,12 @@
                        title: '消息',
                        content: result.msg,
                     });
+                    if(result.code === 200) {
+                        if(index % data.showCount === 1) {
+                            data.currentPage--;
+                        }
+                        getList();
+                    }
                 }
             }
         })
