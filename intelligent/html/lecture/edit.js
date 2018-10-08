@@ -67,12 +67,12 @@
                     $('#hour').val(hour);
                     for(var i = 0; i < speakerLinkList.length; i++) {
                         if(i == 0) {
-                            $('#speakerInput').val(speakerLinkList[i].name);
-                            $('#spbrief').val(speakerLinkList[i].brief);
+                            $('.speakerInput').val(speakerLinkList[i].name);
+                            $('.spbrief').val(speakerLinkList[i].brief);
                         } else {
                             $('#speakerGroup').append(appendList);
-                            $('.speakerList:eq('+ i +') #speakerInput').val(speakerLinkList[i].name);
-                            $('.speakerList:eq('+ i +') #spbrief').val(speakerLinkList[i].brief);
+                            $('.speakerList:eq('+ i +') .speakerInput').val(speakerLinkList[i].name);
+                            $('.speakerList:eq('+ i +') .spbrief').val(speakerLinkList[i].brief);
                         }
                     }
                     
@@ -153,7 +153,7 @@
     editor.create();
 
     function querySpeakerList(str) {
-        var speakerName = $('#speakerInput').val();
+        var speakerName = $('.speakerInput').val();
         // if(str) {
         //     speakerName = $('#speakerInput2').val();
         // }
@@ -169,7 +169,7 @@
                     // if(str){
                     //     $('#speakerquery2').empty();
                     // }else {
-                        $('#speakerquery').empty()
+                        $('.speakerquery').empty()
                     // }
                     
                     if(result.code == 200){
@@ -180,15 +180,15 @@
                             // if(str) {
                             //     $("#speakerquery2").append(list);
                             // } else {
-                                $("#speakerquery").append(list);
+                                $(".speakerquery").append(list);
                                 
                             // }
                         }
-                        $('#speakerquery').on("click","li",function(){
-                            var speakerName = $('#speakerInput').val();
+                        $('.speakerquery').on("click","li",function(){
+                            var speakerName = $('.speakerInput').val();
                             for(var i=0;i<speakerList.length;i++){
                                 if(speakerName == speakerList[i].name){
-                                    $('#spbrief').val(speakerList[i].brief)
+                                    $('.spbrief').val(speakerList[i].brief)
                                 }
                             }
                         })
@@ -221,8 +221,10 @@
             timer = setTimeout(querySpeakerList(str),2000);
         }
     }
-
-    document.getElementById('speakerInput').addEventListener('keyup', debounce());
+    
+    $('.speakerList').each(function() {
+        this.addEventListener('keyup', debounce());
+    })
     // document.getElementById('speakerInput2').addEventListener('keyup', debounce('speakerInput2'));
 
         $("#addSpeaker").click(function(){
@@ -241,8 +243,8 @@
             var size = $('.speakerList').size();
             for(var j = 0 ; j < size; j++) {
                 speakerlink.push({
-                    name: $('.speakerList:eq('+ j +') #speakerInput').val(),
-                    brief: $('.speakerList:eq('+ j +') #spbrief').val()
+                    name: $('.speakerList:eq('+ j +') .speakerInput').val(),
+                    brief: $('.speakerList:eq('+ j +') .spbrief').val()
                });
             }
             var hour = $('#hour').val();
@@ -399,8 +401,8 @@
     $('#startTimePicker').hunterTimePicker();
     $('#endTimePicker').hunterTimePicker();
 
-    $('#speakerInput').focus(function() {
-        $('#speakerDiv').addClass('chosen-with-drop chosen-container-active');
+    $('.speakerInput').focus(function() {
+        $('.speakerDiv').addClass('chosen-with-drop chosen-container-active');
     })
     
     // $('#speakerInput2').focus(function() {
@@ -409,10 +411,10 @@
 
     $(document).click(function(event) {
         var target = event.target;
-        if (target.id === 'speakerquery' || target.id === 'speakerInput') {
+        if (target.className === 'speakerquery' || target.className === 'speakerInput') {
             return false;
         } else {
-            $('#speakerDiv').removeClass('chosen-with-drop chosen-container-active');  
+            $('.speakerDiv').removeClass('chosen-with-drop chosen-container-active');  
         }
         // if (target.id === 'speakerquery2' || target.id === 'speakerInput2') {
         //     return false;
@@ -422,14 +424,14 @@
     });
     
 
-    $('#speakerquery').on("mouseover","li",function(){
+    $('.speakerquery').on("mouseover","li",function(){
         $(this).siblings().removeClass('highlighted');
         $(this).addClass('highlighted');
     })
 
-    $('#speakerquery').on("click","li",function(){
-        $('#speakerInput').val($(this).text());
-        $('#speakerDiv').removeClass('chosen-with-drop chosen-container-active');
+    $('.speakerquery').on("click","li",function(){
+        $('.speakerInput').val($(this).text());
+        $('.speakerDiv').removeClass('chosen-with-drop chosen-container-active');
     })
 
     // $('#speakerquery2').on("mouseover","li",function(){
