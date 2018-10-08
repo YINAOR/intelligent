@@ -181,8 +181,17 @@
                             //     $("#speakerquery2").append(list);
                             // } else {
                                 $("#speakerquery").append(list);
+                                
                             // }
                         }
+                        $('#speakerquery').on("click","li",function(){
+                            var speakerName = $('#speakerInput').val();
+                            for(var i=0;i<speakerList.length;i++){
+                                if(speakerName == speakerList[i].name){
+                                    $('#spbrief').val(speakerList[i].brief)
+                                }
+                            }
+                        })
                     } else if(result.code === 1000){
                         layer.open({
                             title: '消息',

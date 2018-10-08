@@ -21,7 +21,7 @@
                     $('#spid').val(speaker.id);
                     $('#spname').attr("readonly",true);
                     $('#spname').val(speaker.name);
-                    $('#gender li input[value='+ speaker.gender +']').parent().addClass('active');
+                //    $('#gender li input[value='+ speaker.gender +']').parent().addClass('active');
                     $('.dropdown-label').text(speaker.gender === 0 ? '男' : '女');
                     
                     if(speaker.imageUrl) {
@@ -84,7 +84,7 @@
     submitSp = function(){
         
         $('#messageArea').html('');
-        var gender = $('#gender .active input').val();
+        var gender = $('.dropdown-label').text() == "男" ? 0 : 1;
         if(gender && $('#spname').val() && $('#spbrief').val()) {
           document.activeElement.blur();
           $('.ui-loading').show();
