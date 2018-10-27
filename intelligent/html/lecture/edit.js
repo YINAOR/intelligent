@@ -152,17 +152,17 @@
     var editor = new E('#editor');
     editor.create();
 
-    function querySpeakerList(str) {
-        var speakerName = $('.speakerInput').val();
+    function querySpeakerList(val,target) {
+        // var speakerName = $('.speakerInput').val();
         // if(str) {
         //     speakerName = $('#speakerInput2').val();
         // }
-        if(speakerName != ""){
+        if(val != ""){
             _g.ajax({
                 url: 'http://120.77.204.252:80/lecture/querySpeakerList.do',
                 data: {
                     speaker: {
-                        name: speakerName
+                        name: val
                     }
                 },
                 success: function(result) {
@@ -184,11 +184,11 @@
                                 
                             // }
                         }
-                        $('.speakerquery').on("click","li",function(){
-                            var speakerName = $('.speakerInput').val();
+                        $('.speakerquery').on("click","li",function(e){
+                            $(target).val($(e.target).text());
                             for(var i=0;i<speakerList.length;i++){
-                                if(speakerName == speakerList[i].name){
-                                    $('.spbrief').val(speakerList[i].brief)
+                                if($(target).val() == speakerList[i].name){
+                                    $(target).parents('.speakerList').find('textarea').val(speakerList[i].brief);
                                 }
                             }
                         })
@@ -212,20 +212,35 @@
         }
     }
 
-    function debounce(str) {
-        var timer = null;
-        return function() {
-            if(timer) {
-                clearTimeout(timer);
-            }
-            timer = setTimeout(querySpeakerList(str),2000);
-        }
-    }
+    // function debounce() {
+    //     var timer = null;
+    //     return function() {
+    //         if(timer) {
+    //             clearTimeout(timer);
+    //         }
+    //         timer = setTimeout(querySpeakerList,2000);
+    //     }
+    // }
     
-    $('.speakerList').each(function() {
-        this.addEventListener('keyup', debounce());
-    })
+    // $('.speakerInput').each(function() {
+    //     this.addEventListener('keyup', debounce());
+    // })
     // document.getElementById('speakerInput2').addEventListener('keyup', debounce('speakerInput2'));
+    
+    var timer = null;
+    $('#speakerGroup').keyup(function(e) {
+        var e = e || window.e;
+        var target = e.target || e.srcElement;
+        if(target.className == 'speakerInput') {
+            clearTimeout(timer);
+            timer = setTimeout(function(){
+                querySpeakerList.call(null,$(target).val(),target);
+            },2000);
+        }
+    })
+
+
+    // $('#speakerGroup').keyup(debounce());
 
         $("#addSpeaker").click(function(){
             $('#speakerGroup').append(appendList);
