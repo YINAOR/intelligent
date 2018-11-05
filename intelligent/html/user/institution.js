@@ -39,6 +39,7 @@
                         });
                         var data1 = { list: result.data.paging.list, currentPage: data.currentPage, showCount: data.showCount};
                         _g.render('user/institution-V', data1, '#table');
+                    
                     }
                 } else {
                     var data1 = { list: [] };
