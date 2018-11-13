@@ -1,9 +1,9 @@
 (function () {
-	
-    _g.setNowPage('conversation/list');
-    $('#formContent').html(_g.getTemplate('conversation/list-V'));
 
-     function getTypeList() {
+    _g.setNowPage('conversation/audit');
+    $('#formContent').html(_g.getTemplate('conversation/audit-V'));
+
+    function getTypeList() {
         _g.ajax({
             lock: true,
             url: 'http://120.77.204.252:80/conversation/toEdit.do',
@@ -32,8 +32,10 @@
         currentPage: 1,
         showCount: 5,
         t: {
-            theme: $('#theme').val(),
-            date: $('date').val(),
+            name: $('#name').val(),
+            startDate: $('#startDate').val(),
+            endDate: $('#endDate').val(),
+            isSend: $('#isSend .active input').val(),
             status: $('#status .active input').val(),
             category: { 
                 id: $('#type .active input').val()
@@ -47,7 +49,7 @@
     function getList() {
         _g.ajax({
             lock: true,
-            url: 'http://120.77.204.252:80/allTeahouse/queryListPage.do',
+            url: 'http://120.77.204.252:80/allconversation/queryListPage.do',
             async: false,
             data:  {
                 paging: data
@@ -66,10 +68,10 @@
                             getList();
                         }
                     });
-                    _g.render('conversation/list-V', data1, '#table');
+                    _g.render('conversation/audit-V', data1, '#table');
                     } else {
                         var result = { list: [] };
-                        _g.render('conversation/list-V', result, '#table');
+                        _g.render('conversation/audit-V', result, '#table');
                     }
     			} else if(result.code === 1000){
                     layer.open({
@@ -93,22 +95,26 @@
     
     $('#searchBtn').click(function(){
         data.currentPage = 1;
-        data.t.theme = $('#theme').val();
-        data.t.date = $('#date').val();
-        // data.t.isSend = $('#isSend .active input').val();
+        data.t.name = $('#name').val();
+        data.t.startDate = $('#startDate').val();
+        data.t.endDate = $('#endDate').val();
+        data.t.isSend = $('#isSend .active input').val();
         data.t.category.id = $('#type .active input').val();
         data.t.status = $('#status .active input').val();
         getList();
     });
 
     laydate.render({
-        elem: '#date' //指定元素
+        elem: '#startDate' //指定元素
+    });
+    laydate.render({
+        elem: '#endDate' //指定元素
     });
 
     deleteItem = function(id) {
         _g.ajax({
             lock: true,
-            url: 'http://120.77.204.252:80/teahouse/delete.do',
+            url: 'http://lai.vipgz1.idcfengye.com/intelligent/conversation/delete.do',
             data: {
                 id: id
             },
@@ -120,29 +126,44 @@
         })
     }
 
-    sendItem = function(id){
+    auditItem = function(id) {
+        _g.openBaseModal('conversation/list-audit-V', {id: id}, '审核讲座');
+    }
+
+
+    _g.audit = function(id) {
+        var status = $('input[name=a]:checked').val();
+        var opinion = $('#opinion').val();
         _g.ajax({
             lock: true,
-            url: 'http://120.77.204.252:80/teahouse/send.do',
+            url: 'http://lai.vipgz1.idcfengye.com/intelligent/allconversation/audit.do',
             data: {
-                id: id
+                conversation: {
+                    id: id,
+                    status: status,
+                    checkDescription: opinion
+                }
             },
             success: function(result) {
-                if(result.code === 200) {
+                if(result.code === 1000){
                     layer.open({
                         title: '消息',
                         content: result.msg,
+                        yes: function(index){
+                            layer.close(index);
+                            window.location.href = '/signin.html';
+                        }
                     });
-                    getList();
                 } else{
                     layer.open({
                         title: '消息',
                         content: result.msg,
-                    });
+                    })
+                    if(result.code === 200) {
+                        _g.hideBaseModal();
+                    }
                 }
             }
-        })
+        })     
     }
-
-
 })();

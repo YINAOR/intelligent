@@ -5,7 +5,7 @@
             <!-- .breadcrumb 面包屑导航 -->
             <ul class="breadcrumb">
                 <li><a href="javascript:;"><i class="fa fa-home"></i> 茶座管理</a></li>
-                <li><a href="javascript:;"><i class="fa fa-list-ul"></i> 茶座列表</a></li>
+                <li><a href="javascript:;"><i class="fa fa-list-ul"></i> 茶座审核</a></li>
                 <!-- <li class="active">新增</li> -->
             </ul>
             <!-- / .breadcrumb -->
@@ -31,7 +31,7 @@
                                 <input type="text" id="date" style="padding-left: 12px; height: 30px; width: 115px; line-height: 38px; border: 1px solid #cbd5dd;  background-color: #fff;  border-radius: 2px;" placeholder="举办日期">
                             </div>
                         </div>
-                        <div class="btn-group m-r">
+                        <!-- <div class="btn-group m-r">
                             <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
                                 <span class="dropdown-label" data-placeholder="Please select">审核状态</span>
                                 <span class="caret"></span>
@@ -41,28 +41,17 @@
                                 <li><input type="radio" value="1" name="d-s-r"><a href="#">审核通过</a></li> 
                                 <li><input type="radio" value="2" name="d-s-r"><a href="#">审核不通过</a></li>
                             </ul>
-                        </div>
-                        <!-- <div class="btn-group m-r">
-                            <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
-                                <span class="dropdown-label" data-placeholder="Please select">发送状态</span>
-                                <span class="caret"></span>
-                            </button>
-                            <ul id="isSend" class="dropdown-menu dropdown-select">
-                                <li><input type="radio" value="0" name="d-s-r"><a href="#">未发送</a></li>
-                                <li><input type="radio" value="1" name="d-s-r"><a href="#">已发送</a></li> 
-                                <li><input type="radio" value="2" name="d-s-r"><a href="#">回退</a></li>
-                            </ul>
                         </div> -->
                         <button id="searchBtn" type="submit" class="btn btn-s-md btn-success">查询</button>
                     </form>
                 </div>
             </section>
             <section class="panel panel-default">
-                <div class="row wrapper">
+                <!-- <div class="row wrapper">
                     <div class="col-sm-12">
                         <button onclick="javascript:_g.openWin('conversation/edit');" class="btn btn-success">新增茶座</button>
                     </div>
-                </div>
+                </div> -->
                 <div id="formContent"></div>
                 <footer class="panel-footer">
                     <div class="row">
@@ -83,7 +72,7 @@
             </section>
             <!-- / 正文内容 -->
             <!-- 页面脚本 -->
-            <script src="./html/conversation/list.js"></script>
+            <script src="./html/conversation/audit.js"></script>
             <!-- / 页面脚本 -->
         </div>
     </div>
