@@ -44,28 +44,15 @@
                     var category = result.data.teahouse.category;
                     var adminstrator = result.data.teahouse.adminstrator;
                     var organization = result.data.teahouse.organization;
-                    $('#name').val(name);
+                    $('#theme').val(theme);
                     if(imageUrl) {
                         $('input[id="teahouse"]').val(imageUrl);
                         $('#prePhoto').html('<img src="http://120.77.204.252:80'+ imageUrl +'" style="width: 120px; height:150px">');
-                    }
-                    if(teahouseProvedImage) {
-                        $('input[id="teahouseProved"]').val(teahouseProvedImage);
-                        $('#preProvePhoto').html('<img src="http://120.77.204.252:80'+ teahouseProvedImage +'" style="width: 120px; height:150px">');
                     }
                     $('#date').val(dateStr);
                     $('#startTimePicker').val(startTime);
                     $('#endTimePicker').val(endTime);
                     $('#address').val(address);
-                    if(isProved != null) {
-                        $('.teahouseProve').text(isProved === 0 ? '否' : '是');
-                        $('#lprove li input[value="'+ isProved +'"]').parent().addClass('active');
-                    }
-                    if(isProvedSign !=null) {
-                        $('.isProvedSign').text(isProvedSign === 0 ? '不需要签到' : isProvedSign === 1 ? '需要签到1次' : '需要签到2次');
-                        $('#sign li input[value="'+ isProvedSign +'"]').parent().addClass('active');
-                    }
-                    $('#hour').val(hour);
                     for(var i = 0; i < speakerLinkList.length; i++) {
                         if(i == 0) {
                             $('.speakerInput').val(speakerLinkList[i].name);
@@ -351,12 +338,7 @@
             // $('#file').val($('input[id="teahouse"]').val().substring($('input[id="teahouse"]').val().lastIndexOf('\\') + 1));
             // $('#prePhoto').html('<img src="'+ url +'" style="width: 120px; height:150px">');
             ajaxUrl = 'http://120.77.204.252:80/teahouse/uploadImage.do?token='+ token +'&uploadsign=teahouse';
-            formData = new FormData($('#lectrueForm')[0]);
-        } else {
-            // $('#proveFile').val($('input[id="teahouseProved"]').val().substring($('input[id="teahouseProved"]').val().lastIndexOf('\\') + 1));
-            // $('#preProvePhoto').html('<img src="'+ url +'" style="width: 120px; height:150px">'); 
-            ajaxUrl = 'http://120.77.204.252:80/teahouse/uploadImage.do?token='+ token +'&uploadsign=teahouseProved';
-            formData = new FormData($('#lectrueProvedForm')[0]);
+            formData = new FormData($('#conversationForm')[0]);
         }
         var self = this;
         var token = sessionStorage.getItem('token');

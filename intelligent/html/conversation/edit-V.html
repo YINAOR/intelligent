@@ -3,17 +3,17 @@
         新增茶座
     </header>
     <div class="panel-body">
-        <form data-validate="parsley" class="form-horizontal" id="lectureForm">
+        <form data-validate="parsley" class="form-horizontal" id="conversationForm">
             <div class="form-group">
-                <label class="col-sm-2 control-label">讲座海报</label>
+                <label class="col-sm-2 control-label">茶座海报</label>
                 <div id="photoInput" class="col-sm-8">
                     <!-- <form enctype="multipart/form-data" method="post" id="ajaxForm" name="ajaxForm"> -->
-                    <input type="file" name="imagefile" accept="image/*" class="filestyle" id="lecture" tabindex="-1" style="position: absolute; clip: rect(0px, 0px, 0px, 0px);">
+                    <input type="file" name="imagefile" accept="image/*" class="filestyle" id="teahouse" tabindex="-1" style="position: absolute; clip: rect(0px, 0px, 0px, 0px);">
                     <!-- </form> -->
                     <div class="bootstrap-filestyle input-group">
                         <input type="text" class="form-control" id="file" placeholder="请选择上传文件" disabled="">
                         <span class="group-span-filestyle input-group-btn" tabindex="0">
-                            <label for="lecture" class="btn btn btn-default ">
+                            <label for="teahouse" class="btn btn btn-default ">
                                 <span class="buttonText">选择文件</span>
                         </label>
                         </span>
@@ -28,7 +28,7 @@
         </form>
         <form data-validate="parsley" class="form-horizontal">
             <div class="form-group" id="conversationId" style="display: none;">
-                <label class="col-sm-2 control-label">讲座id</label>
+                <label class="col-sm-2 control-label">茶座id</label>
                 <div class="col-sm-8">
                     <input type="text" id="id" class="form-control parsley-validated" value="" data-required="true" disabled>
                     <span class="help-block m-b-none"></span>
@@ -37,37 +37,27 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">茶座主题</label>
                 <div class="col-sm-8">
-                    <input type="text" name="title" class="form-control parsley-validated" value="" data-required="true" data-error-message="主题不能为空." placeholder="请填写茶座主题">
+                    <input type="text" id="theme" class="form-control parsley-validated" value="" data-required="true" data-error-message="主题不能为空." placeholder="请填写茶座主题">
                     <span class="help-block m-b-none"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">茶座海报</label>
-                <div id="photoInput" class="col-sm-8">
-                    <input type="hidden" name="imgUrl" value="">
-                    <input type="file" name="file" accept="image/*" class="filestyle" id="filestyle-0" tabindex="-1" style="position: absolute; clip: rect(0px, 0px, 0px, 0px);">
-                    <div class="bootstrap-filestyle input-group">
-                        <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="filestyle-0" class="btn btn btn-default "><span class="buttonText">选择文件</span></label>
-                        </span>
-                        <span class="help-block m-b-none">上传的图片尺寸显示为 300x540 图.</span>
-                    </div>
-                    <!-- 上传预览图 -->
-                    <div>
-                        <span id="prePhoto" style="background-color:red;width:500px">123456</span>
-                    </div>
+                <label class="col-sm-2 control-label">茶座举办日期</label>
+                <div class="col-sm-8">
+                    <input type="text" id="date" style="padding-left: 12px; height: 34px; width: 100%; line-height: 38px; border: 1px solid #cbd5dd;  background-color: #fff;  border-radius: 2px;" placeholder="请选择日期">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">茶座开始时间</label>
                 <div class="col-sm-8">
-                    <input type="date" name="date" class="form-control" value="" data-required="true" data-error-message="开始时间不能为空." placeholder="请填写茶座开始时间">
+                    <input type="date" name="date" class="form-control" value="" id="startTimePicker" data-required="true" data-error-message="开始时间不能为空." placeholder="请填写茶座开始时间">
                     <span class="help-block m-b-none"></span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">茶座结束时间</label>
                 <div class="col-sm-8">
-                    <input type="date" name="date" class="form-control" value="" data-required="true" data-error-message="结束时间不能为空." placeholder="请填写茶座结束时间">
+                    <input type="date" id="endTimePicker" name="date" class="form-control" value="" data-required="true" data-error-message="结束时间不能为空." placeholder="请填写茶座结束时间">
                     <span class="help-block m-b-none"></span>
                 </div>
             </div>
