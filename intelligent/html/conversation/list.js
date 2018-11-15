@@ -33,8 +33,10 @@
         showCount: 5,
         t: {
             theme: $('#theme').val(),
-            date: $('date').val(),
+            startDate: $('startDate').val(),
+            endDate: $('endDate').val(),
             status: $('#status .active input').val(),
+            isSend: $('#isSend .active input').val(),
             category: { 
                 id: $('#type .active input').val()
             }
@@ -47,7 +49,7 @@
     function getList() {
         _g.ajax({
             lock: true,
-            url: 'http://120.77.204.252:80/allTeahouse/queryListPage.do',
+            url: 'http://120.77.204.252:80/teahouse/queryListPageByAid.do',
             async: false,
             data:  {
                 paging: data
@@ -94,15 +96,19 @@
     $('#searchBtn').click(function(){
         data.currentPage = 1;
         data.t.theme = $('#theme').val();
-        data.t.date = $('#date').val();
-        // data.t.isSend = $('#isSend .active input').val();
+        data.t.startDate = $('#startDate').val();
+        data.t.endDate = $('#endDate').val();
+        data.t.isSend = $('#isSend .active input').val();
         data.t.category.id = $('#type .active input').val();
         data.t.status = $('#status .active input').val();
         getList();
     });
 
     laydate.render({
-        elem: '#date' //指定元素
+        elem: '#startDate' //指定元素
+    });
+    laydate.render({
+        elem: '#endDate' //指定元素
     });
 
     deleteItem = function(id) {

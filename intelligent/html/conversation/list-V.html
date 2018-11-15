@@ -48,6 +48,7 @@
                 <td>{{item.status === 1 ? '未审核' : item.status === 2 ? '待审核' : item.status === 3 ? '审核通过' : item.status === 4 ? '审核不通过' : '待复审中'}}</td>
                 <td>
                     <button onclick="_g.openWin('conversation/edit','id={{item.id}}');" class="btn btn-success btn-xs" style="margin-bottom: 10px;">详情</button>
+                    <button onclick="_g.openWin('conversation/appointment','id={{item.id}}');" class="btn btn-success btn-xs" style="margin-bottom: 10px;">预约记录</button>
                     <button onclick="sendItem('{{item.id}}')" class="btn btn-success btn-xs" style="margin-bottom: 10px;">发送审核</button>
                     <button onclick="deleteItem('{{item.id}}')" class="btn btn-danger btn-xs" data-id="1234" style="margin-bottom: 10px;">删除</button>
                 </td>

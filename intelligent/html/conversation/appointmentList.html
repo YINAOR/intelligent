@@ -5,7 +5,8 @@
             <!-- .breadcrumb 面包屑导航 -->
             <ul class="breadcrumb">
                 <li><a href="javascript:;"><i class="fa fa-home"></i> 茶座管理</a></li>
-                <li><a href="javascript:;"><i class="fa fa-list-ul"></i> 茶座类别管理</a></li>
+                <li><a href="javascript:;"><i class="fa fa-list-ul"></i> 茶座列表</a></li>
+                <li><a href="javascript:;"><i class="fa fa-list-ul"></i> 茶座预约列表</a></li>
                 <!-- <li class="active">新增</li> -->
             </ul>
             <!-- / .breadcrumb -->
@@ -13,41 +14,51 @@
             <section class="panel panel-default" style="position: relative;">
                 <div class="panel-body">
                     <form class="form-inline" role="form">
-                        <div class="form-group">
-                            <input id="categoryName" type="text" name="id" class="form-control" placeholder="茶座类别名称">
-                            <label class="control-label padder"></label>
+                        <div class="btn-group m-r" style="margin-top: 15px">
+                            <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
+                                <span class="dropdown-label" data-placeholder="Please select">预约状态</span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-select" id="activateStatus">
+                                <li><input type="radio" name="d-s-r" value="1"><a href="#">预约中</a></li>
+                                <li><input type="radio" name="d-s-r" value="2"><a href="#">预约成功</a></li>
+                                <li><input type="radio" name="d-s-r" value="3"><a href="#">预约失败</a></li>
+                            </ul>
                         </div>
-                        <div id="searchBtn" class="btn btn-s-md btn-success">查询</div>
+                        <div id="searchBtn" type="submit" class="btn btn-s-md btn-success" style="margin-top: 15px;">查询</div>
                     </form>
                 </div>
             </section>
             <section class="panel panel-default">
                 <div class="row wrapper">
                     <div class="col-sm-12">
-                        <button onclick="javascript:_g.openWin('conversation/addType');" class="btn btn-success" style="margin-right: 15px;">新增茶座分类</button>
                         <button onclick="downloadExcelTemplet()" class="btn btn-success" style="margin-right: 15px;">下载模板</button>
                         <button onclick="exportExcel()" class="btn btn-success">导出数据</button>
                     </div>
                 </div>
+                 <div id="formContent"></div>
+             </section>
+            <section class="panel panel-default">
                 <div id="formContent"></div>
             </section>
             <footer class="panel-footer">
                 <div class="row">
                     <div class="col-sm-4 hidden-xs">
                         <small class="text-muted inline m-t-sm m-b-sm">
-                                一共 <span id="totalCount">0</span> 条记录 - 共 <span id="totalPages">0</span> 页
-                            </small>
+                    一共<span id="totalCount">0</span> 条记录 - 共 <span id="totalPages">0</span> 页
+                </small>
                     </div>
                     <div class="col-sm-2 text-center">
                     </div>
                     <div class="col-sm-6 text-right text-center-xs">
-                        <div id="pagination" style="margin: 0;"></div>
+                        <div id="pagination" style="margin: 0;">
+                        </div>
                     </div>
                 </div>
             </footer>
             <!-- / 正文内容 -->
             <!-- 页面脚本 -->
-            <script src="./html/conversation/listType.js"></script>
+            <script src="./html/conversation/appointmentList.js"></script>
             <!-- / 页面脚本 -->
         </div>
     </div>

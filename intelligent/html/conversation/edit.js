@@ -11,7 +11,7 @@
     // })
     
     
-    var id = _g.pm.param.id;
+    var id = 1;//_g.pm.param.id;
     var teahouseUrl;
     var teahouseProvedUrl;
     var appendList = $('#speakerGroup').html();
@@ -32,14 +32,14 @@
                     var imageUrl = result.data.teahouse.imageUrl;
                     var dateString = result.data.teahouse.dateStr.replace(/[\u4e00-\u9fa5]/g,'-');
                     var dateStr = dateString.substring(0, dateString.length-1);
-                    var startTime = result.data.teahouse.startTime;
-                    var endTime = result.data.teahouse.endTime;
+                    var startTime = result.data.teahouse.startTime.split(' ')[1].substring(0,5);
+                    var endTime = result.data.teahouse.endTime.split(' ')[1].substring(0,5);
                     var address = result.data.teahouse.address;
                     var statusId = result.data.teahouse.status;
                     var status = statusId === 1 ? '未审核' : statusId === 2 ? '待审核' : statusId === 3 ? '审核通过' : statusId === 4 ? '审核不通过' : '待复审中';//0：待审核，1：通过审核，2：审核不通过
                     var isSend = result.data.teahouse.isSend === 1 ? '未发送' : result.data.teahouse.isSend === 2 ? '已发送' : '回退';  
                     var signUpNum = result.data.teahouse.signUpNum;
-                    var speakerLinkList = result.data.teahouse.speakerLinkList;
+                    var teahouseSpeakerLinkList = result.data.teahouse.teahouseSpeakerLinkList;
                     var content = result.data.teahouse.content;
                     var category = result.data.teahouse.category;
                     var adminstrator = result.data.teahouse.adminstrator;
@@ -53,7 +53,7 @@
                     $('#startTimePicker').val(startTime);
                     $('#endTimePicker').val(endTime);
                     $('#address').val(address);
-                    for(var i = 0; i < speakerLinkList.length; i++) {
+                    for(var i = 0; i < teahouseSpeakerLinkList.length; i++) {
                         if(i == 0) {
                             $('.speakerInput').val(speakerLinkList[i].name);
                             $('.spbrief').val(speakerLinkList[i].brief);
@@ -78,7 +78,6 @@
                     $('#type').text(category.name);
                     $('#categoryId li input[value="'+ category.id +'"]').parent().addClass('active');
                     $('#limitNumOfPep').val(limitNumOfPep);
-                    $('#sponsor').val(sponsor);
                     $('#organization').val(organization);
                 } else if(result.code === 1000){
                     layer.open({
@@ -162,7 +161,7 @@
                     
                     if(result.code == 200){
                         var speakerList = result.data.speakerList;
-                        for(var i=0;i<speakerList.length;i++){
+                        for(var i=0;i<teahouseSpeakerLinkList.length;i++){
                             var name=speakerList[i].name;
                             var list = '<li class="active-result" data-option-array-index="' + i + '">' + name + '</li>';
                             // if(str) {
@@ -174,7 +173,7 @@
                         }
                         $('.speakerquery').on("click","li",function(e){
                             $(target).val($(e.target).text());
-                            for(var i=0;i<speakerList.length;i++){
+                            for(var i=0;i<teahouseSpeakerLinkList.length;i++){
                                 if($(target).val() == speakerList[i].name){
                                     $(target).parents('.speakerList').find('textarea').val(speakerList[i].brief);
                                 }

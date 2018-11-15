@@ -19,6 +19,8 @@
                 for(var i = 0; i < list.length; i++) {
                     if(list[i].name === '讲座类别') {
                         parentCode = list[i].code;
+                        data.t.parentCode = parentCode;
+                        getList();
                     }
                 }
             } else if(result.code === 1000){
@@ -96,32 +98,31 @@
         });
     }
 
-    getList();
-
-    deleteItem = function(id) {
-        _g.ajax({
-            lock: true,
-            url: 'http://120.77.204.252:80/category/delete.do',
-            async: false,
-            data: {
-                id: id
-            },
-            success:function(result){
-                if(result.code === 200){
-                    layer.open({
-                        title: '消息',
-                        content: result.msg,
-                    });
-                    getList();
-                } else {
-                    layer.open({
-                        title: '消息',
-                        content: result.msg,
-                    })
-                }
-            }
-        })
-    }
+    
+    // deleteItem = function(id) {
+    //     _g.ajax({
+    //         lock: true,
+    //         url: 'http://120.77.204.252:80/category/delete.do',
+    //         async: false,
+    //         data: {
+    //             id: id
+    //         },
+    //         success:function(result){
+    //             if(result.code === 200){
+    //                 layer.open({
+    //                     title: '消息',
+    //                     content: result.msg,
+    //                 });
+    //                 getList();
+    //             } else {
+    //                 layer.open({
+    //                     title: '消息',
+    //                     content: result.msg,
+    //                 })
+    //             }
+    //         }
+    //     })
+    // }
 
     $('#searchBtn').click(function() {
         data.currentPage = 1;

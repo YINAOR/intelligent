@@ -1,0 +1,46 @@
+
+<div id="table" class="table-responsive">
+    <table class="table table-striped b-t b-light">
+        <thead>
+            <tr>
+                <th style="width:60px;">序号</th>
+                <th>学号</th>
+                <th>姓名</th>
+                <th>预约说明</th>
+                <th>通知时间</th>
+                <th>创建时间</th>
+                <th>状态</th>
+                <th style="width:280px;">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{if !list.length}}
+            <tr>
+                <td colspan="10" style="text-align: center;">没有记录</td>
+            </tr>
+            {{else}} {{each list item index}}
+            <tr data-custom-id="{{item.id}}">
+                <td>{{showCount*(currentPage-1)+index+1}}</td>
+                <td>{{item.student.number}}</td>
+                <td>{{item.student.name}}</td>
+                <td>{{item.reason}}</td>
+                <td>{{item.informDataStr}}</td>
+                <td>{{item.createTimeStr}}</td>
+                <td>{{item.status === 1 ? '预约中' : item.status === 2 ? '预约成功': '预约失败'}}</td>
+                <td>
+                    <button onclick="_g.openWin('user/studentDetail','id={{item.id}}')" class="btn btn-success btn-xs">详情</button>
+                    {{if item.status === 0}}
+                    <button onclick="freeze('{{item.id}}',1)" class="btn btn-danger btn-xs" data-id="1234">冻结</button>
+                    {{else}}
+                    <button onclick="freeze('{{item.id}}',0,'unfreeze')" class="btn btn-success btn-xs">解冻</button>
+                    {{/if}}
+                    <button  onclick="deleteStudent('{{item.id}}','{{index+1}}')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
+                    <button onclick="resetPassword('{{item.id}}')" class="btn btn-danger btn-xs">重置密码</button>
+                    <button onclick="logout('{{item.id}}')" class="btn btn-danger btn-xs">强制下线</button>
+                    
+                </td>
+            </tr>
+            {{/each}} {{/if}}
+        </tbody>
+    </table>
+</div>

@@ -73,38 +73,6 @@
 
     getList();
     
-    deleteStudent = function(id,index) {
-        _g.ajax({
-            lock: true,
-            url: 'http://120.77.204.252:80/manageStudent/delete.do',
-            data: {
-                id: id
-            },
-            success: function(result) {
-                if(result.code === 1000){
-                    layer.open({
-                        title: '消息',
-                        content: result.msg,
-                        yes: function(index) {
-                            layer.close(index);
-                            window.location.href = '/signin.html';
-                        }
-                    });
-                } else {
-                    layer.open({
-                       title: '消息',
-                       content: result.msg,
-                    });
-                    if(result.code === 200) {
-                        if(index % data.showCount === 1) {
-                            data.currentPage--;
-                        }
-                        getList();
-                    }
-                }
-            }
-        })
-    }
 
     $('#searchBtn').click(function() {
         data.currentPage = 1;
