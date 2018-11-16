@@ -3,13 +3,16 @@
     _g.setNowPage('conversation/appointmentList');
     $('#formContent').html(_g.getTemplate('conversation/appointmentList-V'));
 
+    var id = _g.pm.param.id;
+
     var data = {
         currentPage: 1,
         showCount: 5,
         t: {
-            teahouse: 
-            id: 
-            status: 
+            teahouse: {
+                id: id,
+                status: $('#status .active input').val()
+            }
         }
     };
 
@@ -19,7 +22,7 @@
     function getList() {
     	_g.ajax({
     		lock: true,
-    		url: 'http://120.77.204.252:80/manageStudent/queryListByPage.do',
+    		url: 'http://120.77.204.252:80/teahouse/queryAppointmentListPageByTeahouse.do',
     		async: false,
     		data: {
     			paging: data
@@ -67,26 +70,20 @@
 
     $('#searchBtn').click(function() {
         data.currentPage = 1;
-        data.t.num = $('#id').val();
-        data.t.name = $('#name').val();
         data.t.status = $('#status .active input').val();
-        data.t.classNum = $('#classNum').val();
-        data.t.activeStatus = $('#activeStatus .active input').val();
-        data.t.college.id = $('#collegeId').val();
-        data.t.major.id = $('#majorId').val();
         getList();
     })
 
 
-    downloadExcelTemplet = function() {
-        var token = sessionStorage.getItem('token');;
-        window.location.href='http://120.77.204.252:80/manageStudent/downExcelTemplets.do?token='+token;
-    }
+    // downloadExcelTemplet = function() {
+    //     var token = sessionStorage.getItem('token');;
+    //     window.location.href='http://120.77.204.252:80/manageStudent/downExcelTemplets.do?token='+token;
+    // }
 
-    exportExcel = function() {
-        var token = sessionStorage.getItem('token');
-        window.location.href='http://120.77.204.252:80/manageStudent/exportExcel.do?token='+token;
-    }
+    // exportExcel = function() {
+    //     var token = sessionStorage.getItem('token');
+    //     window.location.href='http://120.77.204.252:80/manageStudent/exportExcel.do?token='+token;
+    // }
 
 
 

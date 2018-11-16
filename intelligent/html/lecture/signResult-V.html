@@ -6,14 +6,16 @@
                     <th style="width:60px;">序号</th>
                     <th>学号</th>
                     <th>姓名</th>
-                    <th>专业</th>
                     <th>签到时间</th>
+                    <th>首次签到时间</th>
+                    <th>二次签到时间</th>
                     <th>签到方式</th>
+                    <th>签到状态</th>
                     <th style="width:280px;">操作</th>
                 </tr>
             </thead>
             <tbody>
-                <tr data-custom-id="{{item.lno}}">
+                <!-- <tr data-custom-id="{{item.lno}}">
                     <td>1</td>
                     <td>3215004752</td>
                     <td>xxx</td>
@@ -23,37 +25,28 @@
                     <td>
                         <button onclick="_g.openWin('lecture/sign','lno={{item.lno}}');" class="btn btn-danger btn-xs">取消签到</button>
                     </td>
-                </tr>
-                <!-- {{if !list.length}}
+                </tr> -->
+                {{if !list.length}}
                 <tr>
-                    <td colspan="6" style="text-align: center;">没有记录</td>
+                    <td colspan="9" style="text-align: center;">没有记录</td>
                 </tr>
                 {{else}} {{each list item index}}
                 <tr data-custom-id="{{item.lno}}">
-                    <td>{{index}}</td>
-                    <td>{{item.lname}}</td>
-                    <td></td>
-                    <td>{{item.ldate}}</td>
-                    <td>{{item.lstarttime}}</td>
-                    <td>{{item.lendtime}}</td>
-                    <td>{{item.laddr}}</td>
-                    <td>{{item.lprove == 0 ? '否':'是'}}</td>
-                    <td>{{item.lhour}}</td>
-                    <td>
-                    {{each item.speakerlink it ind}}
-                    {{it.spname}}
-                    {{/each}}
-                    </td>
-                    <td>{{item.lproperty.lproname}}</td>
-                    <td>{{item.lgroup}}</td>
-                    <td>{{item.llimit}}</td>
+                    <td>{{showCount*(currentPage-1)+index+1}}</td>
+                    <td>{{item.student.num}}</td>
+                    <td>{{item.student.name}}</td>
+                    <td>{{item.participateTimeStr}}</td>
+                    <td>{{item.firstParticipateTimeStr}}</td>
+                    <td>{{item.secondParticipateTimeStr}}</td>
+                    <td>{{item.participateWay == 1 ? '扫码签到': item.participateWay == 2 ? '管理员补签':'其他方式'}}</td>
+                    <td>{{item.signStatus == 0 ? '未知状态': item.signStatus == 1 ? '开始前签到': item.signStatus == 2 ? '结束后签到' : item.signStatus == 3 ? '两次都签到' : '管理员补签'}}</td>
                     <td>
                         <button onclick="_g.openWin('lecture/edit','lno={{item.lno}}');" class="btn btn-success btn-xs">详情</button>
                         <button onclick="_g.openWin('lecture/edit','lno={{item.lno}}');" class="btn btn-success btn-xs">编辑</button>
                         <button onclick="deleteItem('{{item.lno}}')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
                     </td>
                 </tr>
-                {{/each}} {{/if}} -->
+                {{/each}} {{/if}}
             </tbody>
         </table>
     

@@ -3,44 +3,79 @@
     _g.setNowPage('lecture/signResult');
     $('#formContent').html(_g.getTemplate('lecture/signResult-V'));
 
-    var data = {
-        currentPage: 1,
-        showCount: 5
-    }
-
     var id = _g.pm.param.id;
 
+    var data = {
+        currentPage: 1,
+        showCount: 5,
+        t: {
+            lecture: {
+                id: id,
+                participateWay: $('#participateWay .active input').val(),
+                signStatus: $('#signStatus .active input').val()
+            }
+        }
+    }
+
+    
+    var data1 = { list: [] };
+    _g.render('lecture/signResult-V', data1, '#table');
+
     function getList() {
-        $.ajax({
-            url: 'http://120.77.204.252/lecture/queryLectureByAid.do',
-            dataType: 'json',
-            type: 'POST',
+        _g.ajax({
+            lock: true,
+            url: 'http://120.77.204.252:80/lecture/querySignListPageByLecture.do',
             async: false,
-            processData: false,
-            contentType: 'application/json',
-            // xhrFields: {
-            //     withCredentials: true
-            // },
-            // crossDomain: true,
-            data: JSON.stringify({
-                data: data,
-                token: 123
-            }),
+            data: {
+                paging: data
+            },
             success: function(result) {
-                alert(1111)
-                if (result.num == 1) {
-                    var result = { list: data.lecturePaging.list };
-                    _g.render('lecture/list-V', result, '#table');
+                if(result.code === 200) {
+                    if(result.data.paging) {
+                        _g.initPaginator({
+                        currentPage: result.data.paging.currentPage,
+                        totalPages: result.data.paging.totalPage,
+                        totalCount: result.data.paging.totalResult,
+                        onPageClicked: function(page) {
+                            console.log(page)
+                            data.currentPage = page;
+                            getList();
+                        }
+                    });
+                    var data1 = { list: result.data.paging.list, currentPage: data.currentPage, showCount: data.showCount};
+                    _g.render('lecture/signResult-V', data1, '#table');
+                    } else {
+                        var data1 = { list: [] };
+                        _g.render('lecture/signResult-V', data1, '#table');
+                    }
+                    
+                } else if(result.code === 1000){
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                        yes: function(index) {
+                            layer.close(index);
+                            window.location.href = '/signin.html';
+                        }
+                    });
                 } else {
                     layer.open({
                         title: '消息',
-                        content: data.msg
+                        content: result.msg,
                     });
                 }
-            },
-        });
+            }
+        })
     }
-    // getList();
+
+    getList();
+
+    $('#searchBtn').click(function() {
+        data.currentPage = 1;
+        data.t.participateWay = $('#participateWay .active input').val();
+        data.t.signStatus = $('#signStatus .active input').val();
+        getList();
+    })
 
     $('#sign').click(function() {
         _g.openBaseModal('lecture/addSign-V', {}, '补签');
