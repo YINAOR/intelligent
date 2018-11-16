@@ -127,16 +127,20 @@
     }
 
     auditItem = function(id) {
-        _g.openBaseModal('lecture/list-audit-V', {id: id}, '审核讲座');
+        _g.openBaseModal('lecture/list-audit-V', {id: id,isLecture: true}, '审核讲座');
     }
 
 
-    _g.audit = function(id) {
+    _g.audit = function(id,isLecture) {
         var status = $('input[name=a]:checked').val();
         var opinion = $('#opinion').val();
+        var url = 'http://120.77.204.252:80/allLecture/audit.do';
+        if(!isLecture) {
+            url = 'http://120.77.204.252:80/allTeahouse/audit.do';
+        }
         _g.ajax({
             lock: true,
-            url: 'http://lai.vipgz1.idcfengye.com/intelligent/allLecture/audit.do',
+            url: url,
             data: {
                 lecture: {
                     id: id,

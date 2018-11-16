@@ -74,6 +74,42 @@
         getList();
     })
 
+    _g.appointment = function(){
+        var status = $('input[name=a]:checked').val();
+        _g.ajax({
+            lock: true,
+            url: 'http://120.77.204.252:80/teahouse/processAppointment.do',
+            data: {
+                Appointment: {
+                    teahouse: {
+                        id: id,
+                        status: status
+                    }
+                }
+            },
+            success: function(result) {
+                if(result.code === 1000){
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                        yes: function(index){
+                            layer.close(index);
+                            window.location.href = '/signin.html';
+                        }
+                    });
+                } else{
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                    })
+                    if(result.code === 200) {
+                        _g.hideBaseModal();
+                    }
+                }
+            }
+        })     
+    }
+
 
     // downloadExcelTemplet = function() {
     //     var token = sessionStorage.getItem('token');;

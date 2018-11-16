@@ -30,7 +30,7 @@
                 <td>
 
                     {{if item.status === 1}}
-                    <button onclick="freeze('{{item.id}}',1)" class="btn btn-danger btn-xs" data-id="1234">处理预约</button>
+                    <button onclick="javascript:_g.openBaseModal('conversation/list-appointment-V', {}, '预约处理');" class="btn btn-danger btn-xs" data-id="1234">处理预约</button>
                     {{else}}
                     ----
                     {{/if}}

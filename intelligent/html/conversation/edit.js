@@ -38,11 +38,11 @@
                     var statusId = result.data.teahouse.status;
                     var status = statusId === 1 ? '未审核' : statusId === 2 ? '待审核' : statusId === 3 ? '审核通过' : statusId === 4 ? '审核不通过' : '待复审中';//0：待审核，1：通过审核，2：审核不通过
                     var isSend = result.data.teahouse.isSend === 1 ? '未发送' : result.data.teahouse.isSend === 2 ? '已发送' : '回退';  
-                    var signUpNum = result.data.teahouse.signUpNum;
+                    var limitNumOfPep = result.data.teahouse.limitNumOfPep;
                     var teahouseSpeakerLinkList = result.data.teahouse.teahouseSpeakerLinkList;
                     var content = result.data.teahouse.content;
                     var category = result.data.teahouse.category;
-                    var adminstrator = result.data.teahouse.adminstrator;
+                    var administrator = result.data.teahouse.administrator.name;
                     var organization = result.data.teahouse.organization;
                     $('#theme').val(theme);
                     if(imageUrl) {
@@ -72,13 +72,11 @@
                     $('#editor').val(content);
                     $('#status').val(status);
                     $('#isSend').val(isSend);
-                    $('#signUpNum').val(signUpNum);
-                    $('#participateNum').val(participateNum);
-                    $('#isProvedSign').val(isProvedSign);
                     $('#type').text(category.name);
                     $('#categoryId li input[value="'+ category.id +'"]').parent().addClass('active');
-                    $('#limitNumOfPep').val(limitNumOfPep);
                     $('#organization').val(organization);
+                    $('#administrator').val(administrator);
+                    $('#limitNumOfPep').val(limitNumOfPep);
                 } else if(result.code === 1000){
                     layer.open({
                         title: '消息',

@@ -28,28 +28,29 @@
     }
     getTypeList();
 
-    var data = {
+     var data = {
         currentPage: 1,
         showCount: 5,
         t: {
-            name: $('#name').val(),
-            startDate: $('#startDate').val(),
-            endDate: $('#endDate').val(),
-            isSend: $('#isSend .active input').val(),
+            theme: $('#theme').val(),
+            startDate: $('startDate').val(),
+            endDate: $('endDate').val(),
             status: $('#status .active input').val(),
+            isSend: $('#isSend .active input').val(),
             category: { 
                 id: $('#type .active input').val()
             }
         }
     }
 
+
     var result = { list: [] };
-    _g.render('conversation/list-V', result, '#table');
+    _g.render('conversation/audit-V', result, '#table');
 
     function getList() {
         _g.ajax({
             lock: true,
-            url: 'http://120.77.204.252:80/allconversation/queryListPage.do',
+            url: 'http://120.77.204.252:80/allTeahouse/queryListPage.do',
             async: false,
             data:  {
                 paging: data
@@ -114,7 +115,7 @@
     deleteItem = function(id) {
         _g.ajax({
             lock: true,
-            url: 'http://lai.vipgz1.idcfengye.com/intelligent/conversation/delete.do',
+            url: 'http://120.77.204.252:80/teahouse/delete.do',
             data: {
                 id: id
             },
@@ -127,43 +128,8 @@
     }
 
     auditItem = function(id) {
-        _g.openBaseModal('conversation/list-audit-V', {id: id}, '审核讲座');
+        _g.openBaseModal('lecture/list-audit-V', {id: id, isLecture: false}, '审核茶座');
     }
 
 
-    _g.audit = function(id) {
-        var status = $('input[name=a]:checked').val();
-        var opinion = $('#opinion').val();
-        _g.ajax({
-            lock: true,
-            url: 'http://lai.vipgz1.idcfengye.com/intelligent/allconversation/audit.do',
-            data: {
-                conversation: {
-                    id: id,
-                    status: status,
-                    checkDescription: opinion
-                }
-            },
-            success: function(result) {
-                if(result.code === 1000){
-                    layer.open({
-                        title: '消息',
-                        content: result.msg,
-                        yes: function(index){
-                            layer.close(index);
-                            window.location.href = '/signin.html';
-                        }
-                    });
-                } else{
-                    layer.open({
-                        title: '消息',
-                        content: result.msg,
-                    })
-                    if(result.code === 200) {
-                        _g.hideBaseModal();
-                    }
-                }
-            }
-        })     
-    }
 })();
