@@ -11,9 +11,8 @@
     // })
     
     
-    var id = 1;//_g.pm.param.id;
+    var id = _g.pm.param.id;
     var teahouseUrl;
-    var teahouseProvedUrl;
     var appendList = $('#speakerGroup').html();
     if(id) {
         $('.panel-heading').text('编辑茶座');
@@ -69,7 +68,7 @@
                     //     $('#spname2').val(speakerLinkList[1].name);
                     //     $('#spbrief2').val(speakerLinkList[1].brief);
                     // }
-                    $('#editor').val(content);
+                    $('#editor p').html(content);
                     $('#status').val(status);
                     $('#isSend').val(isSend);
                     $('#type').text(category.name);
@@ -232,13 +231,11 @@
         }); 
 
         $('#submitBtn').click(function() {
-            var name = $('#name').val();
+            var theme = $('#theme').val();
             var date = $('#date').val();
             var startTimePicker = $('#startTimePicker').val();
             var endTimePicker = $('#endTimePicker').val();
             var address = $('#address').val();
-            var lprove = $('#lprove .active input').val();
-
             var speakerlink = [];
             var size = $('.speakerList').size();
             for(var j = 0 ; j < size; j++) {
@@ -247,35 +244,27 @@
                     brief: $('.speakerList:eq('+ j +') .spbrief').val()
                });
             }
-            var hour = $('#hour').val();
-            var editor = $('#editor').val();//editor;
+            var editor = $('#editor p').html();
             var categoryId = $('#categoryId .active input').val();
-            var isProvedSign = $('#sign .active input').val();
-            var object = $('#groupOfPep').val();
             var number = $('#limitNumOfPep').val();
-            var sponsor = $('#sponsor').val();
             var organization = $('#organization').val();
 
             var teahouse ={
-                name: name,
+                theme: theme,
                 speakerLinkList:speakerlink,
                 category:{
                     id: categoryId
                 },
                 date:date,
-                startTime:date + ' '+ startTimePicker,
-                endTime:date+ ' '+endTimePicker,
+                startTime: startTimePicker,
+                startTimeStr: date + ' '+ startTimePicker,
+                endTime: endTimePicker,
+                endTimeStr: date+ ' '+endTimePicker,
                 address:address,
-                sponsor:sponsor,
                 organization: organization,
                 content:editor,
-                isProved:lprove,
-                isProvedSign: isProvedSign,
-                hour:hour,
-                groupOfPep:object,
                 limitNumOfPep:number,
                 imageUrl: teahouseUrl,
-                teahouseProvedImage: teahouseProvedUrl
             }
             var url = 'http://120.77.204.252:80/teahouse/save.do';
             if(id) {
@@ -329,16 +318,14 @@
         } else if (window.webkitURL != undefined) { // webkit or chrome
             url = window.webkitURL.createObjectURL(this.files[0]);
         }
-        var ajaxUrl;
-        var formData;
-        if(this.id == 'teahouse') {
-            // $('#file').val($('input[id="teahouse"]').val().substring($('input[id="teahouse"]').val().lastIndexOf('\\') + 1));
-            // $('#prePhoto').html('<img src="'+ url +'" style="width: 120px; height:150px">');
-            ajaxUrl = 'http://120.77.204.252:80/teahouse/uploadImage.do?token='+ token +'&uploadsign=teahouse';
-            formData = new FormData($('#conversationForm')[0]);
-        }
         var self = this;
         var token = sessionStorage.getItem('token');
+        if(self.id == 'teahouse') {
+            // $('#file').val($('input[id="teahouse"]').val().substring($('input[id="teahouse"]').val().lastIndexOf('\\') + 1));
+            // $('#prePhoto').html('<img src="'+ url +'" style="width: 120px; height:150px">');
+            var ajaxUrl = 'http://120.77.204.252:80/lecture/uploadImage.do?token='+ token +'&uploadsign=teahouse';
+            var formData = new FormData($('#conversationForm')[0]);
+        }
         function uploadImg() {
             document.activeElement.blur();
             $('.ui-loading').show();
@@ -371,11 +358,12 @@
                                 teahouseUrl = result.data.imageUrl;
                                 $('#file').val($('input[id="teahouse"]').val().substring($('input[id="teahouse"]').val().lastIndexOf('\\') + 1));
                                 $('#prePhoto').html('<img src="'+ url +'" style="width: 120px; height:150px">');
-                            } else {
-                                teahouseProvedUrl = result.data.imageUrl;
-                                $('#proveFile').val($('input[id="teahouseProved"]').val().substring($('input[id="teahouseProved"]').val().lastIndexOf('\\') + 1));
-                                $('#preProvePhoto').html('<img src="'+ url +'" style="width: 120px; height:150px">'); 
-                            }
+                            } 
+                            // else {
+                            //     teahouseProvedUrl = result.data.imageUrl;
+                            //     $('#proveFile').val($('input[id="teahouseProved"]').val().substring($('input[id="teahouseProved"]').val().lastIndexOf('\\') + 1));
+                            //     $('#preProvePhoto').html('<img src="'+ url +'" style="width: 120px; height:150px">'); 
+                            // }
                         }
                     }
                 },

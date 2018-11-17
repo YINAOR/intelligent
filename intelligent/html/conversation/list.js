@@ -6,7 +6,7 @@
      function getTypeList() {
         _g.ajax({
             lock: true,
-            url: 'http://120.77.204.252:80/conversation/toEdit.do',
+            url: 'http://120.77.204.252:80/teahouse/toEdit.do',
             success: function(result)  {
                 if(result.code == 200){
                     var categoryList=result.data.categoryList;

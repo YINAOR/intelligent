@@ -81,7 +81,7 @@
                     //     $('#spname2').val(speakerLinkList[1].name);
                     //     $('#spbrief2').val(speakerLinkList[1].brief);
                     // }
-                    $('#editor').val(content);
+                    $('#editor p').text(content);
                     $('#status').val(status);
                     $('#isSend').val(isSend);
                     $('#signUpNum').val(signUpNum);
@@ -263,13 +263,15 @@
                });
             }
             var hour = $('#hour').val();
-            var editor = $('#editor').val();//editor;
+            var editor = $('#editor p').html();//editor;
             var categoryId = $('#categoryId .active input').val();
             var isProvedSign = $('#sign .active input').val();
             var object = $('#groupOfPep').val();
             var number = $('#limitNumOfPep').val();
             var sponsor = $('#sponsor').val();
             var organization = $('#organization').val();
+            console.log(lectureUrl)
+            console.log(lectureProvedUrl)
 
             var lecture ={
                 name: name,
@@ -346,19 +348,21 @@
         }
         var ajaxUrl;
         var formData;
+        var self = this;
+        var token = sessionStorage.getItem('token');
         if(this.id == 'lecture') {
             // $('#file').val($('input[id="lecture"]').val().substring($('input[id="lecture"]').val().lastIndexOf('\\') + 1));
             // $('#prePhoto').html('<img src="'+ url +'" style="width: 120px; height:150px">');
             ajaxUrl = 'http://120.77.204.252:80/lecture/uploadImage.do?token='+ token +'&uploadsign=lecture';
             formData = new FormData($('#lectrueForm')[0]);
-        } else {
-            // $('#proveFile').val($('input[id="lectureProved"]').val().substring($('input[id="lectureProved"]').val().lastIndexOf('\\') + 1));
-            // $('#preProvePhoto').html('<img src="'+ url +'" style="width: 120px; height:150px">'); 
-            ajaxUrl = 'http://120.77.204.252:80/lecture/uploadImage.do?token='+ token +'&uploadsign=lectureProved';
-            formData = new FormData($('#lectrueProvedForm')[0]);
         }
-        var self = this;
-        var token = sessionStorage.getItem('token');
+        console.log(formData)
+        // else {
+        //     // $('#proveFile').val($('input[id="lectureProved"]').val().substring($('input[id="lectureProved"]').val().lastIndexOf('\\') + 1));
+        //     // $('#preProvePhoto').html('<img src="'+ url +'" style="width: 120px; height:150px">'); 
+        //     ajaxUrl = 'http://120.77.204.252:80/lecture/uploadImage.do?token='+ token +'&uploadsign=lectureProved';
+        //     formData = new FormData($('#lectrueProvedForm')[0]);
+        // }
         function uploadImg() {
             document.activeElement.blur();
             $('.ui-loading').show();
@@ -387,15 +391,21 @@
                             content: result.msg,
                         });
                         if(result.code === 200) {
+                            console.log(555)
                             if(self.id == 'lecture') {
+                                console.log(333)
                                 lectureUrl = result.data.imageUrl;
+                                console.log(lectureUrl)
                                 $('#file').val($('input[id="lecture"]').val().substring($('input[id="lecture"]').val().lastIndexOf('\\') + 1));
                                 $('#prePhoto').html('<img src="'+ url +'" style="width: 120px; height:150px">');
-                            } else {
-                                lectureProvedUrl = result.data.imageUrl;
-                                $('#proveFile').val($('input[id="lectureProved"]').val().substring($('input[id="lectureProved"]').val().lastIndexOf('\\') + 1));
-                                $('#preProvePhoto').html('<img src="'+ url +'" style="width: 120px; height:150px">'); 
-                            }
+                            } 
+                            // else {
+                            //     console.log(1111)
+                            //     lectureProvedUrl = result.data.imageUrl;
+                            //     console.log(lectureProvedUrl)
+                            //     $('#proveFile').val($('input[id="lectureProved"]').val().substring($('input[id="lectureProved"]').val().lastIndexOf('\\') + 1));
+                            //     $('#preProvePhoto').html('<img src="'+ url +'" style="width: 120px; height:150px">'); 
+                            // }
                         }
                     }
                 },
