@@ -3,6 +3,9 @@
     _g.setNowPage('lecture/list');
     $('#formContent').html(_g.getTemplate('lecture/list-V'));
 
+    var result = { list: [] };
+    _g.render('lecture/list-V', result, '#table');
+
     function getTypeList() {
         _g.ajax({
             lock: true,
@@ -43,8 +46,6 @@
         }
     }
 
-    var result = { list: [] };
-    _g.render('lecture/list-V', result, '#table');
 
     function getList() {
         _g.ajax({
