@@ -251,7 +251,7 @@
 
             var teahouse ={
                 theme: theme,
-                speakerLinkList:speakerlink,
+                teahouseSpeakerLinkList:speakerlink,
                 category:{
                     id: categoryId
                 },
