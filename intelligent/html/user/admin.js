@@ -39,6 +39,11 @@
                     } else {
                         var data1 = { list: [] };
                         _g.render('user/admin-V', data1, '#table');
+                        _g.initPaginator({
+                            currentPage: 0,
+                            totalPages: 0,
+                            totalCount: 0,
+                        });
                     }
                     
                 } else if(result.code === 1000){

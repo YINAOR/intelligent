@@ -96,8 +96,11 @@
                              } else if (window.webkitURL != undefined) { // webkit or chrome
                                 url = window.webkitURL.createObjectURL(file);
                             }
+                            sessionStorage.setItem('administrator').avatar = url;
                             $('#avatarImage').attr('src',url);
+
                         }
+                        history.back(-1);
                     } else if(result.code === 1000){
                         layer.open({
                             title: '消息',

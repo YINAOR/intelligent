@@ -243,6 +243,11 @@
         }
 
         $('#globalUsername').text(JSON.parse(sessionStorage.getItem('administrator')).name);
+        console.log(sessionStorage.getItem('administrator').avatar)
+        if(sessionStorage.getItem('administrator').avatar) {
+            $('#avatarImage').attr('src','http://120.77.204.252:80' + sessionStorage.getItem('administrator').avatar);
+        }
+        
 
         $('#updPassword').click(function() {
             _g.openBaseModal('user/list-password-V', {}, '修改密码');

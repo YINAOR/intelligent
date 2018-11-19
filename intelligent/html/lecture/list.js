@@ -73,6 +73,11 @@
                     } else {
                         var result = { list: [] };
                         _g.render('lecture/list-V', result, '#table');
+                        _g.initPaginator({
+                            currentPage: 0,
+                            totalPages: 0,
+                            totalCount: 0,
+                        });
                     }
     			} else if(result.code === 1000){
                     layer.open({

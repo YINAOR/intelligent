@@ -280,8 +280,8 @@
                     id: categoryId
                 },
                 date:date,
-                startTime:date + ' '+ startTimePicker,
-                endTime:date+ ' '+endTimePicker,
+                startTime:date + ' '+ startTimePicker+':00',
+                endTime:date+ ' '+ endTimePicker+':00',
                 address:address,
                 sponsor:sponsor,
                 organization: organization,
