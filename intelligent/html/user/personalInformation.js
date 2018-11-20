@@ -63,13 +63,9 @@
         var token = sessionStorage.getItem('token');
         var formData = new FormData($('.form-horizontal')[0]);
         var i = formData.entries();
-        console.log(firstFileName)
-        console.log($('#file').val())
-        console.log(firstFileName == $('#file').val())
         if(firstFileName == $('#file').val()) {
             formData.delete('imagefile');
         }
-
             $.ajax({
                 url: 'http://120.77.204.252:80/admin/updateProfile.do?token='+ token +'&uploadsign=administrator',
                 dataType:"json",
@@ -85,7 +81,6 @@
                             title: '消息',
                             content: result.msg,
                         });
-                        history.back();
                         if(firstFileName != $('#file').val()) {
                             var url;
                             var file = $('input[type="file"]')[0].files[0];
@@ -96,11 +91,10 @@
                              } else if (window.webkitURL != undefined) { // webkit or chrome
                                 url = window.webkitURL.createObjectURL(file);
                             }
-                            sessionStorage.setItem('administrator').avatar = url;
+                            sessionStorage.setItem('administrator',JSON.stringify(result.data.administrator));
                             $('#avatarImage').attr('src',url);
-
                         }
-                        history.back(-1);
+                        document.getElementById('toIndex').click();
                     } else if(result.code === 1000){
                         layer.open({
                             title: '消息',

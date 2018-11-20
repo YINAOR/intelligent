@@ -243,9 +243,8 @@
         }
 
         $('#globalUsername').text(JSON.parse(sessionStorage.getItem('administrator')).name);
-        console.log(sessionStorage.getItem('administrator').avatar)
-        if(sessionStorage.getItem('administrator').avatar) {
-            $('#avatarImage').attr('src','http://120.77.204.252:80' + sessionStorage.getItem('administrator').avatar);
+        if(JSON.parse(sessionStorage.getItem('administrator')).avatar) {
+            $('#avatarImage').attr('src','http://120.77.204.252:80' + JSON.parse(sessionStorage.getItem('administrator')).avatar);
         }
         
 
@@ -255,22 +254,31 @@
         $('#personalInformation').click(function() {
             _g.openWin('user/personalInformation');
         });
-        $('#changeAvatar').click(function() {
-            
-        });
 
         _g.updPassword = function() {
             var oldPassword = $('#oldPassword').val();
             var newPassword1 = $('#newPassword1').val();
             var newPassword2 = $('#newPassword2').val();
+            if(!oldPassword) {
+                layer.msg('请输入旧密码!');
+                return;
+            }
             if (newPassword1.length < 6) {
                 layer.msg('请输入至少6位数的密码!');
+                return;
+            }
+            if(!newPassword1) {
+                layer.msg('请输入新密码!');
+                return;
+            }
+            if(!newPassword2) {
+                layer.msg('请再次确认密码!');
                 return;
             }
             if (newPassword1 != newPassword2) {
                 layer.msg('新密码不一致请重新输入!');
                 return;
-            }           
+            }          
             _g.ajax({
                 url: 'http://120.77.204.252:80/admin/updatePassword.do',
                 // url: 'http://lai.vipgz1.idcfengye.com/admin/updatePassword.do',
