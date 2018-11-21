@@ -39,8 +39,8 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu dropdown-select" id="status">
-                                <li><input type="radio" name="d-s-r" value="1"><a href="#">冻结</a></li>
-                                <li><input type="radio" name="d-s-r" value="0"><a href="#">正常</a></li>
+                                <li><input type="radio" name="d-s-r" value="2"><a href="#">冻结</a></li>
+                                <li><input type="radio" name="d-s-r" value="1"><a href="#">正常</a></li>
                             </ul>
                         </div>
                         <div class="btn-group m-r" style="margin-top: 15px">
@@ -48,9 +48,9 @@
                                 <span class="dropdown-label" data-placeholder="Please select">激活状态</span>
                                 <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu dropdown-select" id="activateStatus">
+                            <ul class="dropdown-menu dropdown-select" id="activeStatus">
                                 <li><input type="radio" name="d-s-r" value="1"><a href="#">激活</a></li>
-                                <li><input type="radio" name="d-s-r" value="0"><a href="#">未激活</a></li>
+                                <li><input type="radio" name="d-s-r" value="2"><a href="#">未激活</a></li>
                             </ul>
                         </div>
                         <div id="searchBtn" type="submit" class="btn btn-s-md btn-success" style="margin-top: 15px;">查询</div>
@@ -65,7 +65,7 @@
                         <form data-validate="parsley" class="form-horizontal" id="excelForm" style="display: inline-block;">
                             <!-- <div class="form-group"> -->
                             <!-- <div id="photoInput" class="col-sm-8"> -->
-                            <input type="file" name="imagefile" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="filestyle" id="lecture" tabindex="-1" style="display: none; position: absolute; clip: rect(0px, 0px, 0px, 0px);">
+                            <input type="file" name="excel" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="filestyle" id="lecture" tabindex="-1" style="display: none; position: absolute; clip: rect(0px, 0px, 0px, 0px);">
                             <div class="bootstrap-filestyle input-group" style="display: inline-block; margin-left: 15px">
                                 <input type="text" class="form-control" id="file" placeholder="请选择上传文件" disabled style="display: none">
                                 <!-- <span class="group-span-filestyle input-group-btn" tabindex="0"> -->

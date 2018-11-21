@@ -67,7 +67,7 @@
     }
     getList();
 
-    deleteId = function(id,index) {
+    deleteId = function(id,ind) { 
         layer.confirm('您确定要删除此管理员吗？', { title: '询问' }, function(index) {
             _g.ajax({
                 url: 'http://120.77.204.252:80/manageAdmin/delete.do',
@@ -76,7 +76,7 @@
                 },
                 success: function(result) {
                     if(result.code === 200) {
-                        if(index%data.showCount === 1) {
+                        if(ind%data.showCount === 1) {
                             data.currentPage--;
                         }
                         getList();
@@ -213,7 +213,7 @@
     $('input[type="file"]').change(function() {
             var token = sessionStorage.getItem('token');
             $.ajax({
-                url: 'http://120.77.204.252:80/category/readExcel.do?token='+ token,
+                url: 'http://120.77.204.252:80/manageAdmin/readExcel.do?token='+ token,
                 dataType: "json",
                 type: "POST",
                 async: false,

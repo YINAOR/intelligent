@@ -157,17 +157,13 @@
     function checkUserName() {
         var account = $('#username').val();
         _g.ajax({
-            url: 'http://120.77.204.252:80/admin/checkRepeat.do',
+            url: 'http://120.77.204.252:80/manageAdmin/checkRepeat.do',
             data: {
                 account: account
             },
             success: function(result) {
                 if(result.code === 200) {
-                    if (result.msg.indexOf('用户名已存在') != -1) {
-                        _g.setErrorAlert({
-                            errorText: result.msg
-                        });
-                    } else if (result.msg.indexOf('可用') != -1) {
+                    if (result.msg.indexOf('可用') != -1) {
                         $('#messageArea').html('');
                     }
                 } else if(result.code === 1000){
@@ -182,10 +178,16 @@
                         }
                     });
                 } else {
-                    layer.open({
-                        title: '消息',
-                        content: result.msg,
-                    });
+                    if (result.msg.indexOf('用户名已存在') != -1) {
+                        _g.setErrorAlert({
+                            errorText: result.msg
+                        });
+                    } else {
+                        layer.open({
+                           title: '消息',
+                           content: result.msg,
+                        });
+                    }
                 }
             }
         })
@@ -197,7 +199,7 @@
             if(timer) {
                 clearTimeout(timer);
             }
-            timer = setTimeout(checkUserName,1000);
+            timer = setTimeout(checkUserName,2000);
         }
     }
 

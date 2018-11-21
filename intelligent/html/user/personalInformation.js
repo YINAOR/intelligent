@@ -32,7 +32,7 @@
                     $('#institution').val(institution);
                     if(avatar) {
                         $('#file').val(avatar);
-                        $('#prePhoto').append('<img src="http://120.77.204.252:80' + avatar +'" style="width：100px;height: 100px;"/>');
+                        $('#prePhoto').append('<img src="http://120.77.204.252:80' + avatar +'" style="width:100px;height: 100px;"/>');
                         firstFileName = avatar;
                     } else {
                         firstFileName = '';

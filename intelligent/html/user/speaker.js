@@ -117,7 +117,7 @@
     $('input[type="file"]').change(function() {
         var token = sessionStorage.getItem('token');
         $.ajax({
-            url: 'http://120.77.204.252:80/category/readExcel.do?token=' + token,
+            url: 'http://120.77.204.252:80/speaker/readExcel.do?token=' + token,
             dataType: "json",
             type: "POST",
             async: false,

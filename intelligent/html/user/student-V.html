@@ -12,6 +12,7 @@
                 <th>班级</th>
                 <th>入学时间</th>
                 <th>状态</th>
+                <th>激活状态</th>
                 <th style="width:280px;">操作</th>
             </tr>
         </thead>
@@ -23,20 +24,21 @@
             {{else}} {{each list item index}}
             <tr data-custom-id="{{item.id}}">
                 <td>{{showCount*(currentPage-1)+index+1}}</td>
-                <td>{{item.id}}</td>
+                <td>{{item.num}}</td>
                 <td>{{item.name}}</td>
-                <td>{{item.gender === 0 ? '男' : '女'}}</td>
+                <td>{{item.gender === 1 ? '男' : '女'}}</td>
                 <td>{{item.college.name}}</td>
                 <td>{{item.major.name}}</td>
                 <td>{{item.classNum}}</td>
                 <td>{{item.enrollmentTimeStr}}</td>
-                <td>{{item.status === 0 ? '正常' : '冻结'}}</td>
+                <td>{{item.status === 1 ? '正常' : '冻结'}}</td>
+                <td>{{item.activateStatus === 0 ? '未激活' : '已激活'}}</td>
                 <td>
                     <button onclick="_g.openWin('user/studentDetail','id={{item.id}}')" class="btn btn-success btn-xs">详情</button>
-                    {{if item.status === 0}}
-                    <button onclick="freeze('{{item.id}}',1)" class="btn btn-danger btn-xs" data-id="1234">冻结</button>
+                    {{if item.status === 1}}
+                    <button onclick="freeze('{{item.id}}',2)" class="btn btn-danger btn-xs" data-id="1234">冻结</button>
                     {{else}}
-                    <button onclick="freeze('{{item.id}}',0,'unfreeze')" class="btn btn-success btn-xs">解冻</button>
+                    <button onclick="freeze('{{item.id}}',1,'unfreeze')" class="btn btn-success btn-xs">解冻</button>
                     {{/if}}
                     <button  onclick="deleteStudent('{{item.id}}','{{index+1}}')" class="btn btn-danger btn-xs" data-id="1234">删除</button>
                     <button onclick="resetPassword('{{item.id}}')" class="btn btn-danger btn-xs">重置密码</button>
