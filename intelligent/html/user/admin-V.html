@@ -31,9 +31,9 @@
                     <button onclick="logout('{{item.id}}')" class="btn btn-danger btn-xs">强制下线</button>
                     <button onclick="resetPassword('{{item.id}}')" class="btn btn-success btn-xs">重置密码</button>
                     {{if item.status == 1}}
-                    <button onclick="freeze('{{item.id}}',1)" class="btn btn-danger btn-xs">冻结</button>
+                    <button onclick="freeze('{{item.id}}',2)" class="btn btn-danger btn-xs">冻结</button>
                     {{else}}
-                    <button onclick="freeze('{{item.id}}',0,'unfreeze')" class="btn btn-success btn-xs">解除冻结</button>
+                    <button onclick="freeze('{{item.id}}',1,'unfreeze')" class="btn btn-success btn-xs">解除冻结</button>
                     {{/if}}
                 </td>
             </tr>

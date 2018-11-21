@@ -8,7 +8,7 @@
         $('.panel-heading').text('编辑专业');
         _g.ajax({
             lock: true,
-            url: 'http://120.77.204.252:80/major/querydetail.do',
+            url: 'http://120.77.204.252:80/major/queryDetail.do',
             data: {
                 id: id
             },

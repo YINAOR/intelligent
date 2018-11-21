@@ -102,6 +102,50 @@
     	})
     }
 
+    updateStatus = function(id,status,stopUse) {
+        if(!stopUse) {
+            updateAjax(id,status);
+        } else {
+            layer.confirm('您确定要停用此学院吗？', { title: '询问' }, function(index) {
+                updateAjax(id,status);
+                layer.close(index);
+            });
+        }
+        function updateAjax(id,status) {
+            _g.ajax({
+                lock: true,
+                url: 'http://120.77.204.252:80/college/updateStatus.do',
+                data: {
+                    college: {
+                        id: id,
+                        status: status
+                    }
+                },
+                success: function(result) {
+                    if(result.code === 200) {
+                        getList();
+                    } else if(result.code === 1000){
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                            yes: function(index){
+                                layer.close(index);
+                                window.location.href = '/signin.html';
+                            }
+                        });
+                    } else {
+                        layer.open({
+                           title: '消息',
+                           content: result.msg,
+                        });
+                    }
+                }
+            })
+        }
+
+    }
+
+
     $('#searchBtn').click(function() {
         data.currentPage = 1;
         data.t.name = $('#college').val();

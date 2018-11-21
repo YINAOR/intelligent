@@ -45,12 +45,12 @@
                     var organization = result.data.lecture.organization;
                     $('#name').val(name);
                     if(imageUrl) {
-                        $('input[id="lecture"]').val(imageUrl);
-                        $('#prePhoto').html('<img src="http://120.77.204.252:80'+ imageUrl +'" style="width: 120px; height:150px">');
+                        $('#file').val(imageUrl);
+                        $('#prePhoto').append('<img src="http://120.77.204.252:80'+ imageUrl +'" style="width: 120px; height:150px">');
                     }
                     if(lectureProvedImage) {
-                        $('input[id="lectureProved"]').val(lectureProvedImage);
-                        $('#preProvePhoto').html('<img src="http://120.77.204.252:80'+ lectureProvedImage +'" style="width: 120px; height:150px">');
+                        $('#proveFile').val(lectureProvedImage);
+                        $('#preProvePhoto').append('<img src="http://120.77.204.252:80'+ lectureProvedImage +'" style="width: 120px; height:150px">');
                     }
                     $('#date').val(dateStr);
                     $('#startTimePicker').val(startTime);
@@ -92,6 +92,8 @@
                     $('#limitNumOfPep').val(limitNumOfPep);
                     $('#sponsor').val(sponsor);
                     $('#organization').val(organization);
+                    $('#groupOfPep').val(groupOfPep);
+                    $('#thumbsUpNum').val(thumbsUpNum);
                 } else if(result.code === 1000){
                     layer.open({
                         title: '消息',
@@ -245,6 +247,15 @@
         $("#addSpeaker").click(function(){
             $('#speakerGroup').append(appendList);
         }); 
+
+        $('#yes').click(function(){
+            $('.lectureHour').show();
+        })
+
+        $('#no').click(function(){
+            $('#hour').val('');
+            $('.lectureHour').hide();
+        })
 
         $('#submitBtn').click(function() {
             var name = $('#name').val();

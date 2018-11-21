@@ -42,8 +42,8 @@
                 <td>{{item.category.name}}</td>
                 <td>{{item.groupOfPep}}</td>
                 <td>{{item.limitNumOfPep}}</td>
-                <td>{{item.isSend === 0 ? '未发送' : item.isSend === 1 ? '已发送' : '回退'}}</td>
-                <td>{{item.status === 0 ? '待审核' : item.status === 1 ? '通过审核' : '审核不通过'}}</td>
+                <td>{{item.isSend === 1 ? '未发送' : item.isSend === 2 ? '已发送' : '回退'}}</td>
+                <td>{{item.status === 1 ? '未审核' : item.status === 2 ? '待审核' : item.status === 3 ? '审核通过' : item.status === 4 ? '审核不通过' : '待复审中'}}</td>
                 <td>
                     <button onclick="_g.openWin('lecture/sign','id={{item.id}}');" class="btn btn-success btn-xs" style="margin-bottom: 10px;">讲座开始签到</button>
                     <button onclick="_g.openWin('lecture/sign','id={{item.id}}');" class="btn btn-success btn-xs" style="margin-bottom: 10px;">讲座结束签到</button>

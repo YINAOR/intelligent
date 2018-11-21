@@ -115,7 +115,7 @@
             _g.ajax({
                 url: 'http://120.77.204.252:80/manageAdmin/freezeAccount.do',
                 data: {
-                    adminstrator: {
+                    administrator: {
                         id: id,
                         status: status
                     }

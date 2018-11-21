@@ -2,11 +2,12 @@
     <table class="table table-striped b-t b-light">
         <thead>
             <tr>
-                <th style="width:60px;">序号</th>
+                <th>序号</th>
+                <th>专业编号</th>
                 <th>专业名称</th>
                 <th>附属学院</th>
                 <th>状态</th>
-                <th style="width:280px;">操作</th>
+                <th>操作</th>
             </tr>
         </thead>
         <tbody>
@@ -17,12 +18,18 @@
             {{else}} {{each list item index}}
             <tr data-custom-id="{{item.dno}}">
                 <td>{{showCount*(currentPage-1)+index+1}}</td>
+                <td>{{item.code}}</td>
                 <td>{{item.name}}</td>
                 <td>{{item.college.name}}</td>
-                <td>{{item.status === 0 ? '使用中' : '已停用'}}</td>
+                <td>{{item.status === 1 ? '使用中' : '已停用'}}</td>
                 <td>
                     <button onclick="_g.openWin('user/editMajor','id={{item.id}}')" class="btn btn-success btn-xs">编辑</button>
                     <!-- <button onclick="deleteMajor('{{item.id}}')" class="btn btn-danger btn-xs" data-id="1234">删除</button> -->
+                    {{if item.status === 1}}
+                    <button onclick="updateStatus('{{item.id}}',2,'stopUse')" class="btn btn-danger btn-xs">停用</button>
+                    {{else}}
+                    <button onclick="updateStatus('{{item.id}}',1)" class="btn btn-success btn-xs">使用</button>
+                    {{/if}}
                 </td>
             </tr>
             {{/each}} {{/if}}

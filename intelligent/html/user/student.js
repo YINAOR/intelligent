@@ -11,7 +11,7 @@
             name: $('#name').val(),
             status: $('#status .active input').val(),
             classNum: $('#classNum').val(),
-            activeStatus: $('#activeStatus .active input').val(),
+            activateStatus: $('#activeStatus .active input').val(),
             college: {
                 id: $('#collegeId').val()
             },
@@ -85,7 +85,7 @@
         data.t.name = $('#name').val();
         data.t.status = $('#status .active input').val();
         data.t.classNum = $('#classNum').val();
-        data.t.activeStatus = $('#activeStatus .active input').val();
+        data.t.activateStatus = $('#activeStatus .active input').val();
         data.t.college.id = $('#collegeId').val();
         data.t.major.id = $('#majorId').val();
         getList();
