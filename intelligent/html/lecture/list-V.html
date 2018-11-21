@@ -25,7 +25,7 @@
             </tr>
             {{else}} {{each list item index}}
             <tr data-custom-id="{{item.id}}">
-                <td>{{index + 1}}</td>
+                <td>{{showCount*(currentPage-1)+index+1}}</td>
                 <td>{{item.name}}</td>
                 <td>{{item.startTime}}</td>
                 <td>{{item.endTime}}</td>

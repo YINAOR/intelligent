@@ -14,7 +14,7 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">主讲人</label>
                 <div class="col-sm-8">
-                    <input id="spname" type="text" name="name" class="form-control parsley-validated" value="" data-required="true" data-error-message="主讲人姓名不能为空." placeholder="请填写主讲人姓名" >
+                    <input id="spname" type="text" name="name" class="form-control parsley-validated" value="" data-required="true" data-error-message="主讲人姓名不能为空." placeholder="请填写主讲人姓名">
                     <span class="help-block m-b-none"></span>
                 </div>
             </div>
@@ -26,10 +26,10 @@
                             <span class="dropdown-label" data-placeholder="Please select">性别</span>
                             <span class="caret"></span>
                         </button>
-                    <!--    <ul class="dropdown-menu dropdown-select" id="gender" >
-                            <li><input type="radio" name="d-s-r" value="0"><a href="#">男</a></li>
-                            <li><input type="radio" name="d-s-r" value="1"><a href="#">女</a></li>
-                        </ul> -->
+                        <ul class="dropdown-menu dropdown-select" id="gender">
+                            <li><input type="radio" name="d-s-r" value="3"><a href="#">女</a></li>
+                            <li><input type="radio" name="d-s-r" value="2"><a href="#">男</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -41,22 +41,21 @@
                         <input type="text" id="file" class="form-control " placeholder="请选择上传文件" disabled> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="filestyle-0" class="btn btn btn-default "><span class="buttonText">选择文件</span></label>
                         </span>
                     </div>
-                    <span class="help-block m-b-none">图片尺寸为 100x150 图.</span>
+                    <span class="help-block m-b-none">图片尺寸为 120x150 图.</span>
                     <!-- 上传预览图 -->
                     <div>
                         <span id="prePhoto"></span>
                     </div>
                 </div>
             </div>
-
             <!-- <div class="form-group">
                 <label class="col-sm-2 control-label">封面图片</label>
                 <div id="photoInput" class="col-sm-8">
                     <input type="hidden" name="imgUrl" value="{{imgUrl}}">
                     <input type="file" name="file" accept="image/*" class="filestyle">
                     <span class="help-block m-b-none">图片尺寸为 300x540 图.</span> -->
-                    <!-- 上传预览图 -->
-                    <!-- <div>
+            <!-- 上传预览图 -->
+            <!-- <div>
                         {{if imgUrl}}
                         <img src="{{imgUrl}}" style="width: 100px; height: 150px;">
                         <span style="display: inline-block; height: 80px; line-height: 80px;"> => </span>
@@ -65,7 +64,6 @@
                     </div>
                 </div>
             </div> -->
-
             <div class="form-group">
                 <label class="col-sm-2 control-label">主讲人介绍</label>
                 <div class="col-sm-8">

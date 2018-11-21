@@ -26,7 +26,7 @@
                     
                     if(speaker.imageUrl) {
                         $('#file').val(speaker.imageUrl);
-                        $('#prePhoto').append('<img src="http://120.77.204.252:80' + speaker.imageUrl +'" style="width：100px;height: 150px;"/>');
+                        $('#prePhoto').append('<img src="http://120.77.204.252:80' + speaker.imageUrl +'" style="width:120px;height: 150px;"/>');
                         firstFileName = speaker.imageUrl;
                     } else {
                       firstFileName = '';

@@ -3,6 +3,7 @@
     <table class="table table-striped b-t b-light">
         <thead>
             <tr>
+                <th>序号</th>
                 <th>管理员ID</th>
                 <th>用户名</th>
                 <th>姓名</th>
@@ -17,7 +18,8 @@
                 <td colspan="6" style="text-align: center;">没有记录</td>
             </tr>
             {{else}} {{each list item index}}
-            <tr data-custom-id="{{item.aid}}">
+            <tr data-custom-id="{{item.id}}">
+                <td>{{showCount*(currentPage-1)+index+1}}</td>
                 <td>{{item.id}}</td>
                 <td>{{item.account}}</td>
                 <td>{{item.name}}</td>

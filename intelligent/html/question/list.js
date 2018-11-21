@@ -55,7 +55,7 @@
             success: function(result) {
                 if (result.code === 200) {
                     if (result.data.paging) {
-                        var data1 = { list: result.data.paging.list };
+                        var data1 = { list: result.data.paging.list, currentPage: data.currentPage, showCount: data.showCount };
                         _g.initPaginator({
                             currentPage: result.data.paging.currentPage,
                             totalPages: result.data.paging.totalPage,

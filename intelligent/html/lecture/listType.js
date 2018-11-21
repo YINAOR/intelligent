@@ -61,7 +61,7 @@
                 success: function(result) {
                     if (result.code === 200) {
                         if (result.data.paging) {
-                            var categoryList = { list: result.data.paging.list };
+                            var categoryList = { list: result.data.paging.list, currentPage: data.currentPage, showCount: data.showCount };
                             if (categoryList.list.length > 0) {
                                 _g.initPaginator({
                                     currentPage: result.data.paging.currentPage,
@@ -78,6 +78,11 @@
                         } else {
                             var resultnull = { list: [] };
                             _g.render('lecture/listType-V', resultnull, '#table');
+                            _g.initPaginator({
+                                currentPage: 0,
+                                totalPages: 0,
+                                totalCount: 0,
+                            });
                         }
                     } else if (result.code === 1000) {
                         layer.open({
@@ -143,14 +148,15 @@
         }
 
         $('input[type="file"]').change(function() {
+            var token = sessionStorage.getItem('token');
             $.ajax({
-                url: 'http://120.77.204.252:80/lecture/uploadImage.do?token='+ token +'&uploadsign=lectureProved',
+                url: 'http://120.77.204.252:80/category/readExcel.do?token='+ token,
                 dataType: "json",
                 type: "POST",
                 async: false,
                 contentType: false,
                 processData: false,
-                data: new FormData($('#lectrueProvedForm')[0]),
+                data: new FormData($('#excelForm')[0]),
                 success: function(result) {
                     $('.ui-loading').hide();
                     if (result.code === 1000) {
@@ -168,15 +174,8 @@
                             content: result.msg,
                         });
                         if (result.code === 200) {
-                            if (self.id == 'lecture') {
-                                lectureUrl = result.data.imageUrl;
-                                $('#file').val($('input[id="lecture"]').val().substring($('input[id="lecture"]').val().lastIndexOf('\\') + 1));
-                                $('#prePhoto').html('<img src="' + url + '" style="width: 120px; height:150px">');
-                            } else {
-                                lectureProvedUrl = result.data.imageUrl;
-                                $('#proveFile').val($('input[id="lectureProved"]').val().substring($('input[id="lectureProved"]').val().lastIndexOf('\\') + 1));
-                                $('#preProvePhoto').html('<img src="' + url + '" style="width: 120px; height:150px">');
-                            }
+                            layer.msg('上传数据成功！');
+                            getList();
                         }
                     }
                 },
@@ -189,7 +188,7 @@
                     });
                 }
             })
-        }
+        })
 
 
 

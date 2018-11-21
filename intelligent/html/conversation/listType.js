@@ -59,7 +59,7 @@
             success: function(result) {
                 if(result.code === 200) {
                     if(result.data.paging) {
-                        var categoryList = { list:result.data.paging.list };
+                        var categoryList = { list:result.data.paging.list, currentPage: data.currentPage, showCount: data.showCount };
                         if(categoryList.list.length>0){
                             _g.initPaginator({
                                 currentPage: result.data.paging.currentPage,
@@ -76,6 +76,11 @@
                     } else {
                         var resultnull = { list: [] };
                         _g.render('conversation/listType-V', resultnull, '#table');
+                        _g.initPaginator({
+                            currentPage: 0,
+                            totalPages: 0,
+                            totalCount: 0,
+                        });
                     }       
     			} else if(result.code === 1000){
                     layer.open({
@@ -129,6 +134,50 @@
         data.t.status = $('#status .active input').val();
         getList();
     })
+
+    $('input[type="file"]').change(function() {
+            var token = sessionStorage.getItem('token');
+            $.ajax({
+                url: 'http://120.77.204.252:80/category/readExcel.do?token='+ token,
+                dataType: "json",
+                type: "POST",
+                async: false,
+                contentType: false,
+                processData: false,
+                data: new FormData($('#excelForm')[0]),
+                success: function(result) {
+                    $('.ui-loading').hide();
+                    if (result.code === 1000) {
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                            yes: function(index) {
+                                layer.close(index);
+                                window.location.href = '/signin.html';
+                            }
+                        });
+                    } else {
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                        });
+                        if (result.code === 200) {
+                            layer.msg('上传数据成功！');
+                            getList();
+                        }
+                    }
+                },
+                error: function(error) {
+                    $('.ui-loading').hide();
+                    _g.hideLoading();
+                    layer.open({
+                        title: '消息',
+                        content: '上传数据超时，请重试！',
+                    });
+                }
+            })
+        })
+
 
 
     downloadExcelTemplet = function() {
