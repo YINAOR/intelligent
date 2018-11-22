@@ -117,18 +117,35 @@
     });
 
     deleteItem = function(id) {
-        _g.ajax({
-            lock: true,
-            url: 'http://120.77.204.252:80/teahouse/delete.do',
-            data: {
-                id: id
-            },
-            success: function(result) {
-                if(result.code === 200) {
-                    getList();
+        layer.confirm('您确定要删除此茶座吗？', { title: '询问' }, function(index) {
+            _g.ajax({
+                url: 'http://120.77.204.252:80/teahouse/delete.do',
+                data: {
+                    id: id
+                },
+                success: function(result) {
+                    if(result.code === 1000){
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                            yes: function(index){
+                                layer.close(index);
+                                window.location.href = '/signin.html';
+                            }
+                        });
+                    } else {
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                        });
+                        if(result.code === 200) {
+                           getList();
+                        }
+                    }                    
                 }
-            }
-        })
+           })
+            layer.close(index);
+        });
     }
 
     sendItem = function(id){

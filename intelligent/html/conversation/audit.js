@@ -6,7 +6,7 @@
     function getTypeList() {
         _g.ajax({
             lock: true,
-            url: 'http://120.77.204.252:80/conversation/toEdit.do',
+            url: 'http://120.77.204.252:80/teahouse/toEdit.do',
             success: function(result)  {
                 if(result.code == 200){
                     var categoryList=result.data.categoryList;
@@ -58,7 +58,7 @@
             success: function(result) {
                 if(result.code === 200) {
                     if(result.data.paging) {
-                    var data1 = { list: result.data.paging.list };
+                    var data1 = { list: result.data.paging.list, currentPage: data.currentPage, showCount: data.showCount };
                     _g.initPaginator({
                         currentPage: result.data.paging.currentPage,
                         totalPages: result.data.paging.totalPage,
@@ -73,6 +73,12 @@
                     } else {
                         var result = { list: [] };
                         _g.render('conversation/audit-V', result, '#table');
+                        _g.initPaginator({
+                            currentPage: 0,
+                            totalPages: 0,
+                            totalCount: 0,
+                        });
+
                     }
     			} else if(result.code === 1000){
                     layer.open({
@@ -96,12 +102,11 @@
     
     $('#searchBtn').click(function(){
         data.currentPage = 1;
-        data.t.name = $('#name').val();
+        data.t.theme = $('#theme').val();
         data.t.startDate = $('#startDate').val();
         data.t.endDate = $('#endDate').val();
         data.t.isSend = $('#isSend .active input').val();
         data.t.category.id = $('#type .active input').val();
-        data.t.status = $('#status .active input').val();
         getList();
     });
 
@@ -112,23 +117,59 @@
         elem: '#endDate' //指定元素
     });
 
-    deleteItem = function(id) {
-        _g.ajax({
-            lock: true,
-            url: 'http://120.77.204.252:80/teahouse/delete.do',
-            data: {
-                id: id
-            },
-            success: function(result) {
-                if(result.code === 200) {
-                    getList();
-                }
-            }
-        })
-    }
+    // deleteItem = function(id) {
+    //     _g.ajax({
+    //         lock: true,
+    //         url: 'http://120.77.204.252:80/teahouse/delete.do',
+    //         data: {
+    //             id: id
+    //         },
+    //         success: function(result) {
+    //             if(result.code === 200) {
+    //                 getList();
+    //             }
+    //         }
+    //     })
+    // }
 
     auditItem = function(id) {
-        _g.openBaseModal('lecture/list-audit-V', {id: id, isLecture: false}, '审核茶座');
+        _g.openBaseModal('conversation/list-audit-V', {id: id}, '审核茶座');
+    }
+
+     _g.auditTeahouse = function(id) {
+        var status = $('input[name=a]:checked').val();
+        var opinion = $('#opinion').val();
+        _g.ajax({
+            lock: true,
+            url: 'http://120.77.204.252:80/allTeahouse/audit.do',
+            data: {
+                teahouse: {
+                    id: id,
+                    status: status,
+                    checkDescription: opinion
+                }
+            },
+            success: function(result) {
+                if(result.code === 1000){
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                        yes: function(index){
+                            layer.close(index);
+                            window.location.href = '/signin.html';
+                        }
+                    });
+                } else{
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                    })
+                    if(result.code === 200) {
+                        _g.hideBaseModal();
+                    }
+                }
+            }
+        })     
     }
 
 

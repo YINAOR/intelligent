@@ -45,7 +45,7 @@
                     var organization = result.data.teahouse.organization;
                     $('#theme').val(theme);
                     if(imageUrl) {
-                        $('input[id="teahouse"]').val(imageUrl);
+                        $('#file').val(imageUrl);
                         $('#prePhoto').html('<img src="http://120.77.204.252:80'+ imageUrl +'" style="width: 120px; height:150px">');
                     }
                     $('#date').val(dateStr);

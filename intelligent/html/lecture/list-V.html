@@ -5,17 +5,17 @@
                 <th style="width:60px;">序号</th>
                 <th>名称</th> 
                 <th>开始时间</th>
-                <th>结束时间</th>
-                <th>讲座时长</th>
+                <th>结束时间</th> 
                 <th>地点</th>
                 <th>讲座证明</th>
+                <th>讲座时长</th>
                 <th>主讲人</th>
                 <th>讲座类别</th>
                 <th>面向对象</th>
                 <th>限制人数</th>
                 <th>发送状态</th>
                 <th>审核状态</th>
-                <th style="width:280px">操作</th>
+                <th>操作</th>
             </tr>
         </thead>
         <tbody>
@@ -29,12 +29,12 @@
                 <td>{{item.name}}</td>
                 <td>{{item.startTime}}</td>
                 <td>{{item.endTime}}</td>
-                <td>{{item.hour}}</td>
                 <td>{{item.address}}</td>
                 <td>{{item.isProved == 0 ? '否':'是'}}</td>
+                <td>{{item.hour}}</td>
                 {{if item.speakerLinkList}}
                 <td>
-                    {{each item.speakerLinkList it ind}} {{it.name}} {{/each}}
+                    {{each item.speakerLinkList it ind}} {{it.name}}  {{/each}}
                 </td>
                 {{else}}
                 <td></td>
@@ -45,8 +45,12 @@
                 <td>{{item.isSend === 1 ? '未发送' : item.isSend === 2 ? '已发送' : '回退'}}</td>
                 <td>{{item.status === 1 ? '未审核' : item.status === 2 ? '待审核' : item.status === 3 ? '审核通过' : item.status === 4 ? '审核不通过' : '待复审中'}}</td>
                 <td>
-                    <button onclick="_g.openWin('lecture/sign','id={{item.id}}');" class="btn btn-success btn-xs" style="margin-bottom: 10px;">讲座开始签到</button>
-                    <button onclick="_g.openWin('lecture/sign','id={{item.id}}');" class="btn btn-success btn-xs" style="margin-bottom: 10px;">讲座结束签到</button>
+                    {{if item.isProvedSign === 3}}
+                    <button onclick="_g.openWin('lecture/sign','id={{item.id}}','isProvedSign={{item.isProvedSign}}','start=true');" class="btn btn-success btn-xs" style="margin-bottom: 10px;">讲座开始签到</button>
+                    <button onclick="_g.openWin('lecture/sign','id={{item.id}}','isProvedSign={{item.isProvedSign}}','end=true');" class="btn btn-success btn-xs" style="margin-bottom: 10px;">讲座结束签到</button>
+                    {{else if item.isProvedSign === 2}}
+                    <button onclick="_g.openWin('lecture/sign','id={{item.id}}','isProvedSign={{item.isProvedSign}}','one=true');" class="btn btn-success btn-xs" style="margin-bottom: 10px;">讲座签到</button>
+                    {{/if}}
                     <button onclick="_g.openWin('lecture/signResult','id={{item.id}}');" class="btn btn-success btn-xs" style="margin-bottom: 10px;">签到结果</button>
                     <button onclick="_g.openWin('lecture/edit','id={{item.id}}');" class="btn btn-success btn-xs" style="margin-bottom: 10px;">详情</button>
                     <button onclick="_g.openWin('lecture/comment','id={{item.id}}');" class="btn btn-success btn-xs" style="margin-bottom: 10px;">查看评论</button>

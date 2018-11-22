@@ -57,7 +57,7 @@
             success: function(result) {
                 if(result.code === 200) {
                     if(result.data.paging) {
-                    var data1 = { list: result.data.paging.list };
+                    var data1 = { list: result.data.paging.list, currentPage: data.currentPage, showCount: data.showCount };
                     _g.initPaginator({
                         currentPage: result.data.paging.currentPage,
                         totalPages: result.data.paging.totalPage,
@@ -72,6 +72,11 @@
                     } else {
                         var result = { list: [] };
                         _g.render('lecture/audit-V', result, '#table');
+                        _g.initPaginator({
+                            currentPage: 0,
+                            totalPages: 0,
+                            totalCount: 0,
+                        });
                     }
     			} else if(result.code === 1000){
                     layer.open({
@@ -111,33 +116,30 @@
         elem: '#endDate' //指定元素
     });
 
-    deleteItem = function(id) {
-        _g.ajax({
-            lock: true,
-            url: 'http://lai.vipgz1.idcfengye.com/intelligent/lecture/delete.do',
-            data: {
-                id: id
-            },
-            success: function(result) {
-                if(result.code === 200) {
-                    getList();
-                }
-            }
-        })
-    }
+    // deleteItem = function(id) {
+    //     _g.ajax({
+    //         lock: true,
+    //         url: 'http://lai.vipgz1.idcfengye.com/intelligent/lecture/delete.do',
+    //         data: {
+    //             id: id
+    //         },
+    //         success: function(result) {
+    //             if(result.code === 200) {
+    //                 getList();
+    //             }
+    //         }
+    //     })
+    // }
 
     auditItem = function(id) {
         _g.openBaseModal('lecture/list-audit-V', {id: id,isLecture: true}, '审核讲座');
     }
 
 
-    _g.audit = function(id,isLecture) {
+    _g.audit = function(id) {
         var status = $('input[name=a]:checked').val();
         var opinion = $('#opinion').val();
         var url = 'http://120.77.204.252:80/allLecture/audit.do';
-        if(!isLecture) {
-            url = 'http://120.77.204.252:80/allTeahouse/audit.do';
-        }
         _g.ajax({
             lock: true,
             url: url,

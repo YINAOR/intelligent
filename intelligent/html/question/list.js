@@ -97,18 +97,35 @@
     getList();
 
     deleteItem = function(id) {
-        _g.ajax({
-            lock: true,
-            url: 'http://120.77.204.252:80/question/deleteQuestion.do',
-            data: {
-                id: id
-            },
-            success: function(result) {
-                if (result.code === 200) {
-                    getList();
+        layer.confirm('您确定要删除此提问吗？', { title: '询问' }, function(index) {
+            _g.ajax({
+                url: 'http://120.77.204.252:80/question/deleteQuestion.do',
+                data: {
+                    id: id
+                },
+                success: function(result) {
+                    if(result.code === 1000){
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                            yes: function(index){
+                                layer.close(index);
+                                window.location.href = '/signin.html';
+                            }
+                        });
+                    } else {
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                        });
+                        if(result.code === 200) {
+                           getList();
+                        }
+                    }                    
                 }
-            }
-        })
+           })
+            layer.close(index);
+        });
     }
 
     setFAQ = function(id, string) {
@@ -118,7 +135,7 @@
         }
         _g.ajax({
             lock: true,
-            url: 'http://120.77.204.252:80/question/deleteQuestion.do',
+            url: 'http://120.77.204.252:80/question/setFAQ.do',
             data: {
                 id: id,
                 isFaq: isFaq
@@ -126,6 +143,20 @@
             success: function(result) {
                 if (result.code === 200) {
                     getList();
+                } else if(result.code === 1000){
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                        yes: function(index){
+                            layer.close(index);
+                            window.location.href = '/signin.html';
+                        }
+                    });
+                } else{
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                    })
                 }
             }
         })
@@ -145,12 +176,28 @@
             lock: true,
             url: 'http://120.77.204.252:80/question/answer.do',
             data: {
-                id: id,
-                solution: solution
+                AnswersAndQuestions: {
+                    id: id,
+                    solution: solution
+                }
             },
             success: function(result) {
                 if (result.code === 200) {
                     getList();
+                } else if(result.code === 1000){
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                        yes: function(index){
+                            layer.close(index);
+                            window.location.href = '/signin.html';
+                        }
+                    });
+                } else{
+                    layer.open({
+                        title: '消息',
+                        content: result.msg,
+                    })
                 }
             }
         })

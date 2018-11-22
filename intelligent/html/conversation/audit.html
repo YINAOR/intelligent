@@ -14,7 +14,7 @@
                 <div class="panel-body">
                     <form class="form-inline" role="form">
                         <div class="form-group">
-                            <input type="text" id="theme" class="form-control" placeholder="茶座主题">
+                            <input type="text" id="theme" class="form-control" placeholder="茶座主题" style="height: 30px;">
                             <label class="control-label padder"></label>
                         </div>
                         <div class="btn-group m-r">
@@ -28,10 +28,15 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-8">
-                                <input type="text" id="date" style="padding-left: 12px; height: 30px; width: 115px; line-height: 38px; border: 1px solid #cbd5dd;  background-color: #fff;  border-radius: 2px;" placeholder="举办日期">
+                                <input type="text" id="startDate" style="padding-left: 12px; height: 30px; width: 115px; line-height: 38px; border: 1px solid #cbd5dd;  background-color: #fff;  border-radius: 2px;" placeholder="举办起始日期" readonly>
                             </div>
                         </div>
-                        <!-- <div class="btn-group m-r">
+                        <div class="form-group">
+                            <div class="col-sm-8">
+                                <input type="text" id="endDate" style="padding-left: 12px; height: 30px; width: 115px; line-height: 38px; border: 1px solid #cbd5dd;  background-color: #fff;  border-radius: 2px;" placeholder="举办截止日期" readonly>
+                            </div>
+                        </div>
+                        <div class="btn-group m-r">
                             <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
                                 <span class="dropdown-label" data-placeholder="Please select">审核状态</span>
                                 <span class="caret"></span>
@@ -41,8 +46,19 @@
                                 <li><input type="radio" value="1" name="d-s-r"><a href="#">审核通过</a></li> 
                                 <li><input type="radio" value="2" name="d-s-r"><a href="#">审核不通过</a></li>
                             </ul>
-                        </div> -->
-                        <button id="searchBtn" type="submit" class="btn btn-s-md btn-success">查询</button>
+                        </div>
+                        <div class="btn-group m-r">
+                            <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
+                                <span class="dropdown-label" data-placeholder="Please select">发送状态</span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul id="isSend" class="dropdown-menu dropdown-select">
+                                <li><input type="radio" value="0" name="d-s-r"><a href="#">未发送</a></li>
+                                <li><input type="radio" value="1" name="d-s-r"><a href="#">已发送</a></li> 
+                                <li><input type="radio" value="2" name="d-s-r"><a href="#">回退</a></li>
+                            </ul>
+                        </div>
+                        <div id="searchBtn" type="submit" class="btn btn-s-md btn-success">查询</div>
                     </form>
                 </div>
             </section>

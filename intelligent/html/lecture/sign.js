@@ -8,6 +8,16 @@
     //     return
     // }
 
+    var id = _g.pm.param.id;
+    var isProvedSign = _g.pm.param.isProvedSign;
+    var start = _g.pm.param.start;
+    var end = _g.pm.param.end;
+    var one = _g.pm.param.one;
+    var status = start ? 'S' : end ? 'E' : 'A';
+    console.log(status)
+
+    return
+
     if(set) {
         clearTimeout(set);
     }
@@ -17,7 +27,7 @@
         var supports = (new XMLHttpRequest()).withCredentials !== undefined;
         if (supports) {
             var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("POST", "http://lai.vipgz1.idcfengye.com/intelligent/lecture/generateQRCode.do", true);
+            xmlhttp.open("POST", "http://120.77.204.252:80/lecture/generateQRCode.do", true);
             xmlhttp.setRequestHeader('Content-Type', 'application/json');
             xmlhttp.responseType = "blob";
             // if(getTime) {
@@ -42,8 +52,8 @@
             }
             xmlhttp.send(JSON.stringify({data: {
                 QRCode: 'Y',//是否获取签到二维码
-                status: 'A',//开始签到or结束签到
-                lectureId: 2 //讲座id
+                status: 'S',//开始签到or结束签到
+                lectureId: id //讲座id
             },
             token: sessionStorage.getItem('token')}));
         }
@@ -53,8 +63,8 @@
     
     var set = setTimeout(function () {
         getQrCode();
-        set = setTimeout(arguments.callee, 1000000);
-    }, 1000000);
+        set = setTimeout(arguments.callee, 10000);
+    }, 10000);
 
     $('#stop').click(function() {
         clearTimeout(set);
