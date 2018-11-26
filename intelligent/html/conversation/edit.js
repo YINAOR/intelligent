@@ -69,7 +69,7 @@
                     //     $('#spname2').val(speakerLinkList[1].name);
                     //     $('#spbrief2').val(speakerLinkList[1].brief);
                     // }
-                    $('#editor p').html(content);
+                    $('#editor .w-e-text').html(content);
                     $('#status').val(status);
                     $('#isSend').val(isSend);
                     $('#type').text(category.name);
@@ -159,7 +159,7 @@
                     
                     if(result.code == 200){
                         var speakerList = result.data.speakerList;
-                        for(var i=0;i<teahouseSpeakerLinkList.length;i++){
+                        for(var i=0;i<speakerList.length;i++){
                             var name=speakerList[i].name;
                             var list = '<li class="active-result" data-option-array-index="' + i + '">' + name + '</li>';
                             // if(str) {
@@ -171,7 +171,7 @@
                         }
                         $('.speakerquery').on("click","li",function(e){
                             $(target).val($(e.target).text());
-                            for(var i=0;i<teahouseSpeakerLinkList.length;i++){
+                            for(var i=0;i<speakerList.length;i++){
                                 if($(target).val() == speakerList[i].name){
                                     $(target).parents('.speakerList').find('textarea').val(speakerList[i].brief);
                                 }
@@ -245,7 +245,7 @@
                     brief: $('.speakerList:eq('+ j +') .spbrief').val()
                });
             }
-            var editor = $('#editor p').html();
+            var editor = $('#editor .w-e-text').html();
             var categoryId = $('#categoryId .active input').val();
             var number = $('#limitNumOfPep').val();
             var organization = $('#organization').val();
@@ -271,8 +271,8 @@
             if(id) {
                 url = 'http://120.77.204.252:80/teahouse/update.do';
                 teahouse.id = id;
-                teahouse.speakerLinkList = teahouse.teahouseSpeakerLinkList;
-                delete teahouse.teahouseSpeakerLinkList;
+                // teahouse.speakerLinkList = teahouse.teahouseSpeakerLinkList;
+                // delete teahouse.teahouseSpeakerLinkList;
             }
 
             _g.ajax({

@@ -81,7 +81,7 @@
                     //     $('#spname2').val(speakerLinkList[1].name);
                     //     $('#spbrief2').val(speakerLinkList[1].brief);
                     // }
-                    $('#editor p').text(content);
+                    $('#editor .w-e-text').html(content);
                     $('#status').val(status);
                     $('#isSend').val(isSend);
                     $('#signUpNum').val(signUpNum);
@@ -274,7 +274,7 @@
                });
             }
             var hour = $('#hour').val();
-            var editor = $('#editor p').html();//editor;
+            var editor = $('#editor .w-e-text').html();//editor;
             var categoryId = $('#categoryId .active input').val();
             var isProvedSign = $('#sign .active input').val();
             var object = $('#groupOfPep').val();
