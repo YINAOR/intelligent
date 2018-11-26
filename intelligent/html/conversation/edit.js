@@ -47,6 +47,7 @@
                     if(imageUrl) {
                         $('#file').val(imageUrl);
                         $('#prePhoto').html('<img src="http://120.77.204.252:80'+ imageUrl +'" style="width: 120px; height:150px">');
+                        teahouseUrl = imageUrl;
                     }
                     $('#date').val(dateStr);
                     $('#startTimePicker').val(startTime);
@@ -54,12 +55,12 @@
                     $('#address').val(address);
                     for(var i = 0; i < teahouseSpeakerLinkList.length; i++) {
                         if(i == 0) {
-                            $('.speakerInput').val(speakerLinkList[i].name);
-                            $('.spbrief').val(speakerLinkList[i].brief);
+                            $('.speakerInput').val(teahouseSpeakerLinkList[i].name);
+                            $('.spbrief').val(teahouseSpeakerLinkList[i].brief);
                         } else {
                             $('#speakerGroup').append(appendList);
-                            $('.speakerList:eq('+ i +') .speakerInput').val(speakerLinkList[i].name);
-                            $('.speakerList:eq('+ i +') .spbrief').val(speakerLinkList[i].brief);
+                            $('.speakerList:eq('+ i +') .speakerInput').val(teahouseSpeakerLinkList[i].name);
+                            $('.speakerList:eq('+ i +') .spbrief').val(teahouseSpeakerLinkList[i].brief);
                         }
                     }
                     
@@ -270,6 +271,8 @@
             if(id) {
                 url = 'http://120.77.204.252:80/teahouse/update.do';
                 teahouse.id = id;
+                teahouse.speakerLinkList = teahouse.teahouseSpeakerLinkList;
+                delete teahouse.teahouseSpeakerLinkList;
             }
 
             _g.ajax({

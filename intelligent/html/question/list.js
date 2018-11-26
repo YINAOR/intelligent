@@ -104,11 +104,11 @@
                     id: id
                 },
                 success: function(result) {
-                    if(result.code === 1000){
+                    if (result.code === 1000) {
                         layer.open({
                             title: '消息',
                             content: result.msg,
-                            yes: function(index){
+                            yes: function(index) {
                                 layer.close(index);
                                 window.location.href = '/signin.html';
                             }
@@ -118,48 +118,61 @@
                             title: '消息',
                             content: result.msg,
                         });
-                        if(result.code === 200) {
-                           getList();
+                        if (result.code === 200) {
+                            getList();
                         }
-                    }                    
+                    }
                 }
-           })
+            })
             layer.close(index);
         });
     }
 
     setFAQ = function(id, string) {
-        var isFaq = 2;
+        var isFaq;
         if (string) {
             isFaq = 1;
+            layer.confirm('您确定要删除此提问吗？', { title: '询问' }, function(index) {
+                changeFAQ();
+                layer.close(index);
+            })
+        } else {
+            isFaq = 2;
+            changeFAQ();
         }
-        _g.ajax({
-            lock: true,
-            url: 'http://120.77.204.252:80/question/setFAQ.do',
-            data: {
-                id: id,
-                isFaq: isFaq
-            },
-            success: function(result) {
-                if (result.code === 200) {
-                    getList();
-                } else if(result.code === 1000){
-                    layer.open({
-                        title: '消息',
-                        content: result.msg,
-                        yes: function(index){
-                            layer.close(index);
-                            window.location.href = '/signin.html';
-                        }
-                    });
-                } else{
-                    layer.open({
-                        title: '消息',
-                        content: result.msg,
-                    })
+
+        function changeFAQ() {
+            _g.ajax({
+                lock: true,
+                url: 'http://120.77.204.252:80/question/setFAQ.do',
+                data: {
+                    aq: {
+                        id: id,
+                        isFaq: isFaq
+                    }
+                },
+                success: function(result) {
+                    if (result.code === 200) {
+                        getList();
+                    } else if (result.code === 1000) {
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                            yes: function(index) {
+                                layer.close(index);
+                                window.location.href = '/signin.html';
+                            }
+                        });
+                    } else {
+                        layer.open({
+                            title: '消息',
+                            content: result.msg,
+                        })
+                    }
                 }
-            }
-        })
+            })
+        }
+
     }
 
     $('#searchBtn').click(function() {
@@ -176,24 +189,26 @@
             lock: true,
             url: 'http://120.77.204.252:80/question/answer.do',
             data: {
-                AnswersAndQuestions: {
+                aq: {
                     id: id,
                     solution: solution
                 }
             },
             success: function(result) {
                 if (result.code === 200) {
+                    _g.hideBaseModal();
                     getList();
-                } else if(result.code === 1000){
+                    layer.msg(result.msg);
+                } else if (result.code === 1000) {
                     layer.open({
                         title: '消息',
                         content: result.msg,
-                        yes: function(index){
+                        yes: function(index) {
                             layer.close(index);
                             window.location.href = '/signin.html';
                         }
                     });
-                } else{
+                } else {
                     layer.open({
                         title: '消息',
                         content: result.msg,

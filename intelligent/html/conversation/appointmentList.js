@@ -41,10 +41,10 @@
                         }
                     });
                     var data1 = { list: result.data.paging.list, currentPage: data.currentPage, showCount: data.showCount};
-                    _g.render('user/student-V', data1, '#table');
+                    _g.render('conversation/appointmentList-V', data1, '#table');
                     } else {
                         var data1 = { list: [] };
-                        _g.render('user/student-V', data1, '#table');
+                        _g.render('conversation/appointmentList-V', data1, '#table');
                     }
     				
     			} else if(result.code === 1000){

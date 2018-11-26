@@ -3,7 +3,8 @@
         <thead>
             <tr>
                 <th style="width:60px;">序号</th>
-                <th>名称</th> 
+                <th>名称</th>
+                <th>举办日期</th>
                 <th>开始时间</th>
                 <th>结束时间</th> 
                 <th>地点</th>
@@ -27,8 +28,9 @@
             <tr data-custom-id="{{item.id}}">
                 <td>{{showCount*(currentPage-1)+index+1}}</td>
                 <td>{{item.name}}</td>
-                <td>{{item.startTime}}</td>
-                <td>{{item.endTime}}</td>
+                <td>{{item.dateStr}}</td>
+                <td>{{item.startTimeStr}}</td>
+                <td>{{item.endTimeStr}}</td>
                 <td>{{item.address}}</td>
                 <td>{{item.isProved == 0 ? '否':'是'}}</td>
                 <td>{{item.hour}}</td>
