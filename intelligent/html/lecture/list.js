@@ -29,7 +29,7 @@
             }
         })
     }
-    // getTypeList();
+    getTypeList();
 
     var data = {
         currentPage: 1,
@@ -97,7 +97,7 @@
             },  
         });
     }
-    // getList();
+    getList();
     
     $('#searchBtn').click(function(){
         data.currentPage = 1;

@@ -2,13 +2,6 @@
 	
     _g.setNowPage('conversation/edit');
     $('#formContent').html(_g.getTemplate('conversation/edit-V'));
-
-    // $(document).ready(function(){  
-    //     $("#addSpeaker").click(function(){  
-    //         var $copy = $("#speaker").html();
-    //         $("#speaker").after($copy);
-    //     });  
-    // })
     
     
     var id = _g.pm.param.id;
@@ -137,12 +130,8 @@
     var editor = new E('#editor');
     editor.create();
 
-    function querySpeakerList(val,target) {
-        // var speakerName = $('.speakerInput').val();
-        // if(str) {
-        //     speakerName = $('#speakerInput2').val();
-        // }
-        if(val != ""){
+    function querySpeakerList(val, target) {
+        if (val != "") {
             _g.ajax({
                 url: 'http://120.77.204.252:80/teahouse/querySpeakerList.do',
                 data: {
@@ -151,37 +140,34 @@
                     }
                 },
                 success: function(result) {
-                    // if(str){
-                    //     $('#speakerquery2').empty();
-                    // }else {
-                        $('.speakerquery').empty()
-                    // }
-                    
-                    if(result.code == 200){
+                    $('.speakerquery').empty();
+                    if (result.code == 200) {
                         var speakerList = result.data.speakerList;
-                        for(var i=0;i<speakerList.length;i++){
-                            var name=speakerList[i].name;
+                        for (var i = 0; i < speakerList.length; i++) {
+                            var name = speakerList[i].name;
                             var list = '<li class="active-result" data-option-array-index="' + i + '">' + name + '</li>';
-                            // if(str) {
-                            //     $("#speakerquery2").append(list);
-                            // } else {
-                                $(".speakerquery").append(list);
-                                
+                            $(target).parents('.speakerList').find('.speakerquery').append(list);
+                            $(target).parents('.speakerList').find('.speakerDiv').addClass('chosen-with-drop chosen-container-active');
                             // }
                         }
-                        $('.speakerquery').on("click","li",function(e){
+                        $(target).parents('.speakerList').find('.speakerquery').on("click", "li", function(e) {
                             $(target).val($(e.target).text());
-                            for(var i=0;i<speakerList.length;i++){
-                                if($(target).val() == speakerList[i].name){
+                            $(target).parents('.speakerList').find('.speakerDiv').removeClass('chosen-with-drop chosen-container-active');
+                            for (var i = 0; i < speakerList.length; i++) {
+                                if ($(target).val() == speakerList[i].name) {
                                     $(target).parents('.speakerList').find('textarea').val(speakerList[i].brief);
                                 }
                             }
                         })
-                    } else if(result.code === 1000){
+                        $(target).parents('.speakerList').find('.speakerquery').on("mouseover", "li", function() {
+                            $(this).siblings().removeClass('highlighted');
+                            $(this).addClass('highlighted');
+                        })
+                    } else if (result.code === 1000) {
                         layer.open({
                             title: '消息',
                             content: result.msg,
-                            yes: function(index){
+                            yes: function(index) {
                                 layer.close(index);
                                 window.location.href = '/signin.html';
                             }
@@ -194,38 +180,29 @@
                     }
                 }
             })
+        } else {
+            $('.speakerquery').empty()
         }
     }
 
-    // function debounce() {
-    //     var timer = null;
-    //     return function() {
-    //         if(timer) {
-    //             clearTimeout(timer);
-    //         }
-    //         timer = setTimeout(querySpeakerList,2000);
-    //     }
-    // }
-    
-    // $('.speakerInput').each(function() {
-    //     this.addEventListener('keyup', debounce());
-    // })
-    // document.getElementById('speakerInput2').addEventListener('keyup', debounce('speakerInput2'));
-    
-    var timer = null;
-    $('#speakerGroup').keyup(function(e) {
-        var e = e || window.e;
-        var target = e.target || e.srcElement;
-        if(target.className == 'speakerInput') {
-            clearTimeout(timer);
-            timer = setTimeout(function(){
-                querySpeakerList.call(null,$(target).val(),target);
-            },2000);
+    function debounce() {
+        var timer = null;
+        return function(e) {
+            var e = e || window.e;
+            var target = e.target || e.srcElement;
+            if (target.className == 'speakerInput') {
+                if (timer) {
+                    clearTimeout(timer);
+                }
+                timer = setTimeout(function() {
+                    querySpeakerList.call(null, $(target).val(), target);
+                }, 2000);
+            }
         }
-    })
+    }
 
-
-    // $('#speakerGroup').keyup(debounce());
+    document.getElementById('speakerGroup').addEventListener('keyup', debounce());
+    
 
         $("#addSpeaker").click(function(){
             $('#speakerGroup').append(appendList);
@@ -390,10 +367,6 @@
     $('.speakerInput').focus(function() {
         $('.speakerDiv').addClass('chosen-with-drop chosen-container-active');
     })
-    
-    // $('#speakerInput2').focus(function() {
-    //     $('#speakerDiv2').addClass('chosen-with-drop chosen-container-active');
-    // })
 
     $(document).click(function(event) {
         var target = event.target;
@@ -402,33 +375,7 @@
         } else {
             $('.speakerDiv').removeClass('chosen-with-drop chosen-container-active');  
         }
-        // if (target.id === 'speakerquery2' || target.id === 'speakerInput2') {
-        //     return false;
-        // } else {
-        //     $('#speakerDiv2').removeClass('chosen-with-drop chosen-container-active');  
-        // }
     });
     
-
-    $('.speakerquery').on("mouseover","li",function(){
-        $(this).siblings().removeClass('highlighted');
-        $(this).addClass('highlighted');
-    })
-
-    $('.speakerquery').on("click","li",function(){
-        $('.speakerInput').val($(this).text());
-        $('.speakerDiv').removeClass('chosen-with-drop chosen-container-active');
-    })
-
-    // $('#speakerquery2').on("mouseover","li",function(){
-    //     $(this).siblings().removeClass('highlighted');
-    //     $(this).addClass('highlighted');
-    // })
-
-    // $('#speakerquery2').on("click","li",function(){
-    //     $('#speakerInput').val($(this).text());
-    //     $('#speakerDiv').removeClass('chosen-with-drop chosen-container-active');
-    // })
-
 
 })();

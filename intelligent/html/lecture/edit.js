@@ -155,15 +155,6 @@
     editor.create();
 
     function querySpeakerList(val, target) {
-        // var speakerName = $('.speakerInput').val();
-        // if(str) {
-        //     speakerName = $('#speakerInput2').val();
-        // }
-        console.log(target)
-        var list = '<li class="active-result" data-option-array-index="' + 1 + '">' + 'name' + '</li>';
-        $(target).parents('.speakerList').find('.speakerquery').append(list);
-        
-        return 
         if (val != "") {
             _g.ajax({
                 url: 'http://120.77.204.252:80/lecture/querySpeakerList.do',
@@ -173,30 +164,28 @@
                     }
                 },
                 success: function(result) {
-                    // if(str){
-                    //     $('#speakerquery2').empty();
-                    // }else {
-                    $('.speakerquery').empty()
-                    // }
-
+                    $('.speakerquery').empty();
                     if (result.code == 200) {
                         var speakerList = result.data.speakerList;
                         for (var i = 0; i < speakerList.length; i++) {
                             var name = speakerList[i].name;
                             var list = '<li class="active-result" data-option-array-index="' + i + '">' + name + '</li>';
-                            // if(str) {
-                            //     $("#speakerquery2").append(list);
-                            // } else {
                             $(target).parents('.speakerList').find('.speakerquery').append(list);
+                            $(target).parents('.speakerList').find('.speakerDiv').addClass('chosen-with-drop chosen-container-active');
                             // }
                         }
-                        $('.speakerquery').on("click", "li", function(e) {
+                        $(target).parents('.speakerList').find('.speakerquery').on("click", "li", function(e) {
                             $(target).val($(e.target).text());
+                            $(target).parents('.speakerList').find('.speakerDiv').removeClass('chosen-with-drop chosen-container-active');
                             for (var i = 0; i < speakerList.length; i++) {
                                 if ($(target).val() == speakerList[i].name) {
                                     $(target).parents('.speakerList').find('textarea').val(speakerList[i].brief);
                                 }
                             }
+                        })
+                        $(target).parents('.speakerList').find('.speakerquery').on("mouseover", "li", function() {
+                            $(this).siblings().removeClass('highlighted');
+                            $(this).addClass('highlighted');
                         })
                     } else if (result.code === 1000) {
                         layer.open({
@@ -233,34 +222,11 @@
                     querySpeakerList.call(null, $(target).val(), target);
                 }, 2000);
             }
-            // if(timer) {
-            //     clearTimeout(timer);
-            // }
-            // timer = setTimeout(querySpeakerList,2000);
         }
     }
 
-    // $('.speakerInput').each(function() {
-    //     this.addEventListener('keyup', debounce());
-    // })
     document.getElementById('speakerGroup').addEventListener('keyup', debounce());
 
-    // var timer = null;
-    // $('#speakerGroup').keyup(function(e) {
-    //     var e = e || window.e;
-    //     var target = e.target || e.srcElement;
-    //     if (target.className == 'speakerInput') {
-    //         if (timer) {
-    //             clearTimeout(timer);
-    //         }
-    //         timer = setTimeout(function() {
-    //             querySpeakerList.call(null, $(target).val(), target);
-    //         }, 2000);
-    //     }
-    // })
-
-
-    // $('#speakerGroup').keyup(debounce());
 
     $("#addSpeaker").click(function() {
         $('#speakerGroup').append(appendList);
@@ -448,13 +414,6 @@
     $('#startTimePicker').hunterTimePicker();
     $('#endTimePicker').hunterTimePicker();
 
-    $('.speakerInput').focus(function() {
-        $('.speakerDiv').addClass('chosen-with-drop chosen-container-active');
-    })
-
-    // $('#speakerInput2').focus(function() {
-    //     $('#speakerDiv2').addClass('chosen-with-drop chosen-container-active');
-    // })
 
     $(document).click(function(event) {
         var target = event.target;
@@ -463,35 +422,6 @@
         } else {
             $('.speakerDiv').removeClass('chosen-with-drop chosen-container-active');
         }
-        // if (target.id === 'speakerquery2' || target.id === 'speakerInput2') {
-        //     return false;
-        // } else {
-        //     $('#speakerDiv2').removeClass('chosen-with-drop chosen-container-active');  
-        // }
     });
-
-
-    $('.speakerquery').on("mouseover", "li", function() {
-        $(this).siblings().removeClass('highlighted');
-        $(this).addClass('highlighted');
-    })
-
-    $('.speakerquery').on("click", "li", function() {
-        $('.speakerInput').val($(this).text());
-        $('.speakerDiv').removeClass('chosen-with-drop chosen-container-active');
-    })
-
-    // $('#speakerquery2').on("mouseover","li",function(){
-    //     $(this).siblings().removeClass('highlighted');
-    //     $(this).addClass('highlighted');
-    // })
-
-    // $('#speakerquery2').on("click","li",function(){
-    //     $('#speakerInput').val($(this).text());
-    //     $('#speakerDiv').removeClass('chosen-with-drop chosen-container-active');
-    // })
-
-
-
 
 })();
