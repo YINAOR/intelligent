@@ -16,8 +16,12 @@
             {{else}} {{each list item index}}
             <tr data-custom-id="{{item.id}}">
                 <td>{{showCount * (currentPage-1) + index + 1}}</td>
+                {{if item.imageUrl}}
                 <td><img src="http://120.77.204.252:80{{item.imageUrl}}" style="width: 100px; height: 150px"/></td>
-                <td>
+                {{else}}
+                <td><img src="/images/m15.jpg" style="width: 100px; height: 150px"/></td>
+                {{/if}}
+                <td>          
                 姓名：{{item.name}}</br>
                 性别：{{item.gender === 1 ? '未知' : item.gender === 2 ? '男' : '女'}}</br>
                 简介：{{item.brief}}
