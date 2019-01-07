@@ -165,6 +165,7 @@
                         content: result.msg,
                     })
                     if(result.code === 200) {
+                        getList();
                         _g.hideBaseModal();
                     }
                 }
