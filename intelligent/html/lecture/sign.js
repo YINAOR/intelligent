@@ -16,7 +16,6 @@
     var status = start ? 'S' : end ? 'E' : 'A';
     console.log(status)
 
-    return
 
     if(set) {
         clearTimeout(set);
@@ -26,6 +25,7 @@
     function getQrCode(getTime) {
         var supports = (new XMLHttpRequest()).withCredentials !== undefined;
         if (supports) {
+            console.log(55555)
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.open("POST", "http://120.77.204.252:80/lecture/generateQRCode.do", true);
             xmlhttp.setRequestHeader('Content-Type', 'application/json');

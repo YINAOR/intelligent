@@ -61,7 +61,7 @@
                         $('#lprove li input[value="' + isProved + '"]').parent().addClass('active');
                     }
                     if (isProvedSign != null) {
-                        $('.isProvedSign').text(isProvedSign === 0 ? '不需要签到' : isProvedSign === 1 ? '需要签到1次' : '需要签到2次');
+                        $('.isProvedSign').text(isProvedSign === 1 ? '不需要签到' : isProvedSign === 2 ? '需要签到1次' : '需要签到2次');
                         $('#sign li input[value="' + isProvedSign + '"]').parent().addClass('active');
                     }
                     $('#hour').val(hour);
@@ -100,7 +100,7 @@
                         content: result.msg,
                         yes: function(index) {
                             layer.close(index);
-                            window.location.href = '/signin.html';
+                            window.location.href = 'signin.html';
                         }
                     });
                 } else {
@@ -136,7 +136,7 @@
                         content: result.msg,
                         yes: function(index) {
                             layer.close(index);
-                            window.location.href = '/signin.html';
+                            window.location.href = 'signin.html';
                         }
                     });
                 } else {
@@ -193,7 +193,7 @@
                             content: result.msg,
                             yes: function(index) {
                                 layer.close(index);
-                                window.location.href = '/signin.html';
+                                window.location.href = 'signin.html';
                             }
                         });
                     } else {
@@ -310,7 +310,7 @@
                         content: result.msg,
                         yes: function(index) {
                             layer.close(index);
-                            window.location.href = '/signin.html';
+                            window.location.href = 'signin.html';
                         }
                     });
                 } else {
@@ -376,7 +376,7 @@
                             content: result.msg,
                             yes: function(index) {
                                 layer.close(index);
-                                window.location.href = '/signin.html';
+                                window.location.href = 'signin.html';
                             }
                         });
                     } else {

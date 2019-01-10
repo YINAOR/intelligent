@@ -57,7 +57,7 @@
                         content: result.msg,
                         yes: function(index){
                             layer.close(index);
-                            window.location.href = '/signin.html';
+                            window.location.href = 'signin.html';
                         }
                     });
                 } else {
@@ -89,7 +89,7 @@
                         content: result.msg,
                         yes: function(index){
                             layer.close(index);
-                            window.location.href = '/signin.html';
+                            window.location.href = 'signin.html';
                         }
                     });
                 } else {
@@ -130,7 +130,7 @@
                             content: result.msg,
                             yes: function(index){
                                 layer.close(index);
-                                window.location.href = '/signin.html';
+                                window.location.href = 'signin.html';
                             }
                         });
                     } else {
@@ -171,7 +171,7 @@
                             content: result.msg,
                             yes: function(index) {
                                 layer.close(index);
-                                window.location.href = '/signin.html';
+                                window.location.href = 'signin.html';
                             }
                         });
                     } else {
