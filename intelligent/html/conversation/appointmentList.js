@@ -74,17 +74,20 @@
         getList();
     })
 
-    _g.appointment = function(){
+    _g.appointment = function(studentId){
         var status = $('input[name=a]:checked').val();
         _g.ajax({
             lock: true,
             url: 'http://120.77.204.252:80/teahouse/processAppointment.do',
             data: {
-                Appointment: {
+                appointment: {
                     teahouse: {
-                        id: id,
-                        status: status
-                    }
+                        id: id   
+                    },
+                    student: {
+                        id: studentId
+                    },
+                    status: status
                 }
             },
             success: function(result) {

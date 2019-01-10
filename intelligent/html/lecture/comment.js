@@ -149,6 +149,7 @@
     		success: function(result) {
     			if(result.code == 200){
                 	getComment();
+                    _g.hideBaseModal();
                 } else if(result.code === 1000){
                     layer.open({
                         title: '消息',

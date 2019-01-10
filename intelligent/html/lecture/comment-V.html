@@ -22,19 +22,19 @@
             {{else}} {{each list item index}}
                 <tr data-custom-id="{{item.id}}">
                     <td>{{showCount*(currentPage-1)+index+1}}</td>
-                    <td>{{item.studentId}}</td>
-                    <td>{{item.name}}</td>
-                    <td>{{item.major}}</td>
-                    <td>{{item.commenContent}}</td>
+                    <td>{{item.student.num}}</td>
+                    <td>{{item.student.name}}</td>
+                    <td>{{item.student.major.name}}</td>
+                    <td>{{item.commentContent}}</td>
                     <td>{{item.commentTime}}</td>
                     <td>{{item.replyContent || '暂无回复'}}</td>
                     <td>{{item.replyTime || ''}}</td>
                     <td>
                         {{if item.replyContent}}
-                        <button onclick="deleteReply('{{item.id}},{{item.floorId}}')" class="btn btn-success btn-xs">删除回复</button>
+                        <button onclick="deleteReply('{{item.id}}','{{item.floorId}}')" class="btn btn-danger btn-xs">删除回复</button>
                         {{/if}}
-                        <button onclick="_g.openBaseModal('lecture/reply-V', {id: '{{item.id}}', floorId: '{{item.floorId}}'}, '修改密码');" class="btn btn-danger btn-xs">回复</button>
-                        <button onclick="deleteComment('{{item.id}},{{item.floorId}}')" class="btn btn-danger btn-xs">删除评论</button>
+                        <button onclick="_g.openBaseModal('lecture/reply-V', {id: '{{item.id}}', floorId: '{{item.floorId}}'}, '回复评论');" class="btn btn-success btn-xs">回复</button>
+                        <button onclick="deleteComment('{{item.id}}','{{item.floorId}}')" class="btn btn-danger btn-xs">删除评论</button>
                     </td>
                 </tr>
             {{/each}} {{/if}} 
