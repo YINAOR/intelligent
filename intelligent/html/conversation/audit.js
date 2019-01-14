@@ -86,7 +86,7 @@
                         content: result.msg,
                         yes: function(index){
                             layer.close(index);
-                            window.location.href = '/signin.html';
+                            window.location.href = 'signin.html';
                         }
                     });
                 } else{
@@ -156,7 +156,7 @@
                         content: result.msg,
                         yes: function(index){
                             layer.close(index);
-                            window.location.href = '/signin.html';
+                            window.location.href = 'signin.html';
                         }
                     });
                 } else{
@@ -165,6 +165,7 @@
                         content: result.msg,
                     })
                     if(result.code === 200) {
+                        getList();
                         _g.hideBaseModal();
                     }
                 }

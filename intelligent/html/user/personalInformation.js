@@ -48,7 +48,7 @@
                         yes: function(index) {
                             if (result.msg.indexOf('请登录') != -1) {
                                 layer.close(index);
-                                window.location.href = '/signin.html';
+                                window.location.href = 'signin.html';
                             }
                         }
                     });
@@ -101,7 +101,7 @@
                             content: result.msg,
                             yes: function(index){
                                 layer.close(index);
-                                window.location.href = '/signin.html';
+                                window.location.href = 'signin.html';
                             }
                         });
                     } else {

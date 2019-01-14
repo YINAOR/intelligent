@@ -27,11 +27,15 @@
             {{else}} {{each list item index}}
             <tr data-custom-id="{{item.id}}">
                 <td>{{showCount*(currentPage-1)+index+1}}</td>
+                {{if item.imageUrl}}
                 <td><img src="http://120.77.204.252:80{{item.imageUrl}}" style="width: 100px; height: 150px"/></td>
+                {{else}}
+                <td><img src="/images/m15.jpg" style="width: 100px; height: 150px"/></td>
+                {{/if}}
                 <td>{{item.theme}}</td>
                 <td>{{item.dateStr}}</td>
-                <td>{{item.startTime}}</td>
-                <td>{{item.endTime}}</td>
+                <td>{{item.startTime.split(' ')[1]}}</td>
+                <td>{{item.endTime.split(' ')[1]}}</td>
                 <td>{{item.address}}</td>
                 <td>{{item.limitNumOfPep}}</td>
                 {{if item.speakerLinkList}}

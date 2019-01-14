@@ -21,21 +21,18 @@
             {{else}} {{each list item index}}
             <tr data-custom-id="{{item.id}}">
                 <td>{{showCount*(currentPage-1)+index+1}}</td>
-                <td>{{item.student.number}}</td>
+                <td>{{item.student.num}}</td>
                 <td>{{item.student.name}}</td>
                 <td>{{item.reason}}</td>
-                <td>{{item.informDataStr}}</td>
+                <td>{{item.informDateStr}}</td>
                 <td>{{item.createTimeStr}}</td>
                 <td>{{item.status === 1 ? '预约中' : item.status === 2 ? '预约成功': '预约失败'}}</td>
                 <td>
-
                     {{if item.status === 1}}
-                    <button onclick="javascript:_g.openBaseModal('conversation/list-appointment-V', {}, '预约处理');" class="btn btn-danger btn-xs" data-id="1234">处理预约</button>
+                    <button onclick="javascript:_g.openBaseModal('conversation/list-appointment-V', {studentId: '{{item.student.id}}'}, '预约处理');" class="btn btn-danger btn-xs">处理预约</button>
                     {{else}}
                     ----
-                    {{/if}}
-                    
-                    
+                    {{/if}} 
                 </td>
             </tr>
             {{/each}} {{/if}}

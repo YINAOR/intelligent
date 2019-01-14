@@ -217,7 +217,7 @@
         $('.webFooter').html(' &copy;&nbsp;&nbsp;2018&nbsp;&nbsp;' + _c.copyright + '&nbsp;&nbsp;' + _c.webTitle + '版权所有');
 
         if (!sessionStorage.administrator || !sessionStorage.token) {
-            window.location.href = '/signin.html';
+            window.location.href = 'signin.html';
         }
 
         if (window.history && window.history.pushState) {
@@ -288,7 +288,7 @@
                 },
                 success: function(respData) {
                     if(respData.code==200){
-                        window.location.href = "/signin.html";
+                        window.location.href = "signin.html";
                     }else{
                         $('#oldPassword').val(''); 
                         $('#newPassword1').val('');
@@ -297,18 +297,18 @@
                     if(respData.code==1000){//code==1000未登录或token失效跳转回登录页面
                         layer.open({
                             title: '消息',
-                            content: result.msg,
+                            content: respData.msg,
                             yes: function(index) {
                             // if (result.msg.indexOf('请登录') != -1) {
                                 layer.close(index);
-                                window.location.href = '/signin.html';
+                                window.location.href = 'signin.html';
                             // }
                             }
                        });
                     } else {
                         layer.open({
                             title: '消息',
-                            content: result.msg,
+                            content: respData.msg,
                         });
                     }
                 }
@@ -323,14 +323,14 @@
                 success: function(result) {
                     if (result.code === 200) {
                         sessionStorage.admin = '';
-                        window.location.href = '/signin.html';
+                        window.location.href = 'signin.html';
                     } else if(result.code === 1000){
                         layer.open({
                             title: '消息',
                             content: result.msg,
                             yes: function(index){
                                 layer.close(index);
-                                 window.location.href = '/signin.html';
+                                 window.location.href = 'signin.html';
                             }
                         });
                      } else {

@@ -3,6 +3,7 @@
         <thead>
             <tr>
                 <th style="width:60px;">序号</th>
+                <th>学院id</th>
                 <th>学院编码</th>
                 <th>学院名称</th>
                 <th>状态</th>
@@ -17,6 +18,7 @@
             {{else}} {{each list item index}}
             <tr data-custom-id="{{item.id}}">
                 <td>{{showCount*(currentPage-1)+index+1}}</td>
+                <td>{{item.id}}</td>
                 <td>{{item.code}}</td>
                 <td>{{item.name}}</td>
                 <td>{{item.status === 1 ? '使用中' : '已停用'}}</td>

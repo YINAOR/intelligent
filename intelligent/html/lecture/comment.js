@@ -54,7 +54,7 @@
                         content: result.msg,
                         yes: function(index){
                             layer.close(index);
-                            window.location.href = '/signin.html';
+                            window.location.href = 'signin.html';
                         }
                     });
                 } else {
@@ -89,7 +89,7 @@
                         content: result.msg,
                         yes: function(index){
                             layer.close(index);
-                            window.location.href = '/signin.html';
+                            window.location.href = 'signin.html';
                         }
                     });
                 } else {
@@ -121,7 +121,7 @@
                         content: result.msg,
                         yes: function(index){
                             layer.close(index);
-                            window.location.href = '/signin.html';
+                            window.location.href = 'signin.html';
                         }
                     });
                 } else {
@@ -149,13 +149,14 @@
     		success: function(result) {
     			if(result.code == 200){
                 	getComment();
+                    _g.hideBaseModal();
                 } else if(result.code === 1000){
                     layer.open({
                         title: '消息',
                         content: result.msg,
                         yes: function(index){
                             layer.close(index);
-                            window.location.href = '/signin.html';
+                            window.location.href = 'signin.html';
                         }
                     });
                 } else {

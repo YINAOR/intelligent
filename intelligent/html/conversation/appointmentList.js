@@ -41,10 +41,10 @@
                         }
                     });
                     var data1 = { list: result.data.paging.list, currentPage: data.currentPage, showCount: data.showCount};
-                    _g.render('user/student-V', data1, '#table');
+                    _g.render('conversation/appointmentList-V', data1, '#table');
                     } else {
                         var data1 = { list: [] };
-                        _g.render('user/student-V', data1, '#table');
+                        _g.render('conversation/appointmentList-V', data1, '#table');
                     }
     				
     			} else if(result.code === 1000){
@@ -53,7 +53,7 @@
                         content: result.msg,
                         yes: function(index) {
                             layer.close(index);
-                            window.location.href = '/signin.html';
+                            window.location.href = 'signin.html';
                         }
                     });
     			} else {
@@ -74,17 +74,20 @@
         getList();
     })
 
-    _g.appointment = function(){
+    _g.appointment = function(studentId){
         var status = $('input[name=a]:checked').val();
         _g.ajax({
             lock: true,
             url: 'http://120.77.204.252:80/teahouse/processAppointment.do',
             data: {
-                Appointment: {
+                appointment: {
                     teahouse: {
-                        id: id,
-                        status: status
-                    }
+                        id: id   
+                    },
+                    student: {
+                        id: studentId
+                    },
+                    status: status
                 }
             },
             success: function(result) {
@@ -94,7 +97,7 @@
                         content: result.msg,
                         yes: function(index){
                             layer.close(index);
-                            window.location.href = '/signin.html';
+                            window.location.href = 'signin.html';
                         }
                     });
                 } else{
