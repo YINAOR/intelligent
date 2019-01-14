@@ -29,7 +29,8 @@
                     var endTime = result.data.lecture.endTimeStr;
                     var address = result.data.lecture.address;
                     var isProved = result.data.lecture.isProved;
-                    var status = result.data.lecture.status === 0 ? '待审核' : result.data.lecture.status === 1 ? '通过审核' : '审核不通过';//0：待审核，1：通过审核，2：审核不通过
+                    //1：未审核，2：待审核，3：审核通过，4：审核不通过，5：待复审中
+                    var status = result.data.lecture.status === 1 ? '未审核' : result.data.lecture.status === 2 ? '待审核' : result.data.lecture.status === 3 ? '审核通过': result.data.lecture.status === 4 ? '审核不通过':'待复审中';  
                     var isSend = result.data.lecture.isSend === 0 ? '未发送' : '已发送';  //0：未发送，1：已发送
                     var thumbsUpNum = result.data.lecture.thumbsUpNum;
                     var signUpNum = result.data.lecture.signUpNum;
